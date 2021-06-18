@@ -1,2 +1,6 @@
 ^LICENSE\.md$
 ^\.httr-oauth$
+^data-raw$
+^data-raw/agreements$
+^data-raw/agreements/IHEID$
+^data-raw/agreements/HEIDI$
