@@ -6,6 +6,6 @@
 #' please use the `data_source()`, `data_contrast()`, and `data_evolution()`
 #' functions.
 #'\describe{
-#' \item{HEIDI: }{A dataset with 2280 observations and the following 3 variables: ID, Title, Beg.}
+#' \item{HEIDI: }{A dataset with 2280 observations and the following 4 variables: ID, Title, Beg, Signature.}
 #' }
  "agreements"

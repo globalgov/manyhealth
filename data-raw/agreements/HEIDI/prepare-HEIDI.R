@@ -15,8 +15,9 @@ HEIDI <- qCreate::link_metadata(HEIDI)
 # below (in stage three) passes all the tests.
 HEIDI <- as_tibble(HEIDI) %>%
   transmutate(Title = standardise_titles(`Name.of.the.agreement`),
-              Beg = standardise_dates(`signature.date`)) %>%
-  dplyr::select(ID, Title, Beg) %>%
+              Signature = standardise_dates(`signature.date`)) %>%
+  dplyr::mutate(Beg = Signature) %>%
+  dplyr::select(ID, Title, Beg, Signature) %>%
   dplyr::arrange(Beg, ID)
 
 # qData includes several functions that should help cleaning

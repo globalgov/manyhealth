@@ -121,3 +121,10 @@ test_that("Columns with dates are standardized", {
                            agreements[["HEIDI"]]$Term)))
   }
 })
+
+# Dataset should be ordered according to the "Beg" column
+test_that("dataset is arranged by date variable", {
+  expect_true(agreements[["HEIDI"]]$Beg[1] < agreements[["HEIDI"]]$Beg[10])
+  expect_true(agreements[["HEIDI"]]$Beg[50] < agreements[["HEIDI"]]$Beg[75])
+  expect_true(agreements[["HEIDI"]]$Beg[100] < agreements[["HEIDI"]]$Beg[120])
+})
