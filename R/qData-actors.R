@@ -6,6 +6,6 @@
 #' please use the `data_source()`, `data_contrast()`, and `data_evolution()`
 #' functions.
 #'\describe{
-#' \item{CHATHAM: }{A dataset with 203 observations and the following 5 variables: Name, ID, Beg, Place, City.}
+#' \item{CHATHAM: }{A dataset with 203 observations and the following 5 variables: Actor, ID, Beg, Country, City.}
 #' }
  "actors"

@@ -13,14 +13,14 @@ CHATHAM <- readxl::read_excel("data-raw/actors/CHATHAM/actors_map.xlsx")
 # below (in stage three) passes all the tests.
 CHATHAM <- as_tibble(CHATHAM) %>%
   qData::transmutate(ID = Code,
-                     Name = standardise_titles(Actors),
-                     Place = code_states(HQ_states),
+                     Actor = standardise_titles(Actors),
+                     Country = code_states(HQ_states),
                      City = HQ_city,
                      Beg = Year_inception) # Need to be standardised with standardise_dates()!
 
-CHATHAM$Place <- ifelse(is.na(CHATHAM$Place), "UK", CHATHAM$Place)
+CHATHAM$Country <- ifelse(is.na(CHATHAM$Country), "UK", CHATHAM$Country)
 CHATHAM <- CHATHAM %>%
-  dplyr::select(Name, ID, Beg, Place, City) %>%
+  dplyr::select(Actor, ID, Beg, Country, City) %>%
   dplyr::arrange(Beg)
 
 # qData includes several functions that should help cleaning
