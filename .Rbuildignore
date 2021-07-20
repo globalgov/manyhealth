@@ -6,3 +6,6 @@
 ^data-raw/agreements/HEIDI$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^data-raw/actors$
+^data-raw/actors/CH_HOUSE$
+^data-raw/actors/CHATHAM$
