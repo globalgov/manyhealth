@@ -16,7 +16,7 @@ CHATHAM <- as_tibble(CHATHAM) %>%
                      Actor = standardise_titles(Actors),
                      Country = code_states(HQ_states),
                      City = HQ_city,
-                     Beg = Year_inception) # Need to be standardised with standardise_dates()!
+                     Beg = standardise_dates(lubridate::as_date(Year_inception)))
 
 CHATHAM$Country <- ifelse(is.na(CHATHAM$Country), "UK", CHATHAM$Country)
 CHATHAM <- CHATHAM %>%
