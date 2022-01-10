@@ -17,7 +17,6 @@ test_that("datasets have the required variables", {
   expect_col_exists(agreements[["HEIDI"]], vars(Beg))
   expect_true(any(grepl("ID$", colnames(agreements[["HEIDI"]]))))
   expect_col_exists(agreements[["HEIDI"]], vars(Signature))
-  expect_col_exists(agreements[["HEIDI"]], vars(Force))
 })
 
 # Date columns should be in messydt class
@@ -52,19 +51,6 @@ test_that("Column `Signature` has standardised dates", {
                          agreements[["HEIDI"]]$Signature)))
   expect_false(any(grepl("^[:digit:]{1}$",
                          agreements[["HEIDI"]]$Signature)))
-})
-
-test_that("Column `Force` has standardised dates", {
-  expect_equal(class(agreements[["HEIDI"]]$Force), "messydt")
-  expect_false(any(grepl("/", agreements[["HEIDI"]]$Force)))
-  expect_false(any(grepl("^[:alpha:]$",
-                         agreements[["HEIDI"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{2}$",
-                         agreements[["HEIDI"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{3}$",
-                         agreements[["HEIDI"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{1}$",
-                         agreements[["HEIDI"]]$Force)))
 })
 
 # Dataset should be ordered according to the "Beg" column
