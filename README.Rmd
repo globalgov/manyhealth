@@ -8,10 +8,6 @@ output: github_document
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/globalgov/manyhealth)
 ![GitHub Release Date](https://img.shields.io/github/release-date/globalgov/manyhealth)
-![GitHub issues](https://img.shields.io/github/issues-raw/globalgov/manyhealth)
-[![CodeFactor](https://www.codefactor.io/repository/github/globalgov/manyhealth/badge/main)](https://www.codefactor.io/repository/github/globalgov/manyhealth/overview/main)
-<!-- [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](https://bestpractices.coreinfrastructure.org/projects/4867) -->
-[![Codecov test coverage](https://codecov.io/gh/globalgov/manyhealth/branch/main/graph/badge.svg)](https://app.codecov.io/gh/globalgov/manyhealth?branch=main)
 <!-- badges: end -->
 
 manyhealth is a data package in the [many packages](https://github.com/globalgov/) universe.

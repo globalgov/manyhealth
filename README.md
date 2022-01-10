@@ -8,12 +8,6 @@
 date)](https://img.shields.io/github/v/release/globalgov/manyhealth)
 ![GitHub Release
 Date](https://img.shields.io/github/release-date/globalgov/manyhealth)
-![GitHub
-issues](https://img.shields.io/github/issues-raw/globalgov/manyhealth)
-[![CodeFactor](https://www.codefactor.io/repository/github/globalgov/manyhealth/badge/main)](https://www.codefactor.io/repository/github/globalgov/manyhealth/overview/main)
-<!-- [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](https://bestpractices.coreinfrastructure.org/projects/4867) -->
-[![Codecov test
-coverage](https://codecov.io/gh/globalgov/manyhealth/branch/main/graph/badge.svg)](https://app.codecov.io/gh/globalgov/manyhealth?branch=main)
 <!-- badges: end -->
 
 manyhealth is a data package in the [many
@@ -61,8 +55,8 @@ manydata::data_contrast("manyhealth")
     ## CHATHAM https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf
     ## 
     ## agreements :
-    ##       Unique ID Missing Data Rows Columns    Beg End
-    ## HEIDI      2280       0.04 % 2280       4 -56430  NA
+    ##       Unique ID Missing Data Rows Columns        Beg End
+    ## HEIDI      2280       0.04 % 2280       4 1815-07-03  NA
     ##                                                  URL
     ## HEIDI https://www.chaire-epi.ulaval.ca/en/data/heidi
 
