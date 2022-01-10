@@ -1,8 +1,7 @@
-# Test if  meets the q ecosystem requirements
+# Test if  meets the many packages universe requirements
 
 # Report missing values
 test_that("missing observations are reported correctly", {
-  expect_false(any(grepl("\\?", agreements[["HEIDI"]])))
   expect_false(any(grepl("^n/a$", agreements[["HEIDI"]])))
   expect_false(any(grepl("^N/A$", agreements[["HEIDI"]])))
   expect_false(any(grepl("^\\s$", agreements[["HEIDI"]])))
@@ -16,115 +15,64 @@ test_that("missing observations are reported correctly", {
 test_that("datasets have the required variables", {
   expect_col_exists(agreements[["HEIDI"]], vars(Title))
   expect_col_exists(agreements[["HEIDI"]], vars(Beg))
-  expect_true(any(grepl("_ID$", colnames(agreements[["HEIDI"]]))))
+  expect_true(any(grepl("ID$", colnames(agreements[["HEIDI"]]))))
   expect_col_exists(agreements[["HEIDI"]], vars(Signature))
   expect_col_exists(agreements[["HEIDI"]], vars(Force))
 })
 
+# Date columns should be in messydt class
+test_that("Columns are not in date, POSIXct or POSIXlt class", {
+  expect_false(any(lubridate::is.Date(agreements[["HEIDI"]])))
+  expect_false(any(lubridate::is.POSIXct(agreements[["HEIDI"]])))
+  expect_false(any(lubridate::is.POSIXlt(agreements[["HEIDI"]])))
+})
+
 # Dates are standardized for mandatory column
 test_that("Column `Beg` has standardised dates", {
-  expect_col_is_date(agreements[["HEIDI"]], vars(Beg))
+  expect_equal(class(agreements[["HEIDI"]]$Beg), "messydt")
   expect_false(any(grepl("/", agreements[["HEIDI"]]$Beg)))
-  expect_false(any(grepl("^[:digit:]{2}-[:digit:]{2}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Beg)))
-  expect_false(any(grepl("^[:digit:]{1}-[:digit:]{1}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Beg)))
-  expect_false(any(grepl("^[:digit:]{2}-[:digit:]{1}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Beg)))
-  expect_false(any(grepl("^[:digit:]{1}-[:digit:]{2}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Beg)))
-  expect_false(any(grepl("^[:digit:]{2}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Beg)))
   expect_false(any(grepl("^[:alpha:]$",
+                         agreements[["HEIDI"]]$Beg)))
+  expect_false(any(grepl("^[:digit:]{2}$",
+                         agreements[["HEIDI"]]$Beg)))
+  expect_false(any(grepl("^[:digit:]{3}$",
+                         agreements[["HEIDI"]]$Beg)))
+  expect_false(any(grepl("^[:digit:]{1}$",
                          agreements[["HEIDI"]]$Beg)))
 })
 
 test_that("Column `Signature` has standardised dates", {
-  expect_col_is_date(agreements[["HEIDI"]], vars(Signature))
+  expect_equal(class(agreements[["HEIDI"]]$Signature), "messydt")
   expect_false(any(grepl("/", agreements[["HEIDI"]]$Signature)))
-  expect_false(any(grepl("^[:digit:]{2}-[:digit:]{2}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Signature)))
-  expect_false(any(grepl("^[:digit:]{1}-[:digit:]{1}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Signature)))
-  expect_false(any(grepl("^[:digit:]{2}-[:digit:]{1}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Signature)))
-  expect_false(any(grepl("^[:digit:]{1}-[:digit:]{2}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Signature)))
-  expect_false(any(grepl("^[:digit:]{2}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Signature)))
   expect_false(any(grepl("^[:alpha:]$",
+                         agreements[["HEIDI"]]$Signature)))
+  expect_false(any(grepl("^[:digit:]{2}$",
+                         agreements[["HEIDI"]]$Signature)))
+  expect_false(any(grepl("^[:digit:]{3}$",
+                         agreements[["HEIDI"]]$Signature)))
+  expect_false(any(grepl("^[:digit:]{1}$",
                          agreements[["HEIDI"]]$Signature)))
 })
 
 test_that("Column `Force` has standardised dates", {
-  expect_col_is_date(agreements[["HEIDI"]], vars(Force))
+  expect_equal(class(agreements[["HEIDI"]]$Force), "messydt")
   expect_false(any(grepl("/", agreements[["HEIDI"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{2}-[:digit:]{2}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{1}-[:digit:]{1}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{2}-[:digit:]{1}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{1}-[:digit:]{2}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{2}-[:digit:]{4}$",
-                         agreements[["HEIDI"]]$Force)))
   expect_false(any(grepl("^[:alpha:]$",
                          agreements[["HEIDI"]]$Force)))
-})
-
-# Dates are standardized for optional columns
-test_that("Columns with dates are standardized", {
-  if (!is.null(agreements[["HEIDI"]]$End)) {
-    expect_false(any(grepl("/", agreements[["HEIDI"]]$End)))
-    expect_false(any(grepl("^[:digit:]{2}-[:digit:]{2}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$End)))
-    expect_false(any(grepl("^[:digit:]{1}-[:digit:]{1}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$End)))
-    expect_false(any(grepl("^[:digit:]{2}-[:digit:]{1}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$End)))
-    expect_false(any(grepl("^[:digit:]{1}-[:digit:]{2}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$End)))
-    expect_false(any(grepl("^[:digit:]{2}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$End)))
-    expect_false(any(grepl("^[:alpha:]$",
-                           agreements[["HEIDI"]]$End)))
-  }
-  if (!is.null(agreements[["HEIDI"]]$Rat)) {
-    expect_false(any(grepl("/", agreements[["HEIDI"]]$Rat)))
-    expect_false(any(grepl("^[:digit:]{2}-[:digit:]{2}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Rat)))
-    expect_false(any(grepl("^[:digit:]{1}-[:digit:]{1}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Rat)))
-    expect_false(any(grepl("^[:digit:]{2}-[:digit:]{1}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Rat)))
-    expect_false(any(grepl("^[:digit:]{1}-[:digit:]{2}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Rat)))
-    expect_false(any(grepl("^[:digit:]{2}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Rat)))
-    expect_false(any(grepl("^[:alpha:]$",
-                           agreements[["HEIDI"]]$Rat)))
-  }
-  if (!is.null(agreements[["HEIDI"]]$Term)) {
-    expect_false(any(grepl("/", agreements[["HEIDI"]]$Term)))
-    expect_false(any(grepl("^[:digit:]{2}-[:digit:]{2}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Term)))
-    expect_false(any(grepl("^[:digit:]{1}-[:digit:]{1}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Term)))
-    expect_false(any(grepl("^[:digit:]{2}-[:digit:]{1}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Term)))
-    expect_false(any(grepl("^[:digit:]{1}-[:digit:]{2}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Term)))
-    expect_false(any(grepl("^[:digit:]{2}-[:digit:]{4}$",
-                           agreements[["HEIDI"]]$Term)))
-    expect_false(any(grepl("^[:alpha:]$",
-                           agreements[["HEIDI"]]$Term)))
-  }
+  expect_false(any(grepl("^[:digit:]{2}$",
+                         agreements[["HEIDI"]]$Force)))
+  expect_false(any(grepl("^[:digit:]{3}$",
+                         agreements[["HEIDI"]]$Force)))
+  expect_false(any(grepl("^[:digit:]{1}$",
+                         agreements[["HEIDI"]]$Force)))
 })
 
 # Dataset should be ordered according to the "Beg" column
 test_that("dataset is arranged by date variable", {
-  expect_true(agreements[["HEIDI"]]$Beg[1] < agreements[["HEIDI"]]$Beg[10])
-  expect_true(agreements[["HEIDI"]]$Beg[50] < agreements[["HEIDI"]]$Beg[75])
-  expect_true(agreements[["HEIDI"]]$Beg[100] < agreements[["HEIDI"]]$Beg[120])
+  expect_true(agreements[["HEIDI"]]$Beg[1] <
+                agreements[["HEIDI"]]$Beg[10])
+  expect_true(agreements[["HEIDI"]]$Beg[50] <
+                agreements[["HEIDI"]]$Beg[75])
+  expect_true(agreements[["HEIDI"]]$Beg[100] <
+                agreements[["HEIDI"]]$Beg[120])
 })

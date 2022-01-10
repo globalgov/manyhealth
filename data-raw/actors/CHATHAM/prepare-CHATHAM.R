@@ -1,8 +1,7 @@
 # CHATHAM Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
-library(qCreate)
+# ready for the package from the many universe.
 
 # Stage one: Collecting data
 CHATHAM <- readxl::read_excel("data-raw/actors/CHATHAM/actors_map.xlsx")
@@ -12,25 +11,25 @@ CHATHAM <- readxl::read_excel("data-raw/actors/CHATHAM/actors_map.xlsx")
 # formats of the 'CHATHAM' object until the object created
 # below (in stage three) passes all the tests.
 CHATHAM <- as_tibble(CHATHAM) %>%
-  qData::transmutate(ID = Code,
-                     Actor = standardise_titles(Actors),
-                     Country = code_states(HQ_states),
+  manydata::transmutate(ID = Code,
+                     Actor = manypkgs::standardise_titles(Actors),
+                     Country = manystates::code_states(HQ_states),
                      City = HQ_city,
-                     Beg = standardise_dates(lubridate::as_date(Year_inception)))
+                     Beg = manypkgs::standardise_dates(lubridate::as_date(Year_inception)))
 
 CHATHAM$Country <- ifelse(is.na(CHATHAM$Country), "UK", CHATHAM$Country)
 CHATHAM <- CHATHAM %>%
   dplyr::select(Actor, ID, Beg, Country, City) %>%
   dplyr::arrange(Beg)
 
-# qData includes several functions that should help cleaning
+# manydata includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make CHATHAM available
-# within the qPackage.
-export_data(CHATHAM, database = "actors", URL = "https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf")
+# within the package.
+manypkgs::export_data(CHATHAM, database = "actors", URL = "https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

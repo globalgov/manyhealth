@@ -1,33 +1,30 @@
 # HEIDI Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
-library(qData)
-library(qCreate)
+# ready for the package from the many universe.
 
 # Stage one: Collecting data
 HEIDI <- openxlsx::read.xlsx("data-raw/agreements/HEIDI/heidi_dataset.xlsx", detectDates = TRUE)
-HEIDI <- qCreate::link_metadata(HEIDI)
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
 # formats of the 'HEIDI' object until the object created
 # below (in stage three) passes all the tests.
 HEIDI <- as_tibble(HEIDI) %>%
-  transmutate(Title = standardise_titles(`Name.of.the.agreement`),
-              Signature = standardise_dates(`signature.date`)) %>%
+  manydata::transmutate(Title = manypkgs::standardise_titles(`Name.of.the.agreement`),
+              Signature = manypkgs::standardise_dates(`signature.date`)) %>%
   dplyr::mutate(Beg = Signature) %>%
   dplyr::select(ID, Title, Beg, Signature) %>%
   dplyr::arrange(Beg, ID)
 
-# qData includes several functions that should help cleaning
+# manydata includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make HEIDI available
-# within the qPackage.
-export_data(HEIDI, database = "agreements", URL = "https://www.chaire-epi.ulaval.ca/en/data/heidi")
+# within the package.
+manypkgs::export_data(HEIDI, database = "agreements", URL = "https://www.chaire-epi.ulaval.ca/en/data/heidi")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
