@@ -64,7 +64,7 @@ can be used easily.
 
 If you have collected or developed other data that may not be best for
 this package, but could be useful within the wider ecosystem,
-[manydata](https://github.com/globalgov/manydata) includes a number of
+[manypkgs](https://github.com/globalgov/manypkgs) includes a number of
 functions that make it easy to create a new package from the many universe 
 and populate with clean, consistent global governance data.
 

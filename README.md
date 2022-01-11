@@ -77,24 +77,19 @@ assembling the data using the function below.
 citation("manyhealth")
 ```
 
-    ## Warning in citation("manyhealth"): no date field in DESCRIPTION file of package
-    ## 'manyhealth'
-
-    ## Warning in citation("manyhealth"): could not determine year for 'manyhealth'
-    ## from package DESCRIPTION file
-
     ## 
     ## To cite package 'manyhealth' in publications use:
     ## 
-    ##   James Hollway (NA). manyhealth: Health Agreements for the many
-    ##   Universe. R package version 0.0.1.
+    ##   James Hollway (2022). manyhealth: Health Agreements for the many
+    ##   Universe. R package version 0.1.0.
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
     ##   @Manual{,
     ##     title = {manyhealth: Health Agreements for the many Universe},
     ##     author = {James Hollway},
-    ##     note = {R package version 0.0.1},
+    ##     year = {2022},
+    ##     note = {R package version 0.1.0},
     ##   }
 
 ## Contributing
@@ -111,7 +106,7 @@ data can be used easily.
 
 If you have collected or developed other data that may not be best for
 this package, but could be useful within the wider ecosystem,
-[manydata](https://github.com/globalgov/manydata) includes a number of
+[manypkgs](https://github.com/globalgov/manypkgs) includes a number of
 functions that make it easy to create a new package from the many
 universe and populate with clean, consistent global governance data.
 
