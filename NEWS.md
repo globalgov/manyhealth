@@ -4,7 +4,8 @@
 
 ## Package
 
-* Fixed #3 by changing the logo and all references of qHealth or qData to manyhealth and manydata
+* Renamed package from qHealth to manyhealth
+* Fixed #3 by changing the logo and updated references from qData to manydata
 
 ## Data
 
