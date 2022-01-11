@@ -1,0 +1,11 @@
+citHeader("To cite manyhealth in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "manyhealth: Health Agreements for the many Universe",
+  author   = "James Hollway",
+  year     = "2022",
+  url      = "https://github.com/globalgov/manyhealth",
+  textVersion = paste("J. Hollway. Environmental agreements for manydata. 2022."
+  )
+)
