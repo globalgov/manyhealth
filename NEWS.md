@@ -11,7 +11,6 @@
 
 * Closed #2 by creating the actors database with the CHATHAM dataset
 
-
 # qHealth 0.0.1
 
 * Set up qHealth package using qData::setup_package()
