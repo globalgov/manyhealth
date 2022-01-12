@@ -44,6 +44,22 @@ and datasets included in the package using the following function.
 manydata::data_contrast("manyhealth")
 ```
 
+    ## Warning: Unknown or uninitialised column: `End`.
+
+    ## Warning: Unknown or uninitialised column: `End`.
+
+    ## actors :
+    ##         Unique ID Missing Data Rows Columns        Beg End
+    ## CHATHAM       203          0 %  203       5 1975-02-08  NA
+    ##                                                                                                                                  URL
+    ## CHATHAM https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf
+    ## 
+    ## agreements :
+    ##       Unique ID Missing Data Rows Columns        Beg End
+    ## HEIDI      2280       0.04 % 2280       4 1815-07-03  NA
+    ##                                                  URL
+    ## HEIDI https://www.chaire-epi.ulaval.ca/en/data/heidi
+
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
 [here](https://globalgov.github.io/manydata/articles/user.html).
@@ -62,9 +78,10 @@ citation("manyhealth")
 ```
 
     ## 
-    ## To cite manyhealth in publications use:
+    ## To cite package 'manyhealth' in publications use:
     ## 
-    ##   J. Hollway. Environmental agreements for manydata. 2022.
+    ##   James Hollway (2022). manyhealth: Health Agreements for the many
+    ##   Universe. R package version 0.1.0.
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
@@ -72,7 +89,7 @@ citation("manyhealth")
     ##     title = {manyhealth: Health Agreements for the many Universe},
     ##     author = {James Hollway},
     ##     year = {2022},
-    ##     url = {https://github.com/globalgov/manyhealth},
+    ##     note = {R package version 0.1.0},
     ##   }
 
 ## Contributing
