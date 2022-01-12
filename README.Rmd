@@ -30,7 +30,7 @@ manydata::get_packages("manyhealth") # this downloads and installs the named pac
 
 Once you have installed the package, you can see the different databases and datasets included in the package using the following function.
 
-```{r datasets}
+```{r datasets, eval = FALSE}
 manydata::data_contrast("manyhealth")
 ```
 
