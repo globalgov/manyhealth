@@ -10,7 +10,6 @@
 ## Data
 
 * Closed #2 by creating the actors database with the CHATHAM dataset
-* Closed #1 by creating the agreements database with the HEIDI dataset
 
 
 # qHealth 0.0.1
