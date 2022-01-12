@@ -1,3 +1,17 @@
+# manyhealth 0.1.0
+
+2022-01-10
+
+## Package
+
+* Renamed package from qHealth to manyhealth
+* Fixed #3 by changing the logo and updated references from qData to manydata
+
+## Data
+
+* Closed #2 by creating the actors database with the CHATHAM dataset
+
+
 # qHealth 0.0.1
 
 * Set up qHealth package using qData::setup_package()

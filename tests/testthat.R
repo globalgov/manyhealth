@@ -1,4 +1,4 @@
 library(testthat)
-library(qHealth)
+library(manyhealth)
 
-test_check("qHealth")
+test_check("manyhealth")

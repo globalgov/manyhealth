@@ -1,0 +1,52 @@
+url: https://globalgov.github.io/manyhealth/
+development:
+    mode: auto
+template:
+  bootstrap: 5
+  params:
+    bootswatch: litera
+authors:
+  James Hollway:
+    href: https://jameshollway.com
+  Bernhard Bieri:
+    href: https://bernhardbieri.ch
+navbar:
+  structure:
+    left: [home, reference, news]
+    right: [packages, search, github]
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    news:
+      text: News
+      href: news/index.html
+    github:
+      icon: "fab fa-github fa-lg"
+      href: https://github.com/globalgov/manyenviron
+    packages:
+      text: Other packages
+      menu:
+        - text: manydata
+          href: https://globalgov.github.io/manydata/
+        - text: manypkgs
+          href: https://globalgov.github.io/manypkgs/
+        - text: manystates
+          href: https://globalgov.github.io/manystates/
+        - text: manytrade
+          href: https://globalgov.github.io/manytrade/
+reference:
+  - title: "Data"
+    desc: "The following databases are contained in manyhealth"
+    contents:
+    - actors
+footer:
+  structure:
+    left: devs
+    right: panarchic
+  components:
+    devs: Developed by [James Hollway](https://jameshollway.com/).
+    panarchic: Part of the [PANARCHIC project](https://panarchic.ch/).

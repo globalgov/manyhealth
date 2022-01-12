@@ -4,3 +4,12 @@
 ^data-raw/agreements$
 ^data-raw/agreements/IHEID$
 ^data-raw/agreements/HEIDI$
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw/actors$
+^data-raw/actors/CH_HOUSE$
+^data-raw/actors/CHATHAM$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^vignettes$
