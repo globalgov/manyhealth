@@ -35,7 +35,8 @@ Imports:
     dplyr,
     lubridate,
     roxygen2,
-    usethis
+    usethis,
+    pkgdown
 Suggests: 
     purrr,
     rlang,
