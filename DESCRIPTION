@@ -24,8 +24,8 @@ Authors@R:
              family = "Peev",
              role = "ctb",
              comment = c("IHEID", ORCID = "0000-0002-9678-2777")))
-Description: The manyhealth package provides an ensemble of data on international health instruments,
-  and the main actors for research use.
+Description: The manyhealth package provides an ensemble of data on 
+  international health instruments, and the main actors for research use.
 License: CC BY 4.0
 Depends: 
     R (>= 2.10),
@@ -35,7 +35,8 @@ Imports:
     dplyr,
     lubridate,
     roxygen2,
-    usethis
+    usethis,
+    pkgdown
 Suggests: 
     purrr,
     rlang,
