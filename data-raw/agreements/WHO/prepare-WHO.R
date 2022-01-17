@@ -33,6 +33,7 @@ WHO$Beg <- ifelse(stringr::str_detect(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Title, "[:digit:]{4}"))
 
+WHO$Beg <- manypkgs::standardise_dates(WHO$Beg)
 
 WHO$Organisation <- stringr::str_remove(WHO$Org_date, "\\([:digit:]{4}\\)$")
 
