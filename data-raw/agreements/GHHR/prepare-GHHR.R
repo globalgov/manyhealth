@@ -60,7 +60,7 @@ date <- unlist(s)
 date <- stringr::str_replace_all(date, "Year of adoption\\:\\sRegion", "NA")
 date <- stringr::str_remove_all(date, "Year of adoption\\:\\s")
 
-GHHR$Beg <- date
+GHHR$Beg <- manypkgs::standardise_dates(date)
 
 GHHR <- as_tibble(GHHR)
 
