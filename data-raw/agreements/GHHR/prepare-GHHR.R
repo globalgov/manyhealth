@@ -22,7 +22,7 @@ extr_title <- purrr::map(
 
 title <- unlist(extr_title)
 
-GHHR$Title <- title
+GHHR$Title <- manypkgs::standardise_titles(title)
 
 # Variable region
 extr_region <- purrr::map(
@@ -62,7 +62,8 @@ date <- stringr::str_remove_all(date, "Year of adoption\\:\\s")
 
 GHHR$Beg <- manypkgs::standardise_dates(date)
 
-GHHR <- as_tibble(GHHR)
+GHHR <- as_tibble(GHHR) %>%
+  dplyr::select(Title, Beg, Region, LegalStatus)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

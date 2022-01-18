@@ -8,6 +8,6 @@
 #' \item{WHO: }{A dataset with 109 observations and the following
 #' 4 variables: Title, Beg, Organisation, Topic.}
 #' \item{GHHR: }{A dataset with 151 observations and the following
-#' 4 variables: Title, Region, LegalStatus, Beg.}
+#' 4 variables: Title, Beg, Region, LegalStatus.}
 #' }
  "agreements"

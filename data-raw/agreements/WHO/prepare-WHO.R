@@ -14,7 +14,7 @@ extr_title <- who_url %>%
   rvest::html_nodes("strong a") %>%
   rvest::html_text()
 
-WHO$Title <- extr_title
+WHO$Title <- manypkgs::standardise_titles(extr_title)
 
 extr_date <- who_url %>%
   rvest::html_nodes("p.light") %>%
