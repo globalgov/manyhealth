@@ -5,7 +5,7 @@
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
-#' \item{AGR_TXT: }{A dataset with 151 observations and the following
-#' 3 variables: Title, Beg, TreatyText.}
+#' \item{AGR_TXT: }{A dataset with 193 observations and the following
+#' 4 variables: Title, Beg, Text_URL, TreatyText.}
 #' }
  "texts"

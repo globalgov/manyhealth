@@ -1,13 +1,9 @@
 # TEXT Preparation Script
 
-# Create a combined databaset from agreements datasets
-
+# Select two columns from GHHR dataset
 GHHR <- manyhealth::agreements$GHHR %>%
   dplyr::select(Title, Beg)
 
-
-WHO <- manyhealth::agreements$WHO %>%
-  dplyr::select(Title, Beg)
 
 # TEXT <- rbind(GHHR, WHO)
 
@@ -24,7 +20,6 @@ extr_text <- purrr::map(
 )
 
 extr_text <- unlist(extr_text)
-
 GHHR$Treaty_URL <- extr_text
 
 # Extract the URL of the text itself
@@ -45,8 +40,53 @@ GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "\\)")
 GHHR$TreatyText <- lapply(GHHR$Text_URL, function(s) tryCatch(pdftools::pdf_text(s), error = function(e){as.character("Not found")}))
 
 
-AGR_TXT <- as_tibble(GHHR) %>%
-  dplyr::select(Title, Beg, TreatyText)
+GHHR <- as_tibble(GHHR) %>%
+  dplyr::select(Title, Beg, Text_URL, TreatyText)
+
+
+# Repeat process for WHO database
+WHO <- manyhealth::agreements$WHO %>%
+  dplyr::select(Title, Beg)
+
+
+# Web scrape url
+url <- "https://www.mindbank.info/collection/un_who_resolutions/all?page=all"
+page = rvest::read_html(url)
+
+extr_whotext = page %>% rvest::html_nodes("strong a") %>% rvest::html_attr("href") %>%
+  paste("https://www.mindbank.info/", ., sep="")
+
+WHO$Treaty_URL <- extr_whotext
+
+
+WHO$Text_URL <- lapply(WHO$Treaty_URL, function(s) purrr::map(s,
+                                                              . %>%
+                                                                rvest::read_html() %>%
+                                                                rvest::html_nodes(".contents_link a") %>%
+                                                                rvest::html_attr("href") %>%
+                                                                paste("https://www.mindbank.info/", ., sep="")))
+
+for(i in 1:109){
+  WHO$Text_URL[i] <- WHO$Text_URL[[i]][1]
+}
+
+for(i in 1:109){
+  WHO$Text_URL[i] <- WHO$Text_URL[[i]][1]
+}
+
+# Web scrape WHO treaty texts
+WHO$TreatyText <- lapply(WHO$Text_URL, function(s) tryCatch(pdftools::pdf_text(s), error = function(e){as.character("Not found")}))
+
+
+WHO <- as_tibble(WHO) %>%
+  dplyr::filter(TreatyText != "Not found") %>%
+  dplyr::select(Title, Beg, Text_URL, TreatyText)
+
+WHO$Text_URL <- unlist(WHO$Text_URL )
+
+# Join two texts source into one dataset: AGR_TXT
+AGR_TXT <- rbind(GHHR, WHO)
+
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
