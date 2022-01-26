@@ -6,8 +6,8 @@
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
 #' \item{WHO: }{A dataset with 109 observations and the following
-#' 4 variables: Title, Beg, Organisation, Topic.}
+#' 6 variables: many_ID, Title, Beg, Organisation, Topic, treaty_ID.}
 #' \item{GHHR: }{A dataset with 151 observations and the following
-#' 4 variables: Title, Beg, Region, LegalStatus.}
+#' 6 variables: many_ID, Title, Beg, Region, LegalStatus, treaty_ID.}
 #' }
  "agreements"

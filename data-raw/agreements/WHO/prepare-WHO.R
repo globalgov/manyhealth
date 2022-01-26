@@ -40,6 +40,17 @@ WHO$Organisation <- stringr::str_remove(WHO$Org_date, "\\([:digit:]{4}\\)$")
 WHO <- as_tibble(WHO) %>%
   dplyr::select(Title, Beg, Organisation, Topic)
 
+# Add treaty_ID
+WHO$treaty_ID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Beg)
+
+# Add many_ID
+many_ID <- manypkgs::condense_agreements(manyhealth::agreements)
+WHO <- dplyr::left_join(WHO, many_ID, by = "treaty_ID")
+
+# Re-order columns
+WHO <- WHO %>%
+  dplyr::select(many_ID, Title, Beg, Organisation, Topic, treaty_ID)
+
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

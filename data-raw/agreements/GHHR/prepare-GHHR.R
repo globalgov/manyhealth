@@ -65,6 +65,17 @@ GHHR$Beg <- manypkgs::standardise_dates(date)
 GHHR <- as_tibble(GHHR) %>%
   dplyr::select(Title, Beg, Region, LegalStatus)
 
+# Add treaty_ID
+GHHR$treaty_ID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Beg)
+
+# Add many_ID
+many_ID <- manypkgs::condense_agreements(manyhealth::agreements)
+GHHR <- dplyr::left_join(GHHR, many_ID, by = "treaty_ID")
+
+# Re-order columns
+GHHR <- GHHR %>%
+  dplyr::select(many_ID, Title, Beg, Region, LegalStatus, treaty_ID)
+
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
