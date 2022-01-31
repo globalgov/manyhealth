@@ -10,4 +10,9 @@
 #' \item{GHHR: }{A dataset with 151 observations and the following
 #' 6 variables: many_ID, Title, Beg, Region, LegalStatus, treaty_ID.}
 #' }
+#'
+#' @details
+#' ``` {r, echo = FALSE, warning = FALSE}
+#' lapply(actors, skimr::skim_without_charts)
+#' ```
  "agreements"
