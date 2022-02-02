@@ -3,54 +3,56 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
 
-# Stage one: creating empty dataset
-Title <- 1:109
-WHO <- as.data.frame(Title)
-
-# Stage two: scraping information from WHO website
+# Stage one: scraping information from WHO website
 who_url <- rvest::read_html("https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
 
 extr_title <- who_url %>%
   rvest::html_nodes("strong a") %>%
   rvest::html_text()
 
-WHO$Title <- manypkgs::standardise_titles(extr_title)
+Title <- manypkgs::standardise_titles(extr_title)
 
+# Create dataframe
+WHO <- as.data.frame(Title)
+
+#Extract Date
 extr_date <- who_url %>%
   rvest::html_nodes("p.light") %>%
   rvest::html_text()
 
 WHO$Org_date <- extr_date
 
+#Extract Topic
 extr_topic <- who_url %>%
   rvest::html_nodes(".light:nth-child(1)") %>%
   rvest::html_text()
 
 WHO$Topic <- extr_topic
 
-#Step four: create date column
+#Step two: create date column
 WHO$Beg <- ifelse(stringr::str_detect(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Title, "[:digit:]{4}"))
 
 WHO$Beg <- manypkgs::standardise_dates(WHO$Beg)
 
+# Creae Organization column
 WHO$Organisation <- stringr::str_remove(WHO$Org_date, "\\([:digit:]{4}\\)$")
 
+# Select columns
 WHO <- as_tibble(WHO) %>%
   dplyr::select(Title, Beg, Organisation, Topic)
 
-# Add treaty_ID
-WHO$treaty_ID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Beg)
+# Add treatyID
+WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Beg)
 
-# Add many_ID
-many_ID <- manypkgs::condense_agreements(manyhealth::agreements)
-WHO <- dplyr::left_join(WHO, many_ID, by = "treaty_ID")
+# Add manyID
+manyID <- manypkgs::condense_agreements(manyhealth::agreements)
+WHO <- dplyr::left_join(WHO, manyID, by = "treatyID")
 
 # Re-order columns
 WHO <- WHO %>%
-  dplyr::select(many_ID, Title, Beg, Organisation, Topic, treaty_ID)
-
+  dplyr::select(manyID, Title, Beg, Organisation, Topic, treatyID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

@@ -3,12 +3,7 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
 
-# Stage one: creating empty dataset
-Title <- 1:151
-GHHR <- as.data.frame(Title)
-
-
-# Stage two: scraping information from Global Health and Human Rights website
+# Stage one: scraping information from Global Health and Human Rights website
 urls <- paste0("https://www.globalhealthrights.org/instruments/instrument-region/page/", 1:16, "/")
 
 # Title variable
@@ -19,10 +14,10 @@ extr_title <- purrr::map(
     rvest::html_nodes("#content h2") %>%
     rvest::html_text()
 )
+Title <- manypkgs::standardise_titles(unlist(extr_title))
 
-title <- unlist(extr_title)
-
-GHHR$Title <- manypkgs::standardise_titles(title)
+# Create dataframe
+GHHR <- as.data.frame(Title)
 
 # Variable region
 extr_region <- purrr::map(
@@ -65,16 +60,16 @@ GHHR$Beg <- manypkgs::standardise_dates(date)
 GHHR <- as_tibble(GHHR) %>%
   dplyr::select(Title, Beg, Region, LegalStatus)
 
-# Add treaty_ID
-GHHR$treaty_ID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Beg)
+# Add treatyID
+GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Beg)
 
-# Add many_ID
-many_ID <- manypkgs::condense_agreements(manyhealth::agreements)
-GHHR <- dplyr::left_join(GHHR, many_ID, by = "treaty_ID")
+# Add manyID
+manyID <- manypkgs::condense_agreements(manyhealth::agreements)
+GHHR <- dplyr::left_join(GHHR, manyID, by = "treatyID")
 
 # Re-order columns
 GHHR <- GHHR %>%
-  dplyr::select(many_ID, Title, Beg, Region, LegalStatus, treaty_ID)
+  dplyr::select(manyID, Title, Beg, Region, LegalStatus, treatyID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

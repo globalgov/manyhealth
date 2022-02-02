@@ -6,8 +6,14 @@
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
 #' \item{WHO: }{A dataset with 109 observations and the following
-#' 6 variables: many_ID, Title, Beg, Organisation, Topic, treaty_ID.}
+#' 6 variables: manyID, Title, Beg, Organisation, Topic, treatyID.}
 #' \item{GHHR: }{A dataset with 151 observations and the following
-#' 6 variables: many_ID, Title, Beg, Region, LegalStatus, treaty_ID.}
+#' 6 variables: manyID, Title, Beg, Region, LegalStatus, treatyID.}
 #' }
- "agreements"
+
+#'
+#' @details
+#' ``` {r, echo = FALSE, warning = FALSE}
+#' lapply(agreements, skimr::skim_without_charts)
+#' ```
+"agreements"
