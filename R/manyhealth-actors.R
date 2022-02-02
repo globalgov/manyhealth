@@ -8,4 +8,9 @@
 #' \item{CHATHAM: }{A dataset with 203 observations and the following
 #' 5 variables: Actor, ID, Beg, Country, City.}
 #' }
+#'
+#' @details
+#' ``` {r, echo = FALSE, warning = FALSE}
+#' lapply(actors, skimr::skim_without_charts)
+#' ```
  "actors"
