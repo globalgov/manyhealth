@@ -63,13 +63,16 @@ GHHR <- as_tibble(GHHR) %>%
 # Add treatyID
 GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Beg)
 
+# Add Lineage
+GHHR$Lineage <- manypkgs::code_lineage(GHHR$Title)
+
 # Add manyID
 manyID <- manypkgs::condense_agreements(manyhealth::agreements)
 GHHR <- dplyr::left_join(GHHR, manyID, by = "treatyID")
 
 # Re-order columns
 GHHR <- GHHR %>%
-  dplyr::select(manyID, Title, Beg, Region, LegalStatus, treatyID)
+  dplyr::select(manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

@@ -46,13 +46,16 @@ WHO <- as_tibble(WHO) %>%
 # Add treatyID
 WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Beg)
 
+# Add Lineage column
+WHO$Lineage <- manypkgs::code_lineage(WHO$Title)
+
 # Add manyID
 manyID <- manypkgs::condense_agreements(manyhealth::agreements)
 WHO <- dplyr::left_join(WHO, manyID, by = "treatyID")
 
 # Re-order columns
 WHO <- WHO %>%
-  dplyr::select(manyID, Title, Beg, Organisation, Topic, treatyID)
+  dplyr::select(manyID, Title, Beg, Organisation, Topic, Lineage, treatyID)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
