@@ -4,9 +4,6 @@
 GHHR <- manyhealth::agreements$GHHR %>%
   dplyr::select(Title, Beg)
 
-
-# TEXT <- rbind(GHHR, WHO)
-
 # Web scraping instruments texts from the GHHR webpage
 urls <- paste0("https://www.globalhealthrights.org/instruments/instrument-region/page/", 1:16, "/")
 
@@ -23,13 +20,15 @@ extr_text <- unlist(extr_text)
 GHHR$Treaty_URL <- extr_text
 
 # Extract the URL of the text itself
-GHHR$Text_URL <- lapply(GHHR$Treaty_URL, function(s) purrr::map(s,
-                                                                . %>%
-                                                                  rvest::read_html() %>%
-                                                                  rvest::html_nodes(".downloaddecision a") %>%
-                                                                  rvest::html_attr("href")))
+GHHR$Text_URL <- lapply(GHHR$Treaty_URL,
+                        function(s) purrr::map(s,
+                                               . %>%
+                                                 rvest::read_html() %>%
+                                                 rvest::html_nodes(".downloaddecision a") %>%
+                                                 rvest::html_attr("href")))
 
-GHHR$Text_URL[GHHR$Text_URL=="list(character(0))"] <- "NA"
+# Clean the ouptut
+GHHR$Text_URL[GHHR$Text_URL == "list(character(0))"] <- "NA"
 GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "list")
 GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "\\(")
 GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "\"")
@@ -37,34 +36,38 @@ GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "\\)")
 
 
 #Extract treaty texts
-GHHR$TreatyText <- lapply(GHHR$Text_URL, function(s) tryCatch(pdftools::pdf_text(s), error = function(e){as.character("Not found")}))
+GHHR$TreatyText <- lapply(GHHR$Text_URL,
+                          function(s) tryCatch(pdftools::pdf_text(s),
+                                               error = function(e) {
+                                                 as.character("Not found")
+                                                 }))
 
 
 GHHR <- as_tibble(GHHR) %>%
   dplyr::select(Title, Beg, Text_URL, TreatyText)
 
-
 # Repeat process for WHO database
 WHO <- manyhealth::agreements$WHO %>%
   dplyr::select(Title, Beg)
-
 
 # Web scrape url
 url <- "https://www.mindbank.info/collection/un_who_resolutions/all?page=all"
 page = rvest::read_html(url)
 
-extr_whotext = page %>% rvest::html_nodes("strong a") %>% rvest::html_attr("href") %>%
+extr_whotext = page %>%
+  rvest::html_nodes("strong a") %>%
+  rvest::html_attr("href") %>%
   paste("https://www.mindbank.info/", ., sep="")
 
 WHO$Treaty_URL <- extr_whotext
 
-
-WHO$Text_URL <- lapply(WHO$Treaty_URL, function(s) purrr::map(s,
-                                                              . %>%
-                                                                rvest::read_html() %>%
-                                                                rvest::html_nodes(".contents_link a") %>%
-                                                                rvest::html_attr("href") %>%
-                                                                paste("https://www.mindbank.info/", ., sep="")))
+WHO$Text_URL <- lapply(WHO$Treaty_URL,
+                       function(s) purrr::map(s,
+                                              . %>%
+                                                rvest::read_html() %>%
+                                                rvest::html_nodes(".contents_link a") %>%
+                                                rvest::html_attr("href") %>%
+                                                paste("https://www.mindbank.info/", ., sep="")))
 
 for(i in 1:109){
   WHO$Text_URL[i] <- WHO$Text_URL[[i]][1]
@@ -75,7 +78,11 @@ for(i in 1:109){
 }
 
 # Web scrape WHO treaty texts
-WHO$TreatyText <- lapply(WHO$Text_URL, function(s) tryCatch(pdftools::pdf_text(s), error = function(e){as.character("Not found")}))
+WHO$TreatyText <- lapply(WHO$Text_URL,
+                         function(s) tryCatch(pdftools::pdf_text(s),
+                                              error = function(e) {
+                                                as.character("Not found")
+                                                }))
 
 
 WHO <- as_tibble(WHO) %>%
@@ -108,5 +115,6 @@ AGR_TXT <- rbind(GHHR, WHO)
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(texts, AGR_TXT)`.
-manypkgs::export_data(AGR_TXT, database = "texts",
-                     URL = "NA")
+manypkgs::export_data(AGR_TXT,
+                      database = "texts",
+                      URL = "NA")

@@ -29,7 +29,9 @@ CHATHAM <- CHATHAM %>%
 # Stage three: Connecting data
 # Next run the following line to make CHATHAM available
 # within the package.
-manypkgs::export_data(CHATHAM, database = "organizations", URL = "https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf")
+manypkgs::export_data(CHATHAM,
+                      database = "organizations",
+                      URL = "https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
@@ -40,4 +42,3 @@ manypkgs::export_data(CHATHAM, database = "organizations", URL = "https://www.ch
 # Second, it also creates a documentation file for you to fill in.
 # Please make sure that you cite any sources appropriately and fill in as
 # much detail about the variables etc as possible.
-

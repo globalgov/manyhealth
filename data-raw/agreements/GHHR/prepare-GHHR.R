@@ -39,7 +39,7 @@ extr_legal <- purrr::map(
     rvest::html_text()
 )
 legal <- unlist(extr_legal)
-legal <- legal[-c(11, 42, 53,64, 75, 86, 97, 108, 119, 130, 141, 152, 164)]
+legal <- legal[-c(11, 42, 53, 64, 75, 86, 97, 108, 119, 130, 141, 152, 164)]
 GHHR$LegalStatus <- legal
 
 # Variable adoption date
@@ -50,7 +50,8 @@ extr_date <- purrr::map(
     rvest::html_text()
 )
 
-s <- stringr::str_extract_all(extr_date, "Year of adoption\\:\\s[:digit:]{4}|Year of adoption\\:\\sRegion")
+s <- stringr::str_extract_all(extr_date,
+                              "Year of adoption\\:\\s[:digit:]{4}|Year of adoption\\:\\sRegion")
 date <- unlist(s)
 date <- stringr::str_replace_all(date, "Year of adoption\\:\\sRegion", "NA")
 date <- stringr::str_remove_all(date, "Year of adoption\\:\\s")
@@ -96,5 +97,6 @@ GHHR <- GHHR %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(agreements, GHHR)`.
-manypkgs::export_data(GHHR, database = "agreements",
-                     URL = "https://www.globalhealthrights.org/instruments/instrument-region/")
+manypkgs::export_data(GHHR,
+                      database = "agreements",
+                      URL = "https://www.globalhealthrights.org/instruments/instrument-region/")
