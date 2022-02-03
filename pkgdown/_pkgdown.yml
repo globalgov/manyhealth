@@ -42,7 +42,9 @@ reference:
   - title: "Data"
     desc: "The following databases are contained in manyhealth"
     contents:
-    - actors
+    - agreements
+    - organizations
+    - texts
 footer:
   structure:
     left: devs
