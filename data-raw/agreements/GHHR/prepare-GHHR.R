@@ -72,7 +72,8 @@ GHHR <- dplyr::left_join(GHHR, manyID, by = "treatyID")
 
 # Re-order columns
 GHHR <- GHHR %>%
-  dplyr::select(manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID)
+  dplyr::select(manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID) %>%
+  dplyr::arrange(Beg)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

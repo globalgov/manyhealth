@@ -55,7 +55,8 @@ WHO <- dplyr::left_join(WHO, manyID, by = "treatyID")
 
 # Re-order columns
 WHO <- WHO %>%
-  dplyr::select(manyID, Title, Beg, Organisation, Topic, Lineage, treatyID)
+  dplyr::select(manyID, Title, Beg, Organisation, Topic, Lineage, treatyID) %>%
+  dplyr::arrange(Beg)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
