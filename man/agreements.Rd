@@ -11,9 +11,9 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{WHO: }{A dataset with 109 observations and the following
-6 variables: many_ID, Title, Beg, Organisation, Topic, treaty_ID.}
+7 variables: manyID, Title, Beg, Organisation, Topic, Lineage, treatyID.}
 \item{GHHR: }{A dataset with 151 observations and the following
-6 variables: many_ID, Title, Beg, Region, LegalStatus, treaty_ID.}
+7 variables: manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID.}
 }
 }
 \usage{
@@ -23,27 +23,9 @@ agreements
 agreements database documentation
 }
 \details{
-\preformatted{## $CHATHAM
-## -- Data Summary ------------------------
-##                            Values
-## Name                       X[[i]]
-## Number of rows             203   
-## Number of columns          5     
-## _______________________          
-## Column type frequency:           
-##   character                5     
-## ________________________         
-## Group variables            None  
-## 
-## -- Variable type: character --------------------------------------------------------------------------------------------------------------------------------------------------------
-## # A tibble: 5 x 8
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## * <chr>             <int>         <dbl> <int> <int> <int>    <int>      <int>
-## 1 Actor                 0             1     4    86     0      203          0
-## 2 ID                    0             1     3     3     0      203          0
-## 3 Beg                   0             1    10    10     0       81          0
-## 4 Country               0             1     2     3     0       16          0
-## 5 City                  0             1     4    35     0       74          0
+\subsection{NA}{
+
+NA
 }
 }
 \keyword{datasets}

@@ -8,9 +8,10 @@
 #' \item{AGR_TXT: }{A dataset with 193 observations and the following
 #' 4 variables: Title, Beg, Text_URL, TreatyText.}
 #' }
+
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
-#' lapply(actors, skimr::skim_without_charts)
+#' lapply(texts, skimr::skim_without_charts)
 #' ```
- "texts"
+"texts"
