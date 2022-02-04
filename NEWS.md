@@ -1,3 +1,20 @@
+# manyhealth 0.1.1
+
+2022-02-04
+
+## Package
+
+* Added a vignette to present data package
+
+## Data
+
+**Added three datasets**
+
+* Closed #5 by importing GHHR into agreements database
+* Closed #6 by importing WHO into agreements database
+* Added texts database by web scraping both WHO and GHHR treaty texts
+
+
 # manyhealth 0.1.0
 
 2022-01-10
