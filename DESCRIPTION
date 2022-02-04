@@ -36,7 +36,8 @@ Imports:
     lubridate,
     roxygen2,
     usethis,
-    pkgdown
+    pkgdown,
+    knitr
 Suggests: 
     purrr,
     rlang,

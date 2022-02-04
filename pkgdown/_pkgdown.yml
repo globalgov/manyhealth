@@ -12,7 +12,7 @@ authors:
     href: https://bernhardbieri.ch
 navbar:
   structure:
-    left: [home, reference, news]
+    left: [home, reference, articles, news]
     right: [packages, search, github]
   components:
     home:
@@ -21,6 +21,11 @@ navbar:
     reference:
       text: Reference
       href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: How Does Global Health Governance Look Like?
+        href: articles/healthdata.html
     news:
       text: News
       href: news/index.html
@@ -38,6 +43,8 @@ navbar:
           href: https://globalgov.github.io/manystates/
         - text: manytrade
           href: https://globalgov.github.io/manytrade/
+        - text: manyenviron
+          href: https://globalgov.github.io/manyenviron/
 reference:
   - title: "Data"
     desc: "The following databases are contained in manyhealth"

@@ -1,0 +1,52 @@
+---
+title: "How Does Global Health Governance Look Like?"
+author: "James Hollway, Henrique Sposito, Jael Tan, Bernhard Bieri, and Esther Peev"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How Does Global Health Governance Look Like?}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Manyhealth Data
+
+### Agreements
+
+`{manyhealth}` package is composed of multiple databases, each of them representing a different aspect of global health governance. The **agreements** database is an ensemble of data on international health instruments. The combination of datasets that are contained in this database prints an overview of all international instruments that governs the global health sphere. The **Texts** database assembles treaty texts from the **Agreements** database. 
+
+```{r data, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+library(tidyverse)
+library(knitr)
+head(manyhealth::agreements$WHO[,c(1:5)]) %>% 
+  kable("html")
+
+head(manyhealth::agreements$GHHR[,c(1:5)]) %>% 
+  kable("html")
+
+```
+
+### Organizations
+
+The **Organizations** database lists different actors playing a role in the global health governance, such as NGOs, IGOs or associations with their date of establishment and headquarter location.
+
+```{r, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+library(tidyverse)
+library(knitr)
+head(manyhealth::organizations$CHATHAM) %>% 
+  kable("html")
+
+```
+
+
+## Visualizing Global Health Governance
+
+_To be coming soon_
+
