@@ -58,22 +58,21 @@ in the function above, as well as the package providers for their work
 assembling the data using the function below.
 
 ``` r
-citation("manyhealth")
+manydata::data_source("manyhealth")
 ```
 
+    ## Component 1 :
+    ##      Reference                                                                                                        
+    ## WHO  "Bhugra D, Pathare S, Joshi R, Kalra G, Torales J, Ventriglio A (2018)."A review of mental health po" [truncated]
+    ## GHHR "Meier BM, Cabrera OA, Ayala A, Gostin LO (2012). "Bridginginternational law and rights-based litiga" [truncated]
     ## 
-    ## To cite manyhealth in publications use:
+    ## Component 2 :
+    ##         Reference                                                                                                        
+    ## CHATHAM "Hoffman SJ, Cole CB, Pearcey M (2015). _Mapping global healtharchitecture to inform the future_. Ch" [truncated]
     ## 
-    ##   J. Hollway. Environmental agreements for manydata. 2022.
-    ## 
-    ## A BibTeX entry for LaTeX users is
-    ## 
-    ##   @Manual{,
-    ##     title = {manyhealth: Health Agreements for the many Universe},
-    ##     author = {James Hollway},
-    ##     year = {2022},
-    ##     url = {https://github.com/globalgov/manyhealth},
-    ##   }
+    ## Component 3 :
+    ##         Reference                                                                                                        
+    ## AGR_TXT "Meier BM, Cabrera OA, Ayala A, Gostin LO (2012). "Bridginginternational law and rights-based litiga" [truncated]
 
 ## Contributing
 

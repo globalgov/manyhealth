@@ -47,7 +47,7 @@ official references in the function above, as well as the package
 providers for their work assembling the data using the function below.
 
 ``` {r cites}
-citation("manyhealth")
+manydata::data_source("manyhealth")
 ```
 
 ## Contributing
