@@ -1,12 +1,37 @@
 # TEXT Preparation Script
 
-# Select two columns from GHHR dataset
-GHHR <- manyhealth::agreements$GHHR %>%
-  dplyr::select(Title, Beg)
-
-# Web scraping instruments texts from the GHHR webpage
+# Extract titles and dates again
 urls <- paste0("https://www.globalhealthrights.org/instruments/instrument-region/page/", 1:16, "/")
 
+# Title variable
+extr_title <- purrr::map(
+  urls,
+  . %>%
+    rvest::read_html() %>%
+    rvest::html_nodes("#content h2") %>%
+    rvest::html_text()
+)
+Title <- manypkgs::standardise_titles(unlist(extr_title))
+
+# Create dataframe
+GHHR <- as.data.frame(Title)
+
+extr_date <- purrr::map(
+  urls,
+  . %>%
+    rvest::read_html() %>%
+    rvest::html_text()
+)
+
+s <- stringr::str_extract_all(extr_date,
+                              "Year of adoption\\:\\s[:digit:]{4}|Year of adoption\\:\\sRegion")
+date <- unlist(s)
+date <- stringr::str_replace_all(date, "Year of adoption\\:\\sRegion", "NA")
+date <- stringr::str_remove_all(date, "Year of adoption\\:\\s")
+
+GHHR$Beg <- manypkgs::standardise_dates(date)
+
+# Web scraping instruments texts from the GHHR pages
 # Extract url that contains link to treaty text
 extr_text <- purrr::map(
   urls,
@@ -46,9 +71,31 @@ GHHR$TreatyText <- lapply(GHHR$Text_URL,
 GHHR <- as_tibble(GHHR) %>%
   dplyr::select(Title, Beg, Text_URL, TreatyText)
 
-# Repeat process for WHO database
-WHO <- manyhealth::agreements$WHO %>%
-  dplyr::select(Title, Beg)
+##################### Repeat process for WHO database ####################################################
+who_url <- rvest::read_html("https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
+
+extr_title <- who_url %>%
+  rvest::html_nodes("strong a") %>%
+  rvest::html_text()
+
+Title <- manypkgs::standardise_titles(extr_title)
+
+# Create dataframe
+WHO <- as.data.frame(Title)
+
+#Extract Date
+extr_date <- who_url %>%
+  rvest::html_nodes("p.light") %>%
+  rvest::html_text()
+
+WHO$Org_date <- extr_date
+
+# Create Beg column
+WHO$Beg <- ifelse(stringr::str_detect(WHO$Org_date, "[:digit:]{4}"),
+                  stringr::str_extract(WHO$Org_date, "[:digit:]{4}"),
+                  stringr::str_extract(WHO$Title, "[:digit:]{4}"))
+
+WHO$Beg <- manypkgs::standardise_dates(WHO$Beg)
 
 # Web scrape url
 url <- "https://www.mindbank.info/collection/un_who_resolutions/all?page=all"
