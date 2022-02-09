@@ -48,5 +48,27 @@ head(manyhealth::organizations$CHATHAM) %>%
 
 ## Visualizing Global Health Governance
 
-_To be coming soon_
+This graph below represents a sample of treaties from the agreements database and how they are linked to each other. The dataset selected to this end, GHHR_REF, also includes agreements on human rights. For more information on how to read the manyID, please read the [vignette](https://globalgov.github.io/manypkgs/articles/agreements.html) from `{manypkgs}` package.
+
+```{r lineage, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+library(dplyr)
+library(ggplot2)
+library(migraph)
+
+# Get dataset
+references <- manyhealth::references$GHHR_REF %>% 
+  dplyr::distinct() %>%
+  dplyr::mutate(year = stringr::str_extract(Treaty2, "[:digit:]{4}")) %>%
+  dplyr::filter(RefType == "Cites") %>%
+  dplyr::arrange(year)
+
+# Plot with migraph
+migraph::gglineage(references[75:100,c(1,2,3)]) +
+  labs(title = "Treaty Lineage of Selected Agreements",
+       caption = "Source: manyhealth") +
+  theme(plot.title = element_text(family = "sans",
+                                  size = 18,
+                                  hjust = 0.5))
+```
+
 
