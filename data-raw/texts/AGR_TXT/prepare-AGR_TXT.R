@@ -67,9 +67,9 @@ GHHR$TreatyText <- lapply(GHHR$Text_URL,
                                                  as.character("Not found")
                                                  }))
 
-
+GHHR$Source <- "GHHR"
 GHHR <- as_tibble(GHHR) %>%
-  dplyr::select(Title, Beg, Text_URL, TreatyText)
+  dplyr::select(Title, Beg, Text_URL, TreatyText, Source)
 
 ##################### Repeat process for WHO database ####################################################
 who_url <- rvest::read_html("https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
@@ -131,10 +131,10 @@ WHO$TreatyText <- lapply(WHO$Text_URL,
                                                 as.character("Not found")
                                                 }))
 
-
+WHO$Source <- "WHO"
 WHO <- as_tibble(WHO) %>%
   dplyr::filter(TreatyText != "Not found") %>%
-  dplyr::select(Title, Beg, Text_URL, TreatyText)
+  dplyr::select(Title, Beg, Text_URL, TreatyText, Source)
 
 WHO$Text_URL <- unlist(WHO$Text_URL )
 
@@ -164,4 +164,5 @@ AGR_TXT <- rbind(GHHR, WHO)
 # run `manypkgs::add_bib(texts, AGR_TXT)`.
 manypkgs::export_data(AGR_TXT,
                       database = "texts",
-                      URL = "NA")
+                      URL = c("https://www.mindbank.info/collection/un_who_resolutions/all?page=all",
+                              "https://www.globalhealthrights.org/"))
