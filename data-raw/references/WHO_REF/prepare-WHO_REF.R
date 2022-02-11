@@ -4,16 +4,23 @@
 # ready for many packages universe.
 
 # Stage one: Collecting data
-WHO_REF <- readr::read_csv("data-raw/references/WHO_REF/WHO_REF.csv")
+WHO_REF <- readr::read_csv2("data-raw/references/WHO_REF/WHO_REF.csv")
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
 # formats of the 'WHO_REF' object until the object created
 # below (in stage three) passes all the tests.
+WHO_REF$Beg1 <- manypkgs::standardise_dates(as.character(WHO_REF$Beg1))
+WHO_REF$Beg2 <- manypkgs::standardise_dates(as.character(WHO_REF$Beg2))
+WHO_REF$Treaty1 <- manypkgs::code_agreements(WHO_REF,
+                                             WHO_REF$Treaty1,
+                                             WHO_REF$Beg1)
+WHO_REF$Treaty2 <- manypkgs::code_agreements(WHO_REF,
+                                             WHO_REF$Treaty2,
+                                             WHO_REF$Beg2)
+
 WHO_REF <- as_tibble(WHO_REF) %>%
-  manydata::transmutate(ID = {id_variable_name_here},
-              Beg = manypkgs::standardise_dates({date_variable_name_here})) %>%
-  dplyr::arrange(Beg)
+  dplyr::select(Treaty1, Treaty2, RefType)
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
@@ -36,4 +43,4 @@ WHO_REF <- as_tibble(WHO_REF) %>%
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(references, WHO_REF)`.
 manypkgs::export_data(WHO_REF, database = "references",
-                     URL = NULL)
+                     URL = "https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
