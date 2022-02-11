@@ -1,6 +1,6 @@
 ---
 title: "How Does Global Health Governance Look Like?"
-author: "James Hollway, Henrique Sposito, Jael Tan, Bernhard Bieri, and Esther Peev"
+author: "Esther Peev"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -20,35 +20,48 @@ knitr::opts_chunk$set(
 
 ### Agreements
 
-`{manyhealth}` package is composed of multiple databases, each of them representing a different aspect of global health governance. The **agreements** database is an ensemble of data on international health instruments. The combination of datasets that are contained in this database prints an overview of all international instruments that governs the global health sphere. The **Texts** database assembles treaty texts from the **Agreements** database. 
+`{manyhealth}` package is composed of multiple databases, each of them representing a different aspect of global health governance. The **agreements** database is an ensemble of data on international health instruments. The combination of datasets that are contained in this database prints an overview of all international instruments that governs the global health sphere.
 
-```{r data, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+```{r agreements, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(tidyverse)
 library(knitr)
-head(manyhealth::agreements$WHO[,c(1:5)]) %>% 
+manyhealth::agreements$WHO[,c(1:5)] %>% 
+  dplyr::filter(Beg == "2010") %>% 
   kable("html")
 
-head(manyhealth::agreements$GHHR[,c(1:5)]) %>% 
+manyhealth::agreements$GHHR[,c(1:5)] %>% 
+  dplyr::filter(Beg == "1948") %>% 
   kable("html")
 
 ```
+
+### Texts
+
+The **Texts** database assembles treaty texts from the **Agreements** database. Functions from `{manypkgs}` can then be used to analysis treaty texts, some specific articles or preambles.
+
+```{r texts, eval = FALSE}
+manypkgs::get_articles(manyhealth::texts$AGR_TXT$TreatyText, article = "preamble", match = "HIV")
+
+```
+
 
 ### Organizations
 
-The **Organizations** database lists different actors playing a role in the global health governance, such as NGOs, IGOs or associations with their date of establishment and headquarter location.
+The **Organizations** database lists different actors playing a role in the global health governance, such as NGOs, IGOs or associations with their date of establishment and headquarter location. For example, the table below shows the organizations that are based in London.
 
-```{r, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+```{r organizations, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(tidyverse)
 library(knitr)
-head(manyhealth::organizations$CHATHAM) %>% 
+manyhealth::organizations$CHATHAM %>%
+  dplyr::filter(City == "London") %>% 
   kable("html")
 
 ```
 
 
-## Visualizing Global Health Governance
+### References
 
-This graph below represents a sample of treaties from the agreements database and how they are linked to each other. The dataset selected to this end, GHHR_REF, also includes agreements on human rights. For more information on how to read the manyID, please read the [vignette](https://globalgov.github.io/manypkgs/articles/agreements.html) from `{manypkgs}` package.
+This code below illustrates how to extract sample of treaties from the references database and how to plot their links to other treaties. The dataset selected to this end, GHHR_REF, also includes agreements on human rights. For more information on how to read the manyID, please read the [vignette](https://globalgov.github.io/manypkgs/articles/agreements.html) from `{manypkgs}` package.
 
 ```{r lineage, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(dplyr)
@@ -70,6 +83,7 @@ migraph::gglineage(references[75:100,c(1,2,3)]) +
                                   size = 18,
                                   hjust = 0.5))
 ```
+
 
 The second graph below illustrate lineages between a sample of treaties from World Health Organization (WHO) dataset. It is mostly resolutions, decisions and conventions adopted under the auspice of WHO. 
 
