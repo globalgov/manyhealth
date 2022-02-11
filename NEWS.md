@@ -1,6 +1,6 @@
 # manyhealth 0.1.1
 
-2022-02-09
+2022-02-11
 
 ## Package
 
@@ -8,13 +8,15 @@
 
 ## Data
 
-**Added three datasets**
+* Closed #5 by web scraping agreements data
+* Closed #6 by web scraping WHO agreements data
 
-* Closed #5 by importing GHHR into agreements database
-* Closed #6 by importing WHO into agreements database
-* Added texts database by web scraping both WHO and GHHR treaty texts
-* Added GHHR_REF dataset into a references database by using treaty texts to hand-code "cites" relation type
+**Created texts database**
+* Added treaty texts from WHO by web scraping data
+* Added treaty texts from GHHR by web scraping data
 
+**Created references database**
+* Added GHHR_REF dataset by hand-coding "cites" relationships between treaty texts
 
 # manyhealth 0.1.0
 
