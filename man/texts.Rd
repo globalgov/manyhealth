@@ -11,7 +11,7 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{AGR_TXT: }{A dataset with 193 observations and the following
-4 variables: Title, Beg, Text_URL, TreatyText.}
+5 variables: Title, Beg, Text_URL, TreatyText, Source.}
 }
 }
 \usage{

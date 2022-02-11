@@ -17,7 +17,9 @@ CHATHAM <- as_tibble(CHATHAM) %>%
                         City = HQ_city,
                         Beg = manypkgs::standardise_dates(lubridate::as_date(Year_inception)))
 
-CHATHAM$Country <- ifelse(is.na(CHATHAM$CountryID), "UK", CHATHAM$CountryID)
+CHATHAM$Country <- ifelse(is.na(CHATHAM$CountryID),
+                          "UK",
+                          CHATHAM$CountryID)
 CHATHAM <- CHATHAM %>%
   dplyr::select(Actor, OrganizationID, Beg, CountryID, City) %>%
   dplyr::arrange(Beg)

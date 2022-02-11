@@ -26,8 +26,11 @@ extr_date <- purrr::map(
 s <- stringr::str_extract_all(extr_date,
                               "Year of adoption\\:\\s[:digit:]{4}|Year of adoption\\:\\sRegion")
 date <- unlist(s)
-date <- stringr::str_replace_all(date, "Year of adoption\\:\\sRegion", "NA")
-date <- stringr::str_remove_all(date, "Year of adoption\\:\\s")
+date <- stringr::str_replace_all(date,
+                                 "Year of adoption\\:\\sRegion",
+                                 "NA")
+date <- stringr::str_remove_all(date,
+                                "Year of adoption\\:\\s")
 
 GHHR$Beg <- manypkgs::standardise_dates(date)
 
@@ -71,7 +74,7 @@ GHHR$Source <- "GHHR"
 GHHR <- as_tibble(GHHR) %>%
   dplyr::select(Title, Beg, Text_URL, TreatyText, Source)
 
-##################### Repeat process for WHO database ####################################################
+# Repeat process for WHO database
 who_url <- rvest::read_html("https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
 
 extr_title <- who_url %>%
@@ -140,7 +143,6 @@ WHO$Text_URL <- unlist(WHO$Text_URL )
 
 # Join two texts source into one dataset: AGR_TXT
 AGR_TXT <- rbind(GHHR, WHO)
-
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.

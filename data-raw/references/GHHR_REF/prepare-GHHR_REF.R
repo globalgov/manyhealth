@@ -10,7 +10,7 @@ GHHR_REF <- readr::read_csv2("data-raw/references/GHHR_REF/GHHR_REF.csv")
 # In this stage you will want to correct the variable names and
 # formats of the 'GHHR_REF' object until the object created
 # below (in stage three) passes all the tests.
-GHHR_REF <- GHHR_REF[-c(225,226,227),]
+GHHR_REF <- GHHR_REF[-c(225, 226, 227), ]
 
 # Put dates columns in messydt
 GHHR_REF$Beg1 <- manypkgs::standardise_dates(GHHR_REF$Beg1)
