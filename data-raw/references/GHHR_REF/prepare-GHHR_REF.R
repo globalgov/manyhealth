@@ -3,7 +3,11 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
 
-# Stage one: Collecting data
+# The texts database has been used to hand code GHHR_REF. It allowed
+# to identify which treaty was citing other treaties. GHHR_REF reflects
+# those relationships through the three column Treaty1, RefType and Treaty2.
+
+# Stage one: Collecting data from the hand coded csv file
 GHHR_REF <- readr::read_csv2("data-raw/references/GHHR_REF/GHHR_REF.csv")
 
 # Stage two: Correcting data
@@ -21,11 +25,9 @@ GHHR_REF$Treaty1 <- manypkgs::code_agreements(GHHR_REF,
                                               GHHR_REF$Treaty1,
                                               GHHR_REF$Beg1)
 
-
 GHHR_REF$Treaty2 <- manypkgs::code_agreements(GHHR_REF,
                                               GHHR_REF$Treaty2,
                                               GHHR_REF$Beg2)
-
 
 GHHR_REF <- as_tibble(GHHR_REF) %>%
   dplyr::select(Treaty1, Treaty2, RefType)

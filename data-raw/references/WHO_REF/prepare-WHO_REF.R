@@ -3,7 +3,11 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
 
-# Stage one: Collecting data
+# The texts database has been used to hand code WHO_REF. It allowed
+# to identify which treaty was citing other treaties. WHO_REF reflects
+# those relationships through the three column Treaty1, RefType and Treaty2.
+
+# Stage one: Collecting data from the hand coded csv file
 WHO_REF <- readr::read_csv2("data-raw/references/WHO_REF/WHO_REF.csv")
 
 # Stage two: Correcting data
