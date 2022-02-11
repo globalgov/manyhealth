@@ -64,11 +64,33 @@ references <- manyhealth::references$GHHR_REF %>%
 
 # Plot with migraph
 migraph::gglineage(references[75:100,c(1,2,3)]) +
-  labs(title = "Treaty Lineage of Selected Agreements",
+  labs(title = "Treaty Lineage of Selected Agreements from GHHR Dataset",
        caption = "Source: manyhealth") +
   theme(plot.title = element_text(family = "sans",
                                   size = 18,
                                   hjust = 0.5))
 ```
 
+The second graph below illustrate lineages between a sample of treaties from World Health Organization (WHO) dataset. It is mostly resolutions, decisions and conventions adopted under the auspice of WHO. 
+
+```{r lin, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+library(dplyr)
+library(ggplot2)
+library(migraph)
+
+# Get dataset
+references <- manyhealth::references$WHO_REF %>% 
+  dplyr::distinct() %>%
+  dplyr::mutate(year = stringr::str_extract(Treaty2, "[:digit:]{4}")) %>%
+  dplyr::filter(RefType == "Cites") %>%
+  dplyr::arrange(year)
+
+# Plot with migraph
+migraph::gglineage(references[10:35,c(1,2,3)]) +
+  labs(title = "Treaty Lineage of Selected Agreements from WHO",
+       caption = "Source: manyhealth") +
+  theme(plot.title = element_text(family = "sans",
+                                  size = 18,
+                                  hjust = 0.5))
+```
 
