@@ -15,3 +15,4 @@
 ^vignettes$
 ^data-raw/texts$
 ^data-raw/references$
+^data-raw/organizations$
