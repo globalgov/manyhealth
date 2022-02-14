@@ -18,9 +18,11 @@ knitr::opts_chunk$set(
 
 ## Manyhealth Data
 
+`{manyhealth}` package is composed of multiple databases, each of them representing a different aspect of global health governance.
+
 ### Agreements
 
-`{manyhealth}` package is composed of multiple databases, each of them representing a different aspect of global health governance. The **agreements** database is an ensemble of data on international health instruments. The combination of datasets that are contained in this database prints an overview of all international instruments that governs the global health sphere.
+The **agreements** database is an ensemble of data on international health instruments. The combination of datasets that are contained in this database prints an overview of all international instruments that governs the global health sphere. With the agreements data, we can for example see all the health treaties signed in a specific year, or all WHO instruments adopted during a year.
 
 ```{r agreements, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(tidyverse)
@@ -37,7 +39,7 @@ manyhealth::agreements$GHHR[,c(1:5)] %>%
 
 ### Texts
 
-The **Texts** database assembles treaty texts from the **Agreements** database. Functions from `{manypkgs}` can then be used to analysis treaty texts, some specific articles or preambles.
+The **Texts** database assembles treaty texts from the **Agreements** database. Functions from `{manypkgs}` can then be used to analysis treaty texts, some specific articles or preambles. We can, for example, get the preambles from all agreements that mention the word "HIV".
 
 ```{r texts, eval = FALSE}
 manypkgs::get_articles(manyhealth::texts$AGR_TXT$TreatyText, article = "preamble", match = "HIV")
@@ -61,7 +63,7 @@ manyhealth::organizations$CHATHAM %>%
 
 ### References
 
-This code below illustrates how to extract sample of treaties from the references database and how to plot their links to other treaties. The dataset selected to this end, GHHR_REF, also includes agreements on human rights. For more information on how to read the manyID, please read the [vignette](https://globalgov.github.io/manypkgs/articles/agreements.html) from `{manypkgs}` package.
+The **References** database was hand coded from TEXTS and identifies which treaties cite other treaties. With this information we can, for example, get to treaty lineages. The code below illustrates how to extract sample of treaties from the references database and how we can use {migraph} to plot treaties that cite to other treaties. The dataset selected to this end, GHHR_REF, also includes agreements on human rights.
 
 ```{r lineage, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(dplyr)
@@ -108,3 +110,4 @@ migraph::gglineage(references[10:35,c(1,2,3)]) +
                                   hjust = 0.5))
 ```
 
+For more information on how to read the manyID, please read the [vignette](https://globalgov.github.io/manypkgs/articles/agreements.html) from `{manypkgs}` package. For more information on some of our other "many" packages, please see [manydata](https://github.com/globalgov/manydata).
