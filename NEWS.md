@@ -1,3 +1,23 @@
+# manyhealth 0.1.1
+
+2022-02-11
+
+## Package
+
+* Added a vignette to present data package
+
+## Data
+
+* Closed #5 by web scraping agreements data
+* Closed #6 by web scraping WHO agreements data
+
+**Created texts database**
+* Added treaty texts from WHO by web scraping data
+* Added treaty texts from GHHR by web scraping data
+
+**Created references database**
+* Added GHHR_REF dataset by hand-coding "cites" relationships between treaty texts
+
 # manyhealth 0.1.0
 
 2022-01-10
