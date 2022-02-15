@@ -51,6 +51,7 @@ reference:
     contents:
     - agreements
     - organizations
+    - references
     - texts
 footer:
   structure:
