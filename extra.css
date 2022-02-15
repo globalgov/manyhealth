@@ -74,9 +74,10 @@ code{
   font-size: 14px;
   background-color: #f9f6fd;
 }
-
-pre code {
-  font-size: 13px;
+/* Functions in the code */
+pre code span.fu{
+  font-size: 14px;
+  color: #28B0AE;
 }
 
 /*Links in code and header*/
@@ -132,7 +133,7 @@ small>a{
   color: #28B0AE;
 }
 /*Strings in code*/
-.st{
+pre code span.st{
   color: #2b0b76;
 }
 
@@ -238,6 +239,7 @@ a:hover, a:focus {
 
 .btn-primary{
   background-color: #28B0AE;
+  border-color: #28B0AE;
 }
 
 .panel-orange > .panel-heading{

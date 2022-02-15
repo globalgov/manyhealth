@@ -13,6 +13,12 @@
     <loc>https://globalgov.github.io/manyhealth/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/manyhealth/articles/healthdata.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manyhealth/articles/index.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/manyhealth/authors.html</loc>
   </url>
   <url>
@@ -25,9 +31,18 @@
     <loc>https://globalgov.github.io/manyhealth/pull_request_template.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manyhealth/reference/actors.html</loc>
+    <loc>https://globalgov.github.io/manyhealth/reference/agreements.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/manyhealth/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manyhealth/reference/organizations.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manyhealth/reference/references.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manyhealth/reference/texts.html</loc>
   </url>
 </urlset>
