@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 The **agreements** database is an ensemble of data on international health instruments. The combination of datasets that are contained in this database prints an overview of all international instruments that governs the global health sphere. With the agreements data, we can for example see all the health treaties signed in a specific year, or all WHO instruments adopted during a year.
 
 ```{r agreements, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
-library(tidyverse)
+library(dplyr)
 library(knitr)
 manyhealth::agreements$WHO[,c(1:5)] %>% 
   dplyr::filter(Beg == "2010") %>% 
@@ -52,7 +52,7 @@ manypkgs::get_articles(manyhealth::texts$AGR_TXT$TreatyText, article = "preamble
 The **Organizations** database lists different actors playing a role in the global health governance, such as NGOs, IGOs or associations with their date of establishment and headquarter location. For example, the table below shows the organizations that are based in London.
 
 ```{r organizations, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
-library(tidyverse)
+library(dplyr)
 library(knitr)
 manyhealth::organizations$CHATHAM %>%
   dplyr::filter(City == "London") %>% 
