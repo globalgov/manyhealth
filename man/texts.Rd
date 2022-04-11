@@ -10,8 +10,8 @@ following 1 datasets: AGR_TXT.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{AGR_TXT: }{A dataset with 193 observations and the following
-5 variables: Title, Beg, Text_URL, TreatyText, Source.}
+\item{AGR_TXT: }{A dataset with 184 observations and the following
+7 variables: manyID, Title, Beg, Text_URL, TreatyText, Source, treatyID.}
 }
 }
 \usage{
@@ -21,9 +21,35 @@ texts
 texts database documentation
 }
 \details{
-\subsection{NA}{
-
-NA
+\preformatted{## $AGR_TXT
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             184   
+## Number of columns          7     
+## _______________________          
+## Column type frequency:           
+##   character                5     
+##   list                     1     
+##   messydt                  1     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+## 1 manyID                1         0.995    12    29     0      180          0
+## 2 Title                 0         1         6   218     0      180          0
+## 3 Text_URL              0         1         2   203     0      179          0
+## 4 Source                0         1         3     4     0        2          0
+## 5 treatyID              0         1        12    29     0      182          0
+## 
+## ── Variable type: list ────────────────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_unique min_length max_length
+## 1 TreatyText            0             1      168          1        351
+## 
+## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique
+## 1 Beg                   0             1       0       59
 }
 }
 \keyword{datasets}
