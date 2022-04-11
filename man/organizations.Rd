@@ -23,9 +23,53 @@ organizations
 organizations database documentation
 }
 \details{
-\subsection{NA}{
-
-NA
+\preformatted{## $CHATHAM
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             203   
+## Number of columns          5     
+## _______________________          
+## Column type frequency:           
+##   character                4     
+##   messydt                  1     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable  n_missing complete_rate   min   max empty n_unique whitespace
+## 1 Actor                  0         1         4    86     0      203          0
+## 2 OrganizationID         0         1         3     3     0      203          0
+## 3 CountryID            136         0.330     3     3     0       15          0
+## 4 City                   0         1         4    35     0       74          0
+## 
+## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique
+## 1 Beg                   0             1       0       81
+## 
+## $IHEID
+## ── Data Summary ────────────────────────
+##                            Values
+## Name                       X[[i]]
+## Number of rows             124   
+## Number of columns          5     
+## _______________________          
+## Column type frequency:           
+##   character                4     
+##   messydt                  1     
+## ________________________         
+## Group variables            None  
+## 
+## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable  n_missing complete_rate   min   max empty n_unique whitespace
+## 1 Abbreviation          16         0.871     2    17     0      108          0
+## 2 Areas                  3         0.976    48   699     0      121          0
+## 3 organizationID         0         1         5   125     0      124          0
+## 4 Place                  3         0.976     4    10     0       12          0
+## 
+## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate n_empty n_unique
+## 1 Beg                  44         0.645       0       53
 }
 }
 \keyword{datasets}
