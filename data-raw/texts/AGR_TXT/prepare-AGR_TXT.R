@@ -74,6 +74,8 @@ GHHR$Source <- "GHHR"
 GHHR <- as_tibble(GHHR) %>%
   dplyr::select(Title, Beg, Text_URL, TreatyText, Source)
 
+GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Beg)
+
 # Repeat process for WHO database
 who_url <- rvest::read_html("https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
 
@@ -139,10 +141,18 @@ WHO <- as_tibble(WHO) %>%
   dplyr::filter(TreatyText != "Not found") %>%
   dplyr::select(Title, Beg, Text_URL, TreatyText, Source)
 
-WHO$Text_URL <- unlist(WHO$Text_URL )
+WHO$Text_URL <- unlist(WHO$Text_URL)
+
+WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Beg)
 
 # Join two texts source into one dataset: AGR_TXT
 AGR_TXT <- rbind(GHHR, WHO)
+
+# Add manyID
+manyID <- manypkgs::condense_agreements(manyhealth::agreements)
+AGR_TXT <- dplyr::left_join(AGR_TXT, manyID, by = "treatyID")
+AGR_TXT <- dplyr::relocate(AGR_TXT, manyID)
+
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
