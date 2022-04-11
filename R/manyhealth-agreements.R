@@ -1,7 +1,7 @@
 #' agreements database documentation
 #'
 #' @format The agreements database is a list that contains the
-#' following 2 datasets: WHO, GHHR.
+#' following 3 datasets: WHO, GHHR, GNEVAR.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
 #'\describe{
@@ -9,6 +9,8 @@
 #' 7 variables: manyID, Title, Beg, Organisation, Topic, Lineage, treatyID.}
 #' \item{GHHR: }{A dataset with 151 observations and the following
 #' 7 variables: manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID.}
+#' \item{GNEVAR: }{A dataset with 259 observations and the following
+#' 11 variables: manyID, Organisation, Topic, Title, Beg, Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID.}
 #' }
 
 #'
