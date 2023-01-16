@@ -1,0 +1,204 @@
+id,Actor,Code,URL,Type,Headquarters Location,State,Health as primary intent?,Year of Inception
+1,Abt Associates,ABA,abtassociates.com,7,"Cambridge, MA",USA,No,1965
+2,Accordia Global Health Foundation,AGH,accordiafoundation.org,6,"Washington, DC",USA,Yes,2000
+3,ACTION (Global Health Advocacy Partnership),ACT,action.org,6,"Washington, DC",USA,Yes,2004
+4,Action Against Hunger International,AAH,actionagainsthunger.org,6,"New York City, NY",USA,Yes,1979
+5,Action on Smoking and Health,ASH,ash.org,6,"Washington, DC",USA,Yes,1967
+6,Advocates for Youth,AFY,advocatesforyouth.org,6,"Washington, DC",USA,Yes,1980
+7,Aeras,AER,aeras.org,6,"Rockville, MD",USA,Yes,2003
+8,Africa Fighting Malaria,AFM,fightingmalaria.org,6,Durban,South Africa,Yes,2000
+9,African Leaders Malaria Alliance,ALM,alma2015.org,2,"New York City, NY",USA,Yes,2009
+10,Africare,AFR,africare.org,6,"Washington, DC",USA,No,1970
+11,Against Malaria Foundation,AMF,againstmalaria.com,6,St. Albans,UK,Yes,2004
+12,AIDS Healthcare Foundation,AHF,aidshealth.org,6,Amsterdam,Netherlands,Yes,1987
+13,Alliance for Health Policy and Systems Research,AHP,who.int/alliance-hpsr,4,Geneva,Switzerland,Yes,1999
+14,America Association of Occupational Health Nurses,AAO,aaohn.org,8,"Pensacola, FL",USA,No,1998
+15,American Association of Veterinary Parasitologists,AAV,aavp.org,8,"Shawnee, KS",USA,No,1956
+16,American College of Preventive Medicine,ACP,acpm.org,8,"Washington, DC",USA,Yes,1954
+17,American International Health Alliance,AIH,aiha.com,6,"Washington, DC",USA,Yes,1992
+18,American Jewish World Service,AJW,ajws.org,6,"New York City, NY",USA,No,1985
+19,American Public Health Association,APH,apha.org,8,"Washington, DC",USA,Yes,1872
+20,American Red Cross,ARC,redcross.org,6,"Washington, DC",USA,No,1881
+21,American Refugee Committee,ARO,arcrelief.org,6,"Minneapolis, MN",USA,No,1979
+22,American Society for Microbiology,ASM,asm.org,8,"Washington, DC",USA,No,1899
+23,American Society of Tropical Medicine and Hygiene,AST,astmh.org,6,"Deerfield, IL",USA,Yes,1903
+24,American Thoracic Society,ATS,thoracic.org,8,"New York City, NY",USA,Yes,1905
+25,amfAR (Foundation for AIDS Research),AMA,amfar.org,6,"New York City, NY",USA,Yes,1985
+26,Anaerobe Society of the Americas,ASA,anaerobe.org,8,"Los Angeles, CA",USA,Yes,1992
+27,Asia Pacific Malaria Elimination Network,APM,apmen.org,4,Herston,Australia,Yes,2009
+28,Association of Public Health Laboratories,APL,aphl.org,6,"Silver Spring, MD",USA,Yes,1951
+29,Australasian College of Tropical Medicine,ACM,tropmed.org,8,Brisbane,Australia,Yes,1991
+30,AVAC: Global Advocacy for HIV Prevention,AVA,avac.org,6,"New York City, NY",USA,Yes,1995
+31,AVERT,AVE,avert.org,6,Horsham,UK,Yes,1986
+32,Bill & Melinda Gates Foundation,BMG,gatesfoundation.org,5,"Seattle, WA",USA,No,2000
+33,BIO Ventures for Global Health,BVG,bvgh.org,6,"Seattle, WA",USA,Yes,2004
+34,Campaign for Tobacco-Free Kids,CTF,global.tobaccofreekids.org,6,"Washington, DC",USA,Yes,1995
+35,CARE International,CAI,care-international.org,6,Geneva,Switzerland,No,1945
+36,Caritas International,CRI,caritas.org,6,Vatican City,Vatican City State,No,1897
+37,Catholic Medical Mission Board,CMM,cmmb.org,6,"New York City, NY",USA,Yes,1912
+38,Catholics for Choice,CFC,catholicsforchoice.org,6,"Washington, DC",USA,No,1973
+39,CDC Foundation,CDC,cdcfoundation.org,6,"Atlanta, GA",USA,Yes,1995
+40,Center for Global Development,CGD,cgdev.org,6,"Washington, DC",USA,No,2001
+41,Center for Health and Gender Equity,CHG,genderhealth.org,6,"Washington, DC",USA,No,1994
+42,Center for International Environmental Law,CIE,ciel.org,6,"Washington, DC",USA,No,1989
+43,Center for Reproductive Rights,CRR,reproductiverights.org,6,"New York City, NY",USA,No,1992
+44,Centers for Disease Control and Prevention,CDP,cdc.gov,1,"Atlanta, GA",USA,Yes,1946
+45,Chemonics International,CHI,chemonics.com,7,"Washington, DC",USA,No,1975
+46,Christian Connections for International Health,CCI,ccih.org,6,"McLean, VA",USA,Yes,1987
+47,CONRAD,CON,conrad.org,6,"Arlington, VA",USA,Yes,1986
+48,Consultative Group on Early Childhood Care and Development,CGE,ecdgroup.com,6,Toronto,Canada,No,1984
+49,CORE Group,COG,coregroup.org,6,"Washington, DC",USA,Yes,1997
+50,Countdown to 2015,COT,countdown2015mnch.org,6,Geneva,Switzerland,Yes,2005
+51,Direct Relief,DIR,directrelief.org,6,"Santa Barbara, CA",USA,Yes,1948
+52,Doctors for Global Health,DGH,dghonline.org,6,"Decatur, GA",USA,No,1995
+53,Elizabeth Glaser Pediatric AIDS Foundation,EGP,pedaids.org,6,"Washington, DC",USA,Yes,1988
+54,Elton John AIDS Foundation,EJA,ejaf.org,6,London,UK,Yes,1992
+55,EngenderHealth,ENH,engenderhealth.org,6,"New York City, NY",USA,Yes,1943
+56,Episcopal Relief & Development,ERD,episcopalrelief.org,6,"New York City, NY",USA,No,1940
+57,European & Developing Countries Clinical Trials Partnership,EDC,edctp.org,2,The Hague,Netherlands,Yes,2003
+58,European AIDS Treatment Group,EAT,eatg.org,6,Brussels,Belgium,Yes,1992
+59,European Food Information Council,EFI,eufic.org,6,Brussels,Belgium,No,1995
+60,European Generic Medicines Association,EGM,egagenerics.com,7,Brussels,Belgium,No,1993
+61,European Medical Students’ Association,EMS,emsa-europe.org,6,Brussels,Belgium,No,1991
+62,"European NGOs for Sexual and Reproductive Health and Rights, Population and Development",ENS,eurongos.org,6,Brussels,Belgium,Yes,1996
+63,European Observatory on Health Systems and Policies,EOH,euro.who.int/en/about-us/partners/observatory,4,Brussels,Belgium,Yes,1998
+64,European Respiratory Society,ERS,ersnet.org,8,Lausanne,Switzerland,Yes,1990
+65,European Vaccine Initiative,EVI,euvaccine.eu,6,Heidelberg,Germany,Yes,1998
+66,Family Care International,FCI,familycareintl.org,6,"New York City, NY",USA,Yes,1986
+67,Federation of American Societies for Experimental Biology,FAS,faseb.org,8,"Bethesda, OH",USA,Yes,1912
+68,Feed the Future,FTF,feedthefuture.gov,1,"Washington, DC",USA,No,2010
+69,FHI 360 (formerly Family Health International),FHI,fhi360.org,6,"Durham, NC",USA,No,2011
+70,Firelight Foundation,FIF,firelightfoundation.org,6,"Santa Cruz, CA",USA,No,2000
+71,Fistula Foundation,FSF,fistulafoundation.org,6,"San Jose, CA",USA,Yes,2000
+72,Food and Agriculture Organization of the United Nations,FAO,fao.org,2,Rome,Italy,No,1945
+73,Foundation for Innovative New Diagnostics,FIN,finddiagnostics.org,6,Geneva,Switzerland,Yes,2003
+74,Foundation for International Medical Relief of Children,FIM,fimrc.org,6,"Philadelphia, PA",USA,Yes,2002
+75,Framework Convention Alliance for Tobacco Control,FCA,fctc.org,6,Geneva,Switzerland,No,1999
+76,Futures Group,FUG,futuresgroup.com,7,"Washington, DC",USA,Yes,1971
+77,"Gavi, the Vaccine Alliance",GAA,gavialliance.org,4,Geneva,Switzerland,Yes,1999
+78,GBCHealth,GBH,gbchealth.org,6,"New York City, NY",USA,Yes,2001
+79,Global Advisors Smokefree Policy,GAS,njgasp.org,6,"Summit, NJ",USA,No,1974
+80,Global Alliance for TB Drug Development,GAT,tballiance.org,4,"New York City, NY",USA,Yes,2000
+81,Global Coalition Against Child Pneumonia,GCA,worldpneumoniaday.org,4,"Baltimore, MD",USA,Yes,2009
+82,Global Communities,GLC,globalcommunities.org,6,"Silver Spring, MD",USA,No,1952
+83,Global Health Corps,GHC,ghcorps.org,6,"New York City, NY",USA,No,2008
+84,Global Health Council,GHO,globalhealth.org,6,"Washington, DC",USA,Yes,1972
+85,Global Health Workforce Alliance,GHW,who.int/workforcealliance,4,Geneva,Switzerland,Yes,2006
+86,Global HIV Vaccine Enterprise,GHV,vaccineenterprise.org,6,"New York City, NY",USA,Yes,2004
+87,Global Hope Network International,GHN,globalhopenetwork.org,6,Geneva,Switzerland,No,1999
+88,Global Network of People Living with HIV,GNP,gnpplus.net,6,Amsterdam,Netherlands,No,1986
+89,Guttmacher Institute,GUI,guttmacher.org,6,"New York City, NY",USA,Yes,1968
+90,Health Action International,HAI,haiweb.org,6,Geneva,Switzerland,Yes,1981
+91,Health Skepticism Inc,HIS,healthyskepticism.org,6,Port Willunga,Australia,Yes,1983
+92,Health Volunteers Overseas,HVO,hvousa.org,6,"Washington, DC",USA,Yes,1986
+93,HealthCare Volunteer,HCV,healthcarevolunteer.com,6,"Los Altos, CA",USA,Yes,2005
+94,HealthRight International,HRI,healthright.org,6,"New York City, NY",USA,Yes,1990
+95,Hellen Keller International,HKI,hki.org,6,"New York City, NY",USA,Yes,1915
+96,Higher Education for Development,HED,hedprogram.org,6,"Washington, DC",USA,No,1918
+97,IBFAN (International Baby Food Action Network),IBF,ibfan.org,6,Geneva,Switzerland,Yes,1979
+98,Ibis Reproductive Health,IRH,ibisreproductivehealth.org,6,"Cambridge, MA",USA,No,2002
+99,ICASCO (International Council of AIDS Service Organizations),ICA,icaso.org,6,Toronto,Canada,Yes,1991
+100,Infectious Disease Research Institute,IDR,idri.org,6,"Washington, DC",USA,Yes,1993
+101,Institute of Food Technologists,IFT,ift.org,6,"Chicago, IL",USA,No,1939
+102,International AIDS Society,IAS,iasociety.org,8,Geneva,Switzerland,Yes,1988
+103,International AIDS Vaccine Initiative,IAV,iavi.org,6,"New York City, NY",USA,Yes,1996
+104,International Association for Food Protection,IAF,foodprotection.org,6,"Des Moines, IA",USA,No,1911
+105,International Association of National Public Health Institutes,IAN,ianphi.org,2,"Atlanta, GA",USA,Yes,2006
+106,International Association of Providers of AIDS Care,IAP,iapac.org,8,"Chicago, IL",USA,Yes,1995
+107,International Center for Research on Women,ICR,icrw.org,6,"Washington, DC",USA,No,1976
+108,International Consortium for Emergency Contraception,ICE,cecinfo.org,6,"New York City, NY",USA,Yes,1996
+109,UNITAID (International Drug Purchase Facility),IDP,unitaid.eu,4,Geneva,Switzerland,Yes,2006
+110,International Epidemiological Association,IEA,ieaweb.org,8,"Raleigh, NC",USA,No,1954
+111,International Federation of Medical Students’ Associations,IFM,ifmsa.org,6,Amsterdam,Netherlands,No,1951
+112,International Finance Facility for Immunisation,IFF,iffim.org,6,London,UK,Yes,2006
+113,International Food Policy Research Institute,IFP,ifpri.org,6,"Washington, DC",USA,No,1975
+114,International Fund for Agricultural Development,IFA,ifad.org,2,Rome,Italy,No,1977
+115,International Health Partnership,IHP,internationalhealthpartnership.net,4,"Washington, DC",USA,Yes,2007
+116,International HIV/AIDS Alliance,IHA,aidsalliance.org,6,Hove,UK,Yes,1993
+117,International Life Sciences Institute,ILS,ilsi.org,6,"Washington, DC",USA,No,1978
+118,International Network for Rational Use of Drugs,INR,inrud.org,4,"Arlington, VA",USA,No,1989
+119,International Partnership for Microbicides,IPM,ipmglobal.org,4,"Silver Spring, MD",USA,Yes,2002
+120,International Pharmaceutical Students’ Federation,IPS,ipsf.org,6,The Hague,Netherlands,Yes,1949
+121,International Planned Parenthood Federation,IPP,ippf.org,6,London,UK,No,1952
+122,International Relief & Development,IRD,ird.org,6,"Arlington, VA",USA,No,1998
+123,International Society for Infectious Diseases,ISI,isid.org,6,"Brookline, MA",USA,Yes,1986
+124,International Society of Drug Bulletins,ISD,isdbweb.org,6,London,UK,No,1986
+125,International Union Against Tuberculosis and Lung Disease,IUA,theunion.org,4,Paris,France,Yes,1920
+126,International Union of Food Science and Technology,IUF,iufost.org,6,Oakville,Canada,No,1970
+127,International Union of Nutritional Sciences,IUN,iuns.org,6,Vienna,Austria,No,1948
+128,International Vaccine Institute,IVI,ivi.int,6,Seoul,Republic of Korea,Yes,1996
+129,IntraHealth International,IHI,intrahealth.org,6,"Chapel Hill, NC",USA,Yes,1979
+130,Ipas (formerly International Pregnancy Advisory Services),IPA,ipas.org,6,"Chapel Hill, NC",USA,Yes,1973
+131,Jhpiego,JHP,jhpiego.org,6,"Baltimore, MD",USA,Yes,1974
+132,"John Snow, Inc.",JSI,jsi.com,7,"Boston, MA",USA,Yes,1978
+133,Johns Hopkins Bloomberg School of Public Health,JHB,jhsph.edu,9,"Baltimore, MD",USA,Yes,1916
+134,Joint United Nations Programme on HIV/AIDS,JUN,unaids.org,2,Geneva,Switzerland,Yes,1996
+135,London School of Hygiene and Tropical Medicine,LSH,www.lshtm.ac.uk,9,London,UK,Yes,1899
+136,Malaria Foundation International,MFI,malaria.org,6,"Stone Mountain, GA",USA,Yes,1992
+137,Malaria No More,MNM,malarianomore.org,6,"New York City, NY",USA,Yes,2006
+138,Management Systems International,MSN,msiworldwide.com,7,"Washington, DC",USA,No,1981
+139,Médecins Sans Frontières,MSF,msf.org,6,Geneva,Switzerland,Yes,1971
+140,Medicines for Malaria Venture,MMV,mmv.org,4,Geneva,Switzerland,Yes,1999
+141,MediSend International,MSI,medisend.org,6,"Dallas, TX",USA,Yes,1999
+142,Mercy Corps,MEC,mercycorps.org,6,"Portland, OR",USA,No,1979
+143,Millennium Challenge Corporation,MCC,mcc.gov,1,"Washington, DC",USA,No,2004
+144,National Institutes of Health,NIH,nih.gov,1,"Bethesda, OH",USA,Yes,1887
+145,Operation Rainbow,OPR,operationrainbow.org,6,"Oakland, CA",USA,Yes,1978
+146,Operation Smile,OPS,operationsmile.org,6,"Virginia Beach, VA",USA,Yes,1982
+147,Operation USA,OPU,opusa.org,6,"Los Angeles, CA",USA,No,1979
+148,Oxfam International,OXI,oxfam.org,6,"Washington, DC",USA,No,1995
+149,Pan American Society for Clinical Virology,PAS,pascv.org,8,"Raleigh, NC",USA,Yes,1977
+150,Pangaea Global AIDS Foundation,PGA,pangaeaglobal.org,6,"Oakland, CA",USA,Yes,2001
+151,Partners in Health,PIH,pih.org,6,"Boston, MA",USA,Yes,1987
+152,"Partnership for Maternal, Newborn and Child Health",PMN,who.int/pmnch,4,Geneva,Switzerland,Yes,2005
+153,PATH,PAT,path.org,6,"Seattle, WA",USA,Yes,1977
+154,Pathfinder International,PAI,pathfinder.org,6,"Watertown, MN",USA,Yes,1957
+155,Pediatric Infectious Diseases Society,PID,pids.org,8,"Arlington, VA",USA,Yes,1984
+156,Plan International,PLI,plan-international.org,6,Woking,UK,No,1937
+157,Population Action International,PAN,populationaction.org,6,"Washington, DC",USA,No,1965
+158,Population Council,POC,popcouncil.org,6,"New York City, NY",USA,No,1952
+159,Population Media Center,PMC,populationmedia.org,6,"Shelburne, MA",USA,Yes,1998
+160,Population Reference Bureau,PRB,prb.org,6,"Washington, DC",USA,No,1929
+161,Population Services International,PSI,psi.org,6,"Washington, DC",USA,Yes,1970
+162,Project HOPE,PRH,projecthope.org,6,"Millwood, VA",USA,Yes,1958
+163,Public Health Institute,PHI,phi.org,6,"Oakland, CA",USA,Yes,1964
+164,RAND Corporation,RAC,rand.org,6,"Santa Monica, CA",USA,No,1948
+165,Refugees International,REI,refintl.org,6,"Washington, DC",USA,No,1979
+166,Reproductive Health Response in Crises Consortium,RHR,rhrc.org,6,"Minneapolis, MN",USA,Yes,1995
+167,Reproductive Health Supplies Coalition,RHS,rhsupplies.org,4,Brussels,Belgium,Yes,2004
+168,Research Triangle Institute International,RTI,rti.org,6,"Durham (Research Triangle Park), NC",USA,No,1958
+169,Roll Back Malaria Partnership,RBM,rollbackmalaria.org,4,Geneva,Switzerland,Yes,1998
+170,Sabin Vaccine Institute,SVI,sabin.org,6,"Washington, DC",USA,Yes,1993
+171,Save the Children International,SCI,savethechildren.net,6,London,UK,No,1919
+172,Society for Public Health Education,SPH,sophe.org,8,"Washington, DC",USA,Yes,1950
+173,Society for Research on Nicotine and Tobacco,SRN,srnt.org,6,"Madison, WI",USA,No,1994
+174,Stephen Lewis Foundation,SLF,stephenlewisfoundation.org,6,Toronto,Canada,Yes,2003
+175,Stop TB Partnership,STP,stoptb.org,4,Geneva,Switzerland,Yes,2001
+176,Swiss Tropical and Public Health Institute,STH,swisstph.ch,1,Basel,Switzerland,Yes,1943
+177,Syrian Center for Tobacco Studies,SCT,scts-sy.org,6,Aleppo,Syrian Arab Republic,No,2002
+178,TB Alert,TBA,tbalert.org,6,Brighton,UK,Yes,1998
+179,"The Earth Institute, Columbia University",TEI,earthinstitute.columbia.edu,9,"New York City, NY",USA,No,1995
+180,"The Global Fund to Fight AIDS, Tuberculosis and Malaria",TGF,theglobalfund.org,4,Geneva,Switzerland,Yes,2002
+181,The Water Project,TWP,thewaterproject.org,6,"Concord, NH",USA,No,2006
+182,Tobacco Free Nurses,TFN,tobaccofreenurses.org,6,"Los Angeles, CA",USA,No,2003
+183,Tostan,TOS,tostan.org,6,Dakar,Senegal,No,1974
+184,Treatment Action Group,TAG,treatmentactiongroup.org,6,"New York City, NY",USA,Yes,1992
+185,TuBerculosis Vaccine Initiative,TVI,tbvi.eu,6,Lelystad,Netherlands,Yes,2008
+186,Unite for Sight,UFS,uniteforsight.org,6,"New Haven, CT",USA,Yes,2000
+187,United Nations Children’s Fund,UNC,unicef.org,2,"New York City, NY",USA,No,1946
+188,United Nations Development Programme,UND,undp.org,2,"New York City, NY",USA,No,1966
+189,United Nations Foundation,UNF,unfoundation.org,6,"Washington, DC",USA,No,1998
+190,United Nations Population Fund,UNP,unfpa.org,2,Geneva,Switzerland,No,1969
+191,United States Agency for International Development,USA,usaid.gov,1,"Washington, DC",USA,No,1961
+192,"United States Department of Health & Human Services, Office of Global Affairs",USD,globalhealth.gov,1,"Washington, DC",USA,Yes,2002
+193,"University of California, San Francisco",UCS,www.ucsf.edu,9,"San Francisco, CA",USA,Yes,1864
+194,VSO (Voluntary Service Overseas),VSO,vso.org.uk,6,Kingston upon Thames,UK,No,1958
+195,Women Deliver,WOD,womendeliver.org,6,"New York City, NY",USA,Yes,2007
+196,World AIDS Campaign,WAC,worldaidscampaign.org,6,Cape Town,South Africa,Yes,1997
+197,World Bank,WOB,worldbank.org,3,"Washington, DC",USA,No,1944
+198,World Food Programme,WFP,wfp.org,2,Rome,Italy,No,1961
+199,World Health Organization,WHO,who.int,2,Geneva,Switzerland,Yes,1948
+200,World Lung Foundation,WLF,worldlungfoundation.org,6,"New York City, NY",USA,Yes,2004
+201,World Vision International,WVI,wvi.org,6,Uxbridge,UK,No,1950
+202,Worldwatch Institute,WOI,worldwatch.org,6,"Washington, DC",USA,No,1974
+203,Yale School of Public Health,YSP,publichealth.yale.edu,9,"New Haven, CT",USA,Yes,1946
