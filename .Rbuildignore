@@ -5,6 +5,7 @@
 ^data-raw/agreements/IHEID$
 ^data-raw/agreements/HEIDI$
 ^.*\.Rproj$
+^.DS_Store
 ^\.Rproj\.user$
 ^data-raw/actors$
 ^data-raw/actors/CH_HOUSE$
