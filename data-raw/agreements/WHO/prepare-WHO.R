@@ -78,7 +78,7 @@ WHO <- WHO %>%
 # Therefore, please make sure that you have permission to use the dataset
 # that you're including in the package.
 # To add a template of .bib file to package,
-# run `manypkgs::add_bib(agreements, WHO)`.
+# run `manypkgs::add_bib("agreements", "WHO")`.
 manypkgs::export_data(WHO,
                       database = "agreements",
                       URL = "https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
