@@ -1,21 +1,22 @@
 #' agreements database documentation
 #'
 #' @format The agreements database is a list that contains the
-#' following 3 datasets: WHO, GHHR, GNEVAR.
+#' following 3 datasets: WHO, GHHR, HUGGO.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
+#' @imports manydata
 #'\describe{
 #' \item{WHO: }{A dataset with 109 observations and the following
 #' 7 variables: manyID, Title, Beg, Organisation, Topic, Lineage, treatyID.}
 #' \item{GHHR: }{A dataset with 151 observations and the following
 #' 7 variables: manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID.}
-#' \item{GNEVAR: }{A dataset with 259 observations and the following
-#' 11 variables: manyID, Organisation, Topic, Title, Beg, Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID.}
+#' \item{HUGGO: }{A dataset with 257 observations and the following
+#' 14 variables: manyID, Title, Beg, Organisation, Topic, Region, LegalStatus,
+#' Lineage, Memb.conditions, Memb.procedures, treatyID, TreatyText, url, Source.}
 #' }
-
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
-#' lapply(agreements, skimr::skim_without_charts)
+#' lapply(agreements, messydates::mreport)
 #' ```
 "agreements"
