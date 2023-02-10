@@ -4,7 +4,6 @@
 #' following 3 datasets: WHO, GHHR, HUGGO.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
-#' @imports manydata
 #'\describe{
 #' \item{WHO: }{A dataset with 109 observations and the following
 #' 7 variables: manyID, Title, Beg, Organisation, Topic, Lineage, treatyID.}

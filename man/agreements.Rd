@@ -6,17 +6,9 @@
 \title{agreements database documentation}
 \format{
 The agreements database is a list that contains the
-following 3 datasets: WHO, GHHR, GNEVAR.
+following 3 datasets: WHO, GHHR, HUGGO.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
-\describe{
-\item{WHO: }{A dataset with 109 observations and the following
-7 variables: manyID, Title, Beg, Organisation, Topic, Lineage, treatyID.}
-\item{GHHR: }{A dataset with 151 observations and the following
-7 variables: manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID.}
-\item{GNEVAR: }{A dataset with 259 observations and the following
-11 variables: manyID, Organisation, Topic, Title, Beg, Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID.}
-}
 }
 \usage{
 agreements
@@ -25,87 +17,57 @@ agreements
 agreements database documentation
 }
 \details{
-\preformatted{## $WHO
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             109   
-## Number of columns          7     
-## _______________________          
-## Column type frequency:           
-##   character                6     
-##   messydt                  1     
-## ________________________         
-## Group variables            None  
-## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0             1    12    29     0      105          0
-## 2 Title                 0             1     6   193     0      102          0
-## 3 Organisation          0             1     5    64     0       22          0
-## 4 Topic                 0             1    10    57     0       10          0
-## 5 Lineage               0             1     2    29     0       12          0
-## 6 treatyID              0             1    12    29     0      106          0
-## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                   0             1       0       35
-## 
-## $GHHR
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             151   
-## Number of columns          7     
-## _______________________          
-## Column type frequency:           
-##   character                6     
-##   messydt                  1     
-## ________________________         
-## Group variables            None  
-## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
-## 1 manyID                0             1    12    29     0      148          0
-## 2 Title                 0             1     9   218     0      149          0
-## 3 Region                0             1     6     9     0        4          0
-## 4 LegalStatus           0             1    31    39     0        3          0
-## 5 Lineage               0             1     2    34     0       20          0
-## 6 treatyID              0             1    12    29     0      149          0
-## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                   0             1       0       53
-## 
-## $GNEVAR
-## ── Data Summary ────────────────────────
-##                            Values
-## Name                       X[[i]]
-## Number of rows             259   
-## Number of columns          11    
-## _______________________          
-## Column type frequency:           
-##   character                10    
-##   messydt                  1     
-## ________________________         
-## Group variables            None  
-## 
-## ── Variable type: character ───────────────────────────────────────────────────────────────────────────────────────────
-##    skim_variable   n_missing complete_rate   min   max empty n_unique whitespace
-##  1 manyID                  0         1        12    29     0      251          0
-##  2 Organisation          151         0.417     5    64     0       22          0
-##  3 Topic                 151         0.417    10    57     0       10          0
-##  4 Title                   0         1         6   218     0      248          0
-##  5 Region                106         0.591     6     9     0        4          0
-##  6 LegalStatus           106         0.591    31    39     0        3          0
-##  7 Lineage                 0         1         2    34     0       26          0
-##  8 Memb.conditions        74         0.714     2    50     0       30          0
-##  9 Memb.procedures        74         0.714     2    39     0        7          0
-## 10 treatyID                0         1        12    29     0      253          0
-## 
-## ── Variable type: messydt ─────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable n_missing complete_rate n_empty n_unique
-## 1 Beg                   0             1       0       66
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{#> $WHO
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             109|     0     |       0       |
+#> |     Title     |  character  |             109|     0     |       0       |
+#> |      Beg      |   messydt   |             109|     0     |       0       |
+#> | Organisation  |  character  |             109|     0     |       0       |
+#> |     Topic     |  character  |             109|     0     |       0       |
+#> |    Lineage    |  character  |             109|     0     |       0       |
+#> |   treatyID    |  character  |             109|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $GHHR
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             151|     0     |       0       |
+#> |     Title     |  character  |             151|     0     |       0       |
+#> |      Beg      |   messydt   |             151|     0     |       0       |
+#> |    Region     |  character  |             151|     0     |       0       |
+#> |  LegalStatus  |  character  |             151|     0     |       0       |
+#> |    Lineage    |  character  |             151|     0     |       0       |
+#> |   treatyID    |  character  |             151|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $HUGGO
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             255|     0     |       0       |
+#> |     Title     |  character  |             255|     0     |       0       |
+#> |      Beg      |    mdate    |             255|     0     |       0       |
+#> |   Signature   |    mdate    |             255|     0     |       0       |
+#> |     Force     |    mdate    |             255|    186    |     72.94     |
+#> |      End      |    mdate    |             255|    252    |     98.82     |
+#> | Organisation  |  character  |             255|    148    |     58.04     |
+#> |     Topic     |  character  |             255|    148    |     58.04     |
+#> |    Region     |  character  |             255|    105    |     41.18     |
+#> |  LegalStatus  |  character  |             255|    105    |     41.18     |
+#> |    Lineage    |  character  |             255|    83     |     32.55     |
+#> |Memb.conditions|  character  |             255|    75     |     29.41     |
+#> |Memb.procedures|  character  |             255|    211    |     82.75     |
+#> |   treatyID    |  character  |             255|     0     |       0       |
+#> |     Text      |  character  |             255|     0     |       0       |
+#> |   Comments    |  character  |             255|    231    |     90.59     |
+#> |      url      |  character  |             255|     7     |     2.75      |
+#> |    Source     |  character  |             255|     1     |     0.39      |
+#> ----------------------------------------------------------------------------
+}\if{html}{\out{</div>}}
 }
 \keyword{datasets}

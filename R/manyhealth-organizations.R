@@ -4,7 +4,6 @@
 #' following 3 datasets: CHATHAM, IHEID, GHS.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
-#' @imports manydata
 #'\describe{
 #' \item{CHATHAM: }{A dataset with 203 observations and the following
 #' 5 variables: Actor, OrganizationID, Beg, CountryID, City.}
