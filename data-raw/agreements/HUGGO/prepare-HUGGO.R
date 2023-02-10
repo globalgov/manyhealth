@@ -195,11 +195,47 @@ conflicts <- manydata::db_comp(manyhealth::agreements,
                                variable = c("Title", "Beg"),
                                category = "conflicting")
 
+# Stage five: merge verified data into HUGGO dataset
+HUGGO2 <- readr::read_csv("data-raw/agreements/HUGGO/HUGGO_verified.csv")
+HUGGO_new <- dplyr::full_join(HUGGO, HUGGO2, by = c("manyID", "treatyID")) %>%
+  dplyr::distinct() %>%
+  dplyr::relocate(manyID, Title.x, Title.y, Beg.x, Beg.y, Signature, Force, Organisation)
+#clean merged data
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
+HUGGO_new <- HUGGO_new %>%
+  dplyr::mutate(Title = manypkgs::standardise_titles(Title.y),
+                Beg = ifelse(!is.na(Beg.y), Beg.y, Beg.x),
+                url = ifelse(!is.na(url.y), url.y, url.x),
+                Source = ifelse(!is.na(Source.y), Source.y, Source.x)) %>%
+  dplyr::select(-c(Title.x, Title.y, Beg.x, Beg.y, url.x, url.y, Source.x, Source.y)) %>%
+  dplyr::distinct() %>%
+  dplyr::relocate(manyID, Title, Beg, Signature, Force, End, Organisation)
+# remove duplicated entries from merging dataset
+which(HUGGO_new$manyID == "WHDSBL_2013O69:WHDSBL_2014O77")
+HUGGO_new <- HUGGO_new[-c(229, 230),] # rows 227 228 229 230; 229 is a duplicate of 227 and 230 is a duplicate of 228
 
-# Stage three: Connecting data
+which(HUGGO_new$manyID == "FP10CD_2013R") #220 and 221: different Organisation
+HUGGO_new <- HUGGO_new[-220,] # Organisation should be World Health Assembly, not World Health Organisation
+
+which(HUGGO_new$manyID =="BJNDPA_1995R") #108 and 109: different url but same text
+HUGGO_new <- HUGGO_new[-109,]
+
+# Stage six: re-export HUGGO dataset without TreatyText variable
+# Treaty texta are formatted and stored in .txt files in the
+# data_raw/agreements/HUGGO/TreatyText folder
+HUGGO <- HUGGO_new %>%
+  dplyr::select(-TreatyText) %>%
+  dplyr::mutate(across(everything(),
+                       ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
+  dplyr::mutate(Beg = messydates::as_messydate(Beg),
+                Signature = messydates::as_messydate(Signature),
+                Force = messydates::as_messydate(Force),
+                End = messydates::as_messydate(End)) %>%
+  dplyr::distinct(.keep_all = TRUE) %>%
+  dplyr::arrange(Beg)
+
 # Next run the following line to make HUGGO available within the package.
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
