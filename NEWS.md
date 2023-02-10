@@ -1,4 +1,4 @@
-# manyhealth 0.2.0
+# manyhealth 0.1.2
 
 2023-02-10
 
