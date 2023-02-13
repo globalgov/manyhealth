@@ -1,7 +1,7 @@
 Package: manyhealth
 Title: Health Agreements for the many Universe
-Version: 0.1.2
-Date: 2023-02-10
+Version: 0.2.0
+Date: 2023-02-13
 Authors@R:
     c(person(given = "James",
              family = "Hollway",

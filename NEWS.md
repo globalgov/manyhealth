@@ -1,6 +1,6 @@
-# manyhealth 0.1.2
+# manyhealth 0.2.0
 
-2023-02-10
+2023-02-13
 
 ## Data
 
