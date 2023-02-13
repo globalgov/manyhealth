@@ -24,7 +24,7 @@ navbar:
     articles:
       text: Articles
       menu:
-      - text: How Does Global Health Governance Look Like?
+      - text: What Does Global Health Governance Look Like?
         href: articles/healthdata.html
     news:
       text: News
@@ -52,7 +52,6 @@ reference:
     - agreements
     - organizations
     - references
-    - texts
 footer:
   structure:
     left: devs
