@@ -11,17 +11,14 @@ CHATHAM <- readxl::read_excel("data-raw/organizations/CHATHAM/actors_map.xlsx")
 # formats of the 'CHATHAM' object until the object created
 # below (in stage three) passes all the tests.
 CHATHAM <- as_tibble(CHATHAM) %>%
-  manydata::transmutate(OrganizationID = Code,
-                        Actor = manypkgs::standardise_titles(Actors),
-                        CountryID = manystates::code_states(HQ_states),
+  manydata::transmutate(Abbreviation = Code,
+                        organizationID = manypkgs::standardise_titles(Actors),
+                        State = HQ_states,
                         City = HQ_city,
-                        Beg = manypkgs::standardise_dates(lubridate::as_date(Year_inception)))
+                        Beg = messydates::as_messydate(lubridate::as_date(Year_inception)))
 
-CHATHAM$Country <- ifelse(is.na(CHATHAM$CountryID),
-                          "UK",
-                          CHATHAM$CountryID)
 CHATHAM <- CHATHAM %>%
-  dplyr::select(Actor, OrganizationID, Beg, CountryID, City) %>%
+  dplyr::relocate(Abbreviation, organizationID, Beg, State, City) %>%
   dplyr::arrange(Beg)
 
 # manydata includes several functions that should help cleaning
