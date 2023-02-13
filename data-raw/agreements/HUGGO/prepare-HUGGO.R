@@ -65,11 +65,11 @@ GHHR$Treaty_URL <- extr_text
 
 #Extract the URL of the text itself
 GHHR$Text_URL <- lapply(GHHR$Treaty_URL,
-                        function(s) purrr::map(s,
+                        function(s) {purrr::map(s,
                                                . %>%
                                                  rvest::read_html() %>%
                                                  rvest::html_nodes(".downloaddecision a") %>%
-                                                 rvest::html_attr("href")))
+                                                 rvest::html_attr("href"))})
 GHHR$Text_URL[GHHR$Text_URL == "list(character(0))"] <- "NA"
 GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "list")
 GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "\\(")
@@ -91,7 +91,7 @@ GHHR <- as_tibble(GHHR) %>%
 GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Beg)
 
 #Repeat process for WHO database
-who_url <- rvest::read_html("https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
+who_url <- rvest::read_html("https://extranet.who.int/mindbank/collection/un_who_resolutions/all?page=all")
 
 extr_title <- who_url %>%
   rvest::html_nodes("strong a") %>%
@@ -118,28 +118,29 @@ WHO$Beg <- manypkgs::standardise_dates(WHO$Beg)
 
 # Web scrape url
 url <- "https://www.mindbank.info/collection/un_who_resolutions/all?page=all"
-page = rvest::read_html(url)
+page <- rvest::read_html(url)
 
-extr_whotext = page %>%
+extr_whotext <- page %>%
   rvest::html_nodes("strong a") %>%
   rvest::html_attr("href") %>%
-  paste("https://www.mindbank.info/", ., sep="")
+  paste("https://www.mindbank.info/", ., sep = "")
 
 WHO$Treaty_URL <- extr_whotext
 
 WHO$Text_URL <- lapply(WHO$Treaty_URL,
-                       function(s) purrr::map(s,
+                       function(s) {purrr::map(s,
                                               . %>%
                                                 rvest::read_html() %>%
                                                 rvest::html_nodes(".contents_link a") %>%
                                                 rvest::html_attr("href") %>%
-                                                paste("https://www.mindbank.info/", ., sep="")))
+                                                paste("https://www.mindbank.info/",
+                                                      ., sep = ""))})
 
-for(i in 1:109){
+for (i in 1:nrow(WHO)) {
   WHO$Text_URL[i] <- WHO$Text_URL[[i]][1]
 }
 
-for(i in 1:109){
+for (i in 1:nrow(WHO)) {
   WHO$Text_URL[i] <- WHO$Text_URL[[i]][1]
 }
 
@@ -163,7 +164,8 @@ WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Beg)
 texts <- rbind(GHHR, WHO)
 manyID <- manypkgs::condense_agreements(manyhealth::agreements) # Add manyID
 texts <- dplyr::left_join(texts, manyID, by = "treatyID")
-texts <- texts %>% dplyr::relocate(manyID) %>%
+texts <- texts %>%
+  dplyr::relocate(manyID) %>%
   dplyr::rename(url = Text_URL)
 HUGGO <- dplyr::left_join(HUGGO, texts,
                           by = c("manyID", "Title", "Beg", "treatyID"))
@@ -199,8 +201,9 @@ conflicts <- manydata::db_comp(manyhealth::agreements,
 HUGGO2 <- readr::read_csv("data-raw/agreements/HUGGO/HUGGO_verified.csv")
 HUGGO_new <- dplyr::full_join(HUGGO, HUGGO2, by = c("manyID", "treatyID")) %>%
   dplyr::distinct() %>%
-  dplyr::relocate(manyID, Title.x, Title.y, Beg.x, Beg.y, Signature, Force, Organisation)
-#clean merged data
+  dplyr::relocate(manyID, Title.x, Title.y, Beg.x, Beg.y, Signature,
+                  Force, Organisation)
+# Clean merged data
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
@@ -209,18 +212,23 @@ HUGGO_new <- HUGGO_new %>%
                 Beg = ifelse(!is.na(Beg.y), Beg.y, Beg.x),
                 url = ifelse(!is.na(url.y), url.y, url.x),
                 Source = ifelse(!is.na(Source.y), Source.y, Source.x)) %>%
-  dplyr::select(-c(Title.x, Title.y, Beg.x, Beg.y, url.x, url.y, Source.x, Source.y)) %>%
+  dplyr::select(-c(Title.x, Title.y, Beg.x, Beg.y, url.x, url.y,
+                   Source.x, Source.y)) %>%
   dplyr::distinct() %>%
   dplyr::relocate(manyID, Title, Beg, Signature, Force, End, Organisation)
 # remove duplicated entries from merging dataset
 which(HUGGO_new$manyID == "WHDSBL_2013O69:WHDSBL_2014O77")
-HUGGO_new <- HUGGO_new[-c(229, 230),] # rows 227 228 229 230; 229 is a duplicate of 227 and 230 is a duplicate of 228
+# duplicate due to repeat in Organisation name
+HUGGO_new <- HUGGO_new[-c(which(HUGGO_new$Organisation == "World Health Organization; World Health Organization ")), ]
 
-which(HUGGO_new$manyID == "FP10CD_2013R") #220 and 221: different Organisation
-HUGGO_new <- HUGGO_new[-220,] # Organisation should be World Health Assembly, not World Health Organisation
+which(HUGGO_new$manyID == "FP10CD_2013R")
+# duplicate due to different Organisation for same resolution
+# Organisation should be World Health Assembly, not World Health Organisation
+HUGGO_new <- HUGGO_new[-(which(HUGGO_new$manyID == "FP10CD_2013R" & HUGGO_new$Organisation == "World Health Organization ")), ]
 
-which(HUGGO_new$manyID =="BJNDPA_1995R") #108 and 109: different url but same text
-HUGGO_new <- HUGGO_new[-109,]
+which(HUGGO_new$manyID == "BJNDPA_1995R")
+# duplicate due to different url links for same text
+HUGGO_new <- HUGGO_new[-(which(HUGGO_new$url == "https://www.globalhealthrights.org/wp-content/uploads/2014/07/Beijin-Declaration-and-Platform-of-Action.pdf")), ]
 
 # Stage six: re-export HUGGO dataset without TreatyText variable
 # Treaty texta are formatted and stored in .txt files in the
