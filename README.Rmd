@@ -11,8 +11,8 @@ output: github_document
 <!-- badges: end -->
 
 manyhealth is a data package in the [many packages](https://github.com/globalgov/) universe.
-It currently includes an ensemble of datasets on international health instruments,
-and [states](https://github.com/globalgov/manystates)' membership or other relationships to those agreements.
+It currently includes an ensemble of datasets on international health instruments
+and actors in global health governance (states, IGOs, NGOs, and other private actors).
 
 Please also check out [`{manydata}`](https://github.com/globalgov/manydata) for more about the other packages in the 'many packages' universe. 
 
@@ -52,7 +52,7 @@ citation("manyhealth")
 
 ## Contributing
 
-[manydata](https://github.com/globalgov/manydata) also makes it easy to
+[`{manypkgs}`](https://github.com/globalgov/manypkgs) also makes it easy to
 contribute in lots of different ways.
 
 If you have already developed a dataset salient to this package, please

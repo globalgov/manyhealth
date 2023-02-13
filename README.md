@@ -12,9 +12,9 @@ Date](https://img.shields.io/github/release-date/globalgov/manyhealth)
 
 manyhealth is a data package in the [many
 packages](https://github.com/globalgov/) universe. It currently includes
-an ensemble of datasets on international health instruments, and
-[states](https://github.com/globalgov/manystates)’ membership or other
-relationships to those agreements.
+an ensemble of datasets on international health instruments and actors
+in global health governance (states, IGOs, NGOs, and other private
+actors).
 
 Please also check out
 [`{manydata}`](https://github.com/globalgov/manydata) for more about the
@@ -77,8 +77,8 @@ citation("manyhealth")
 
 ## Contributing
 
-[manydata](https://github.com/globalgov/manydata) also makes it easy to
-contribute in lots of different ways.
+[`{manypkgs}`](https://github.com/globalgov/manypkgs) also makes it easy
+to contribute in lots of different ways.
 
 If you have already developed a dataset salient to this package, please
 reach out by flagging this as an
