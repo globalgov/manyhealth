@@ -16,8 +16,8 @@ please use the \code{data_source()} and \code{data_contrast()} functions.
 7 variables: manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID.}
 \item{HUGGO: }{A dataset with 255 observations and the following
 18 variables: manyID, Title, Beg, Signature, Force, End, Organisation, Topic,
-Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID, Text,
-Comments, url, Source.}
+Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID,
+Text, Comments, url, Source.}
 }
 }
 \usage{
@@ -33,7 +33,7 @@ agreements database documentation
 #> ----------------------------------------------------------------------------
 #> |    manyID     |  character  |             109|     0     |       0       |
 #> |     Title     |  character  |             109|     0     |       0       |
-#> |      Beg      |   messydt   |             109|     0     |       0       |
+#> |      Beg      |    mdate    |             109|     0     |       0       |
 #> | Organisation  |  character  |             109|     0     |       0       |
 #> |     Topic     |  character  |             109|     0     |       0       |
 #> |    Lineage    |  character  |             109|     0     |       0       |
@@ -47,7 +47,7 @@ agreements database documentation
 #> ----------------------------------------------------------------------------
 #> |    manyID     |  character  |             151|     0     |       0       |
 #> |     Title     |  character  |             151|     0     |       0       |
-#> |      Beg      |   messydt   |             151|     0     |       0       |
+#> |      Beg      |    mdate    |             151|     0     |       0       |
 #> |    Region     |  character  |             151|     0     |       0       |
 #> |  LegalStatus  |  character  |             151|     0     |       0       |
 #> |    Lineage    |  character  |             151|     0     |       0       |

@@ -11,7 +11,8 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{CHATHAM: }{A dataset with 203 observations and the following
-5 variables: Actor, OrganizationID, Beg, CountryID, City.}
+7 variables: Abbreviation, organizationID, Beg, State, City, Type,
+Health_as_primary_intent.}
 \item{IHEID: }{A dataset with 124 observations and the following
 5 variables: Abbreviation, Areas, organizationID, Beg, Place.}
 \item{GHS: }{A dataset with 203 observations and the following
@@ -27,15 +28,17 @@ organizations database documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{#> $CHATHAM
-#> ----------------------------------------------------------------------------
-#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-#> ----------------------------------------------------------------------------
-#> |     Actor     |  character  |             203|     0     |       0       |
-#> |OrganizationID |  character  |             203|     0     |       0       |
-#> |      Beg      |   messydt   |             203|     0     |       0       |
-#> |   CountryID   |  character  |             203|    136    |      67       |
-#> |     City      |  character  |             203|     0     |       0       |
-#> ----------------------------------------------------------------------------
+#> -------------------------------------------------------------------------------------
+#> |      Column Name       |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> -------------------------------------------------------------------------------------
+#> |      Abbreviation      |  character  |             203|     0     |       0       |
+#> |     organizationID     |  character  |             203|     0     |       0       |
+#> |          Beg           |    mdate    |             203|     0     |       0       |
+#> |         State          |  character  |             203|     0     |       0       |
+#> |          City          |  character  |             203|     0     |       0       |
+#> |          Type          |   numeric   |             203|     0     |       0       |
+#> |Health_as_primary_intent|  character  |             203|     0     |       0       |
+#> -------------------------------------------------------------------------------------
 #> 
 #> 
 #> $IHEID
@@ -45,7 +48,7 @@ organizations database documentation
 #> | Abbreviation  |  character  |             124|    16     |     12.9      |
 #> |     Areas     |  character  |             124|     3     |     2.42      |
 #> |organizationID |  character  |             124|     0     |       0       |
-#> |      Beg      |   messydt   |             124|    44     |     35.48     |
+#> |      Beg      |    mdate    |             124|    44     |     35.48     |
 #> |     Place     |  character  |             124|     3     |     2.42      |
 #> ----------------------------------------------------------------------------
 #> 

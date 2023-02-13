@@ -11,8 +11,8 @@
 #' 7 variables: manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID.}
 #' \item{HUGGO: }{A dataset with 255 observations and the following
 #' 18 variables: manyID, Title, Beg, Signature, Force, End, Organisation, Topic,
-#' Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID, Text,
-#' Comments, url, Source.}
+#' Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID,
+#' Text, Comments, url, Source.}
 #' }
 #'
 #' @details
