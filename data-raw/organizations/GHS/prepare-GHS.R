@@ -3,7 +3,7 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
 # The GHS dataset is obtained from the list of global health actors
-# included in Table 2 in Hoffman and Cole (2018) \doi{10.1186/s12992-018-0340-2}.
+# included in Table 2 in Hoffman and Cole (2018) \doi{10.1186/s12992-018-0340-2}
 
 # Stage one: Collecting data
 library(rvest)
@@ -11,15 +11,20 @@ library(dplyr)
 library(readr)
 
 page <- read_html("https://globalizationandhealth.biomedcentral.com/articles/10.1186/s12992-018-0340-2/tables/2")
-text <- page %>% html_elements(".u-text-char , .u-text-left, th") %>%
+text <- page %>%
+  html_elements(".u-text-char , .u-text-left, th") %>%
   html_text()
-data <- stringr::str_squish(text) %>%
-  as.data.frame(row.names = NULL)
-names <- data[1:7,1]
-names <- c("Number", names[1:5], "State", names[6:7])
-id <- 1:203
+data <- stringr::str_squish(text)
+header <- page %>%
+  html_elements(".c-article-table-head p") %>%
+  html_text()
+header # extract variable names for dataframe
+varnames <- c("Number", "Actor", "Code", "URL", "Type", "Headquarters Location",
+           "State", "Health as primary intent?", "Year of Inception")
+id <- 1:203 # create identifying numbers for rows
 data <- data %>%
-  dplyr::filter(!row_number() %in% c(1:7)) %>%
+  as.data.frame(row.names = NULL) %>%
+  dplyr::filter(!row_number() %in% c(1:length(header))) %>%
   dplyr::mutate(names = rep(names, 203)) %>%
   subset(names != "Number") %>%
   dplyr::mutate(id = rep(id, each = 8))
