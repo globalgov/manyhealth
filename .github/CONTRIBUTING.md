@@ -1,6 +1,6 @@
 # Contributing
 
-Contributions to `manyhealth`, whether in the form of issue identification, bug fixes, new code or documentation are encouraged and welcome, both from research assistants and (early) users of the package:
+Contributions to `{manyhealth}`, whether in the form of issue identification, bug fixes, new code or documentation are encouraged and welcome, both from research assistants and (early) users of the package:
 
 * [Submit an issue](#issues)
 * [Fix a bug or implement new features](#adding-new-code)
