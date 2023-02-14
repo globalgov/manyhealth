@@ -20,7 +20,7 @@ IHEID <- as_tibble(IHEID) %>%
                         City = `HQ/Offices`) %>%
   dplyr::relocate(organizationID, Organization, Beg) %>%
   dplyr::arrange(Beg)
-# If using the data in combination with state data,
+# If using the data in combination with manystates data on state actors,
 # please note that there may be overlaps in three-letter organizationID and
 # three-letter stateID.
 

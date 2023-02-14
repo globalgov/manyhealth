@@ -46,7 +46,7 @@ GHS <- as_tibble(GHS) %>%
   dplyr::relocate(organizationID, Organization, Beg, City, State) %>%
   dplyr::select(-id) %>%
   dplyr::arrange(Beg)
-# If using the data in combination with state data,
+# If using the data in combination with manystates data on state actors,
 # please note that there may be overlaps in three-letter organizationID and
 # three-letter stateID.
 
