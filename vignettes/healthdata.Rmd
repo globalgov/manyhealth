@@ -1,10 +1,10 @@
 ---
-title: "How Does Global Health Governance Look Like?"
+title: "What Does Global Health Governance Look Like?"
 author: "Esther Peev"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{How Does Global Health Governance Look Like?}
+  %\VignetteIndexEntry{What Does Global Health Governance Look Like?}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -35,14 +35,9 @@ manyhealth::agreements$GHHR[,c(1:5)] %>%
   dplyr::filter(Beg == "1948") %>% 
   kable("html")
 
-```
-
-### Texts
-
-The **Texts** database assembles treaty texts from the **Agreements** database. Functions from `{manypkgs}` can then be used to analysis treaty texts, some specific articles or preambles. We can, for example, get the preambles from all agreements that mention the word "HIV".
-
-```{r texts, eval = FALSE}
-manypkgs::get_articles(manyhealth::texts$AGR_TXT$TreatyText, article = "preamble", match = "HIV")
+manyhealth::agreements$HUGGO[,c(1:5)] %>% 
+  dplyr::filter(messydates::year(Beg) == "1990") %>% 
+  kable("html")
 
 ```
 

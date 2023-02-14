@@ -1,5 +1,5 @@
-manyhealth <img src="man/figures/manyhealthLogo.png" align="right" width="220"/>
-================================================================================
+
+# manyhealth <img src="man/figures/manyhealthLogo.png" align="right" width="220"/>
 
 <!-- badges: start -->
 
@@ -12,16 +12,15 @@ Date](https://img.shields.io/github/release-date/globalgov/manyhealth)
 
 manyhealth is a data package in the [many
 packages](https://github.com/globalgov/) universe. It currently includes
-an ensemble of datasets on international health instruments, and
-[states](https://github.com/globalgov/manystates)’ membership or other
-relationships to those agreements.
+an ensemble of datasets on international health instruments and actors
+in global health governance (states, IGOs, NGOs, and other private
+actors).
 
 Please also check out
 [`{manydata}`](https://github.com/globalgov/manydata) for more about the
 other packages in the ‘many packages’ universe.
 
-How to install:
----------------
+## How to install:
 
 We’ve made it easier than ever to install and start analysing global
 governance data in R. Simply install the core package,
@@ -29,18 +28,21 @@ governance data in R. Simply install the core package,
 you can discover, install and update various “many” packages from the
 console.
 
-    # install.packages(remotes)
-    remotes::install_github("globalgov/manydata") # this installs our core package, the only one you need to do independently
-    manydata::get_packages() # this prints a list of the publicly available data packages currently available
-    manydata::get_packages("manyhealth") # this downloads and installs the named package
+``` r
+# install.packages(remotes)
+remotes::install_github("globalgov/manydata") # this installs our core package, the only one you need to do independently
+manydata::get_packages() # this prints a list of the publicly available data packages currently available
+manydata::get_packages("manyhealth") # this downloads and installs the named package
+```
 
-Data included
--------------
+## Data included
 
 Once you have installed the package, you can see the different databases
 and datasets included in the package using the following function.
 
-    manydata::data_contrast("manyhealth")
+``` r
+manydata::data_contrast("manyhealth")
+```
 
 Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
@@ -55,7 +57,9 @@ both the particular datasets you use by listing the official references
 in the function above, as well as the package providers for their work
 assembling the data using the function below.
 
-    citation("manyhealth")
+``` r
+citation("manyhealth")
+```
 
     ## 
     ## To cite manyhealth in publications use:
@@ -71,11 +75,10 @@ assembling the data using the function below.
     ##     url = {https://github.com/globalgov/manyhealth},
     ##   }
 
-Contributing
-------------
+## Contributing
 
-[manydata](https://github.com/globalgov/manydata) also makes it easy to
-contribute in lots of different ways.
+[`{manypkgs}`](https://github.com/globalgov/manypkgs) also makes it easy
+to contribute in lots of different ways.
 
 If you have already developed a dataset salient to this package, please
 reach out by flagging this as an

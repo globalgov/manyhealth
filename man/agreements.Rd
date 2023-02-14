@@ -6,7 +6,7 @@
 \title{agreements database documentation}
 \format{
 The agreements database is a list that contains the
-following 2 datasets: WHO, GHHR.
+following 3 datasets: WHO, GHHR, HUGGO.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
@@ -14,6 +14,10 @@ please use the \code{data_source()} and \code{data_contrast()} functions.
 7 variables: manyID, Title, Beg, Organisation, Topic, Lineage, treatyID.}
 \item{GHHR: }{A dataset with 151 observations and the following
 7 variables: manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID.}
+\item{HUGGO: }{A dataset with 255 observations and the following
+18 variables: manyID, Title, Beg, Signature, Force, End, Organisation, Topic,
+Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID,
+Text, Comments, url, Source.}
 }
 }
 \usage{
@@ -23,9 +27,57 @@ agreements
 agreements database documentation
 }
 \details{
-\subsection{NA}{
-
-NA
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{#> $WHO
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             109|     0     |       0       |
+#> |     Title     |  character  |             109|     0     |       0       |
+#> |      Beg      |    mdate    |             109|     0     |       0       |
+#> | Organisation  |  character  |             109|     0     |       0       |
+#> |     Topic     |  character  |             109|     0     |       0       |
+#> |    Lineage    |  character  |             109|     0     |       0       |
+#> |   treatyID    |  character  |             109|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $GHHR
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             151|     0     |       0       |
+#> |     Title     |  character  |             151|     0     |       0       |
+#> |      Beg      |    mdate    |             151|     0     |       0       |
+#> |    Region     |  character  |             151|     0     |       0       |
+#> |  LegalStatus  |  character  |             151|     0     |       0       |
+#> |    Lineage    |  character  |             151|     0     |       0       |
+#> |   treatyID    |  character  |             151|     0     |       0       |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $HUGGO
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    manyID     |  character  |             255|     0     |       0       |
+#> |     Title     |  character  |             255|     0     |       0       |
+#> |      Beg      |    mdate    |             255|     0     |       0       |
+#> |   Signature   |    mdate    |             255|     0     |       0       |
+#> |     Force     |    mdate    |             255|    186    |     72.94     |
+#> |      End      |    mdate    |             255|    252    |     98.82     |
+#> | Organisation  |  character  |             255|    148    |     58.04     |
+#> |     Topic     |  character  |             255|    148    |     58.04     |
+#> |    Region     |  character  |             255|    105    |     41.18     |
+#> |  LegalStatus  |  character  |             255|    105    |     41.18     |
+#> |    Lineage    |  character  |             255|    83     |     32.55     |
+#> |Memb.conditions|  character  |             255|    75     |     29.41     |
+#> |Memb.procedures|  character  |             255|    211    |     82.75     |
+#> |   treatyID    |  character  |             255|     0     |       0       |
+#> |     Text      |  character  |             255|     0     |       0       |
+#> |   Comments    |  character  |             255|    231    |     90.59     |
+#> |      url      |  character  |             255|     7     |     2.75      |
+#> |    Source     |  character  |             255|     1     |     0.39      |
+#> ----------------------------------------------------------------------------
+}\if{html}{\out{</div>}}
 }
 \keyword{datasets}

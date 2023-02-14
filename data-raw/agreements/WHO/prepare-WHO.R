@@ -34,7 +34,7 @@ WHO$Beg <- ifelse(stringr::str_detect(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Title, "[:digit:]{4}"))
 
-WHO$Beg <- manypkgs::standardise_dates(WHO$Beg)
+WHO$Beg <- messydates::as_messydate(WHO$Beg)
 
 # Creae Organization column
 WHO$Organisation <- stringr::str_remove(WHO$Org_date, "\\([:digit:]{4}\\)$")
@@ -78,7 +78,7 @@ WHO <- WHO %>%
 # Therefore, please make sure that you have permission to use the dataset
 # that you're including in the package.
 # To add a template of .bib file to package,
-# run `manypkgs::add_bib(agreements, WHO)`.
+# run `manypkgs::add_bib("agreements", "WHO")`.
 manypkgs::export_data(WHO,
                       database = "agreements",
                       URL = "https://www.mindbank.info/collection/un_who_resolutions/all?page=all")

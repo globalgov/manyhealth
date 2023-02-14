@@ -23,9 +23,41 @@ references
 references database documentation
 }
 \details{
-\subsection{NA}{
-
-NA
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{#> $GHHR_REF
+#> -- Data Summary ------------------------
+#>                            Values
+#> Name                       X[[i]]
+#> Number of rows             224   
+#> Number of columns          3     
+#> _______________________          
+#> Column type frequency:           
+#>   character                3     
+#> ________________________         
+#> Group variables            None  
+#> 
+#> -- Variable type: character ----------------------------------------------------
+#>   skim_variable n_missing complete_rate min max empty n_unique whitespace
+#> 1 Treaty1               0         1      12  29     0      146          0
+#> 2 Treaty2               0         1      12  29     0       40          0
+#> 3 RefType              88         0.607   2  11     0        3          0
+#> 
+#> $WHO_REF
+#> -- Data Summary ------------------------
+#>                            Values
+#> Name                       X[[i]]
+#> Number of rows             65    
+#> Number of columns          3     
+#> _______________________          
+#> Column type frequency:           
+#>   character                3     
+#> ________________________         
+#> Group variables            None  
+#> 
+#> -- Variable type: character ----------------------------------------------------
+#>   skim_variable n_missing complete_rate min max empty n_unique whitespace
+#> 1 Treaty1               0         1      12  25     0       42          0
+#> 2 Treaty2               0         1      12  25     0       21          0
+#> 3 RefType              20         0.692   2   5     0        2          0
+}\if{html}{\out{</div>}}
 }
 \keyword{datasets}

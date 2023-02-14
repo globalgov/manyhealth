@@ -10,14 +10,19 @@ IHEID <- readxl::read_excel("data-raw/organizations/IHEID/IHEID.xlsx")
 # In this stage you will want to correct the variable names and
 # formats of the 'IHEID' object until the object created
 # below (in stage three) passes all the tests.
-IHEID <- as_tibble(IHEID) %>%
-  manydata::transmutate(organizationID = Name,
-                        Beg = manypkgs::standardise_dates(as.character(Start)),
-                        Place = `HQ/Offices`) %>%
-  dplyr::arrange(Beg)
-# manypkgs includes several functions that should help cleaning
+# manydata includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
+IHEID <- as_tibble(IHEID) %>%
+  manydata::transmutate(Organization = Name,
+                        organizationID = Abbreviation,
+                        Beg = messydates::as_messydate(as.character(Start)),
+                        City = `HQ/Offices`) %>%
+  dplyr::relocate(organizationID, Organization, Beg) %>%
+  dplyr::arrange(Beg)
+# If using the data in combination with manystates data on state actors,
+# please note that there may be overlaps in three-letter organizationID and
+# three-letter stateID.
 
 # Stage three: Connecting data
 # Next run the following line to make IHEID available

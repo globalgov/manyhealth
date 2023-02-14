@@ -10,23 +10,22 @@ CHATHAM <- readxl::read_excel("data-raw/organizations/CHATHAM/actors_map.xlsx")
 # In this stage you will want to correct the variable names and
 # formats of the 'CHATHAM' object until the object created
 # below (in stage three) passes all the tests.
-CHATHAM <- as_tibble(CHATHAM) %>%
-  manydata::transmutate(OrganizationID = Code,
-                        Actor = manypkgs::standardise_titles(Actors),
-                        CountryID = manystates::code_states(HQ_states),
-                        City = HQ_city,
-                        Beg = manypkgs::standardise_dates(lubridate::as_date(Year_inception)))
-
-CHATHAM$Country <- ifelse(is.na(CHATHAM$CountryID),
-                          "UK",
-                          CHATHAM$CountryID)
-CHATHAM <- CHATHAM %>%
-  dplyr::select(Actor, OrganizationID, Beg, CountryID, City) %>%
-  dplyr::arrange(Beg)
-
 # manydata includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
+CHATHAM <- as_tibble(CHATHAM) %>%
+  manydata::transmutate(organizationID = Code,
+                        Organization = manypkgs::standardise_titles(Actors),
+                        State = HQ_states,
+                        City = HQ_city,
+                        Beg = messydates::as_messydate(lubridate::as_date(Year_inception)))
+
+CHATHAM <- CHATHAM %>%
+  dplyr::relocate(organizationID, Organization, Beg, City, State) %>%
+  dplyr::arrange(Beg)
+# If using the data in combination with manystates data on state actors,
+# please note that there may be overlaps in three-letter organizationID and
+# three-letter stateID.
 
 # Stage three: Connecting data
 # Next run the following line to make CHATHAM available

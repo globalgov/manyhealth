@@ -6,14 +6,21 @@
 \title{organizations database documentation}
 \format{
 The organizations database is a list that contains the
-following 2 datasets: CHATHAM, IHEID.
+following 3 datasets: CHATHAM, IHEID, GHS.
+If using the data in combination with manystates data,
+please note that there may be overlaps in three-letter organizationID and
+three-letter stateID.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{CHATHAM: }{A dataset with 203 observations and the following
-5 variables: Actor, OrganizationID, Beg, CountryID, City.}
+7 variables: organizationID, Organization, Beg, City, State, Type,
+Health_as_primary_intent.}
 \item{IHEID: }{A dataset with 124 observations and the following
-5 variables: Abbreviation, Areas, organizationID, Beg, Place.}
+5 variables: organizationID, Organization, Beg, Areas, City.}
+\item{GHS: }{A dataset with 203 observations and the following
+8 variables: organizationID, Organization, Beg, City, State, URL, Type,
+Health as primary intent?.}
 }
 }
 \usage{
@@ -23,9 +30,45 @@ organizations
 organizations database documentation
 }
 \details{
-\subsection{NA}{
-
-NA
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{#> $CHATHAM
+#> -------------------------------------------------------------------------------------
+#> |      Column Name       |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> -------------------------------------------------------------------------------------
+#> |     organizationID     |  character  |             203|     0     |       0       |
+#> |      Organization      |  character  |             203|     0     |       0       |
+#> |          Beg           |    mdate    |             203|     0     |       0       |
+#> |          City          |  character  |             203|     0     |       0       |
+#> |         State          |  character  |             203|     0     |       0       |
+#> |          Type          |   numeric   |             203|     0     |       0       |
+#> |Health_as_primary_intent|  character  |             203|     0     |       0       |
+#> -------------------------------------------------------------------------------------
+#> 
+#> 
+#> $IHEID
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |organizationID |  character  |             124|    16     |     12.9      |
+#> | Organization  |  character  |             124|     0     |       0       |
+#> |      Beg      |    mdate    |             124|    44     |     35.48     |
+#> |     Areas     |  character  |             124|     3     |     2.42      |
+#> |     City      |  character  |             124|     3     |     2.42      |
+#> ----------------------------------------------------------------------------
+#> 
+#> 
+#> $GHS
+#> --------------------------------------------------------------------------------------
+#> |       Column Name       |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> --------------------------------------------------------------------------------------
+#> |     organizationID      |  character  |             203|     0     |       0       |
+#> |      Organization       |  character  |             203|     0     |       0       |
+#> |           Beg           |    mdate    |             203|     0     |       0       |
+#> |          City           |  character  |             203|     0     |       0       |
+#> |          State          |  character  |             203|     0     |       0       |
+#> |           URL           |  character  |             203|     0     |       0       |
+#> |          Type           |  character  |             203|     0     |       0       |
+#> |Health as primary intent?|  character  |             203|     0     |       0       |
+#> --------------------------------------------------------------------------------------
+}\if{html}{\out{</div>}}
 }
 \keyword{datasets}
