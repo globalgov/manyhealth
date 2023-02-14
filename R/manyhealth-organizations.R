@@ -2,7 +2,7 @@
 #'
 #' @format The organizations database is a list that contains the
 #' following 3 datasets: CHATHAM, IHEID, GHS.
-#' If using the data in combination with state data,
+#' If using the data in combination with manystates data,
 #' please note that there may be overlaps in three-letter organizationID and
 #' three-letter stateID.
 #' For more information and references to each of the datasets used,
