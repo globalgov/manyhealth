@@ -14,8 +14,9 @@ HUGGO_MEM <- readr::read_csv("data-raw/memberships/HUGGO_MEM/HUGGO_MEM.csv")
 # away from issues with ambiguous names down the road.
 HUGGO_MEM <- as_tibble(HUGGO_MEM) %>%
   dplyr::mutate(StateName = manypkgs::standardise_titles(StateName),
-                stateID = manypkgs::code_states(StateName, activity = FALSE, replace = "ID"),
-                Beg = messydates::as_messydate(Beg),
+                stateID = manypkgs::code_states(StateName, activity = FALSE,
+                                                replace = "ID"),
+                Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End),
@@ -23,13 +24,13 @@ HUGGO_MEM <- as_tibble(HUGGO_MEM) %>%
                 stateRat = messydates::as_messydate(stateRat),
                 stateEnd = messydates::as_messydate(stateEnd),
                 stateForce = messydates::as_messydate(stateForce)) %>%
-  dplyr::arrange(Beg)
+  dplyr::arrange(Begin)
 
 # Remove duplicates and ensure NAs are coded correctly
 HUGGO_MEM <- HUGGO_MEM %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
-  dplyr::mutate(Beg = messydates::as_messydate(Beg),
+  dplyr::mutate(Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End),
@@ -38,10 +39,12 @@ HUGGO_MEM <- HUGGO_MEM %>%
                 stateForce = messydates::as_messydate(stateForce),
                 stateEnd = messydates::as_messydate(stateEnd),
                 StateName = manypkgs::standardise_titles(StateName)) %>%
-  dplyr::arrange(Beg, StateName) %>%
-  dplyr::relocate(manyID, stateID, Title, Beg, Signature, Force, End,
+  dplyr::arrange(Begin, StateName) %>%
+  dplyr::relocate(manyID, stateID, Title, Begin, Signature, Force, End,
                  stateSignature, stateRat, stateForce, stateEnd) %>%
   dplyr::distinct(.keep_all = TRUE)
+
+HUGGO_MEM <- HUGGO_MEM %>% dplyr::rename(Begin = Beg)
 
 # manypkgs includes several functions that should help with
 # cleaning and standardising your data
