@@ -30,21 +30,21 @@ extr_topic <- who_url %>%
 WHO$Topic <- extr_topic
 
 #Step two: create date column
-WHO$Beg <- ifelse(stringr::str_detect(WHO$Org_date, "[:digit:]{4}"),
+WHO$Begin <- ifelse(stringr::str_detect(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Title, "[:digit:]{4}"))
 
-WHO$Beg <- messydates::as_messydate(WHO$Beg)
+WHO$Begin <- messydates::as_messydate(WHO$Begin)
 
 # Creae Organization column
 WHO$Organisation <- stringr::str_remove(WHO$Org_date, "\\([:digit:]{4}\\)$")
 
 # Select columns
 WHO <- as_tibble(WHO) %>%
-  dplyr::select(Title, Beg, Organisation, Topic)
+  dplyr::select(Title, Begin, Organisation, Topic)
 
 # Add treatyID
-WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Beg)
+WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Begin)
 
 # Add Lineage column
 WHO$Lineage <- manypkgs::code_lineage(WHO$Title)
@@ -55,8 +55,8 @@ WHO <- dplyr::left_join(WHO, manyID, by = "treatyID")
 
 # Re-order columns
 WHO <- WHO %>%
-  dplyr::select(manyID, Title, Beg, Organisation, Topic, Lineage, treatyID) %>%
-  dplyr::arrange(Beg)
+  dplyr::select(manyID, Title, Begin, Organisation, Topic, Lineage, treatyID) %>%
+  dplyr::arrange(Begin)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

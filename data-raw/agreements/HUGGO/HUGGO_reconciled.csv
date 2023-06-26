@@ -1,4 +1,4 @@
-﻿manyID,Title,Beg,Signature,Force,End,treatyID,Text,url,Source,Comments
+﻿manyID,Title,Begin,Signature,Force,End,treatyID,Text,url,Source,Comments
 FCLIFL_1930A,Convention Concerning Forced Or Compulsory Labour (ILO Forced Labour Convention 1930 (No 29)),1930-06-28,1930-06-28,1932-05-01,,FCLIFL_1930A,1,,,
 CNSWHO_1946A,Constitution Of The World Health Organization (WHO),1946-07-22,1946-07-22,1948-04-07,,CNSWHO_1946A,1,,,
 NRMBRC_1947O,Nuremberg Code,1947-08-19,1947-08-19,,,NRMBRC_1947O,1,,,
@@ -119,7 +119,7 @@ PH09RB_1997A,Convention For The Protection Of Human Rights And Dignity Of The Hu
 UDHGHR_1997R,Universal Declaration On The Human Genome And Human Rights,1997-11-11,1997-11-11,,,UDHGHR_1997R,1,,,
 AP11HB_1998P,Additional Protocol To The Convention For The Protection Of Human Rights And Dignity Of The Human Being With Regard To The Application Of Biology And Medicine On The Prohibition Of Cloning Human Beings,1998-01-12,1998-01-12,,,AP11HB_1998P,1,,,
 GDNPID_1998O,Guiding Principles On Internal Displacement,1998-04-17,1998-04-17,,,GDNPID_1998O,1,https://www.ohchr.org/en/special-procedures/sr-internally-displaced-persons/international-standards,UN,
-INGHHR_1998O,International Guidelines On HIVAIDS And Human Rights,1998,1998,,,INGHHR_1998O,1,,,OHCHR document  E/CN.4/1997/37 not available online
+INGHHR_1998O,International Guidelines On HIVAIDS And Human Rights,1905-06-20,1905-06-20,,,INGHHR_1998O,1,,,OHCHR document  E/CN.4/1997/37 not available online
 RMSICC_1998A,Rome Statute Of The International Criminal Court (ICC),1998-07-17,1998-07-17,2002-07-01,,RMSICC_1998A,1,,,
 CDGRFC_1999R14,CEDAW General Recommendation No 14 Female Circumcision,1990-02-03,1990-02-03,,,CDGRFC_1999R14,1,,,Corrected year
 CDWGRA_1999R24,CEDAW General Recommendation No 24 Article 12 Of The Convention (Women And Health),1999-08,1999-08,,,CDWGRA_1999R24,1,https://tbinternet.ohchr.org/_layouts/15/treatybodyexternal/TBSearch.aspx?Lang=en&TreatyID=3&DocTypeID=11,UN,
@@ -139,7 +139,7 @@ CDRMNH_2001R10,Resolution CD43R10 Mental Health,2001-09-27,2001-09-27,,,CDRMNH_2
 DC04GA_2001R,Declaration Of Commitment On HIVAIDS Global Crisis-Global Action,2001-06-27,2001-06-27,,,DC04GA_2001R,1,,,
 DC13HA_2001R,Declaration On Cities And Other Human Settlements In The New Millennium Of The Special Session Of The General Assembly For An Overall Review And Appraisal Of The Implementation Of The Habitat Agenda,2001-06-09,2001-06-09,,,DC13HA_2001R,1,https://research.un.org/en/docs/ga/quick/special,UN,Different text stored
 DD09RI_2001R,Durban Declaration And Programme Of Action Of The World Conference Against Racism Racial Discrimination Xenophobia And Related Intolerance,2001-09,2001-09,,,DD09RI_2001R,1,,,
-AH06HO_2002P,Additional Protocol To The Convention On Human Rights And Biomedicine On Transplantation Of Organs And Tissues Of Human Origin,2002-01-24,2002-01-24,2006,,AH06HO_2002P,1,https://rm.coe.int/1680081562,Council of Europe,
+AH06HO_2002P,Additional Protocol To The Convention On Human Rights And Biomedicine On Transplantation Of Organs And Tissues Of Human Origin,2002-01-24,2002-01-24,1905-06-28,,AH06HO_2002P,1,https://rm.coe.int/1680081562,Council of Europe,
 CSGCRW_2002O15,CESCR General Comment No 15 The Right To Water,2002-11,2002-11,,,CSGCRW_2002O15,1,https://digitallibrary.un.org/record/486454?ln=en,UN,
 DPAWSC_2002R,Declaration And Plan Of Action Of The World Summit For Children,2002-05-10,2002-05-10,,,DPAWSC_2002R,1,https://research.un.org/en/docs/ga/quick/special,UN,
 DW06AH_2002R5,Declaration Of The World Food Summit 5 Years Later International Alliance Against Hunger,2002-10-21,2002-10-21,,,DW06AH_2002R5,1,https://www.globalhealthrights.org/instrument/declaration-of-the-world-food-summit-five-years-later-international-alliance-against-hunger/,GHR,

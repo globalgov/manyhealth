@@ -11,13 +11,13 @@ For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{WHO: }{A dataset with 109 observations and the following
-7 variables: manyID, Title, Beg, Organisation, Topic, Lineage, treatyID.}
+7 variables: manyID, Title, Begin, Organisation, Topic, Lineage, treatyID.}
 \item{GHHR: }{A dataset with 151 observations and the following
-7 variables: manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID.}
+7 variables: manyID, Title, Begin, Region, LegalStatus, Lineage, treatyID.}
 \item{HUGGO: }{A dataset with 255 observations and the following
-18 variables: manyID, Title, Beg, Signature, Force, End, Organisation, Topic,
-Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID,
-Text, Comments, url, Source.}
+18 variables: manyID, Title, Begin, Signature, Force, End, Organisation,
+Topic, Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures,
+treatyID, Text, Comments, url, Source.}
 }
 }
 \usage{
@@ -31,13 +31,13 @@ agreements database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             109|     0     |       0       |
-#> |     Title     |  character  |             109|     0     |       0       |
-#> |      Beg      |    mdate    |             109|     0     |       0       |
-#> | Organisation  |  character  |             109|     0     |       0       |
-#> |     Topic     |  character  |             109|     0     |       0       |
-#> |    Lineage    |  character  |             109|     0     |       0       |
-#> |   treatyID    |  character  |             109|     0     |       0       |
+#> |    manyID     |  character  |             108|     0     |       0       |
+#> |   treatyID    |  character  |             108|     0     |       0       |
+#> |     Title     |  character  |             108|     0     |       0       |
+#> |     Begin     |    mdate    |             108|     0     |       0       |
+#> | Organisation  |  character  |             108|     0     |       0       |
+#> |     Topic     |  character  |             108|     0     |       0       |
+#> |    Lineage    |  character  |             108|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -45,13 +45,13 @@ agreements database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             151|     0     |       0       |
-#> |     Title     |  character  |             151|     0     |       0       |
-#> |      Beg      |    mdate    |             151|     0     |       0       |
-#> |    Region     |  character  |             151|     0     |       0       |
-#> |  LegalStatus  |  character  |             151|     0     |       0       |
-#> |    Lineage    |  character  |             151|     0     |       0       |
-#> |   treatyID    |  character  |             151|     0     |       0       |
+#> |    manyID     |  character  |             149|     0     |       0       |
+#> |   treatyID    |  character  |             149|     0     |       0       |
+#> |     Title     |  character  |             149|     0     |       0       |
+#> |     Begin     |    mdate    |             149|     0     |       0       |
+#> |    Region     |  character  |             149|     0     |       0       |
+#> |  LegalStatus  |  character  |             149|     0     |       0       |
+#> |    Lineage    |  character  |             149|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -59,24 +59,24 @@ agreements database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             255|     0     |       0       |
-#> |     Title     |  character  |             255|     0     |       0       |
-#> |      Beg      |    mdate    |             255|     0     |       0       |
-#> |   Signature   |    mdate    |             255|     0     |       0       |
-#> |     Force     |    mdate    |             255|    186    |     72.94     |
-#> |      End      |    mdate    |             255|    252    |     98.82     |
-#> | Organisation  |  character  |             255|    148    |     58.04     |
-#> |     Topic     |  character  |             255|    148    |     58.04     |
-#> |    Region     |  character  |             255|    105    |     41.18     |
-#> |  LegalStatus  |  character  |             255|    105    |     41.18     |
-#> |    Lineage    |  character  |             255|    83     |     32.55     |
-#> |Memb.conditions|  character  |             255|    75     |     29.41     |
-#> |Memb.procedures|  character  |             255|    211    |     82.75     |
-#> |   treatyID    |  character  |             255|     0     |       0       |
-#> |     Text      |  character  |             255|     0     |       0       |
-#> |   Comments    |  character  |             255|    231    |     90.59     |
-#> |      url      |  character  |             255|     7     |     2.75      |
-#> |    Source     |  character  |             255|     1     |     0.39      |
+#> |    manyID     |  character  |             254|     0     |       0       |
+#> |   treatyID    |  character  |             254|     0     |       0       |
+#> |     Title     |  character  |             254|     0     |       0       |
+#> |     Begin     |    mdate    |             254|     0     |       0       |
+#> |   Signature   |    mdate    |             254|     0     |       0       |
+#> |     Force     |    mdate    |             254|    185    |     72.83     |
+#> |      End      |    mdate    |             254|    251    |     98.82     |
+#> | Organisation  |  character  |             254|    148    |     58.27     |
+#> |     Topic     |  character  |             254|    148    |     58.27     |
+#> |    Region     |  character  |             254|    104    |     40.94     |
+#> |  LegalStatus  |  character  |             254|    104    |     40.94     |
+#> |    Lineage    |  character  |             254|    82     |     32.28     |
+#> |Memb.conditions|  character  |             254|    74     |     29.13     |
+#> |Memb.procedures|  character  |             254|    210    |     82.68     |
+#> |     Text      |  character  |             254|     0     |       0       |
+#> |   Comments    |  character  |             254|    231    |     90.94     |
+#> |      url      |  character  |             254|     7     |     2.76      |
+#> |    Source     |  character  |             254|     1     |     0.39      |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }

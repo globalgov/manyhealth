@@ -13,8 +13,10 @@ test_that("missing observations are reported correctly", {
 # Uniformity tests (agreements have a source ID, a string title, a signature and
 # entry into force date)
 test_that("datasets have the required variables", {
-  expect_col_exists(agreements[["GHHR"]], vars(Title))
-  expect_col_exists(agreements[["GHHR"]], vars(Beg))
+  pointblank::expect_col_exists(agreements[["GHHR"]],
+                                pointblank::vars(Title))
+  pointblank::expect_col_exists(agreements[["GHHR"]],
+                                pointblank::vars(Begin))
   expect_true(any(grepl("ID$", colnames(agreements[["GHHR"]]))))
 })
 
@@ -26,23 +28,25 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 })
 
 # Dates are standardized for mandatory column
-test_that("Column `Beg` has standardised dates", {
-  expect_equal(class(agreements[["GHHR"]]$Beg), "mdate")
-  expect_false(any(grepl("/", agreements[["GHHR"]]$Beg)))
+test_that("Column `Begin` has standardised dates", {
+  expect_equal(class(agreements[["GHHR"]]$Begin), "mdate")
+  expect_false(any(grepl("/", agreements[["GHHR"]]$Begin)))
   expect_false(any(grepl("^[:alpha:]$",
-                         agreements[["GHHR"]]$Beg)))
+                         agreements[["GHHR"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{2}$",
-                         agreements[["GHHR"]]$Beg)))
+                         agreements[["GHHR"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{3}$",
-                         agreements[["GHHR"]]$Beg)))
+                         agreements[["GHHR"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{1}$",
-                         agreements[["GHHR"]]$Beg)))
+                         agreements[["GHHR"]]$Begin)))
 })
 
-# Dataset should be ordered according to the "Beg" column
+# Dataset should be ordered according to the "Begin" column
 test_that("dataset is arranged by date variable", {
-  expect_true(agreements[["GHHR"]]$Beg[1] <
-                agreements[["GHHR"]]$Beg[10])
-  expect_true(agreements[["GHHR"]]$Beg[50] <
-                agreements[["GHHR"]]$Beg[75])
+  expect_true(agreements[["GHHR"]]$Begin[1] <
+                agreements[["GHHR"]]$Begin[10])
+  expect_true(agreements[["GHHR"]]$Begin[50] <
+                agreements[["GHHR"]]$Begin[75])
+  expect_true(agreements[["GHHR"]]$Begin[100] <
+                agreements[["GHHR"]]$Begin[120])
 })

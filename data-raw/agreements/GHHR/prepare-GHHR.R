@@ -56,13 +56,13 @@ date <- unlist(s)
 date <- stringr::str_replace_all(date, "Year of adoption\\:\\sRegion", "NA")
 date <- stringr::str_remove_all(date, "Year of adoption\\:\\s")
 
-GHHR$Beg <- messydates::as_messydate(date)
+GHHR$Begin <- messydates::as_messydate(date)
 
 GHHR <- as_tibble(GHHR) %>%
-  dplyr::select(Title, Beg, Region, LegalStatus)
+  dplyr::select(Title, Begin, Region, LegalStatus)
 
 # Add treatyID
-GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Beg)
+GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Begin)
 
 # Add Lineage
 GHHR$Lineage <- manypkgs::code_lineage(GHHR$Title)
@@ -73,8 +73,8 @@ GHHR <- dplyr::left_join(GHHR, manyID, by = "treatyID")
 
 # Re-order columns
 GHHR <- GHHR %>%
-  dplyr::select(manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID) %>%
-  dplyr::arrange(Beg)
+  dplyr::select(manyID, Title, Begin, Region, LegalStatus, Lineage, treatyID) %>%
+  dplyr::arrange(Begin)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.

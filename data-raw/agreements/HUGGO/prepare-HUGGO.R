@@ -6,13 +6,13 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
 
-# Stage one: Assembling data from existing datasets
+# Stage one: Assembling data from existing datasets to identify conflicts
 HUGGO <- manydata::consolidate(manyhealth::agreements,
                                "any",
                                "any",
                                "coalesce",
                                "manyID") %>%
-  dplyr::mutate(Beg = messydates::as_messydate(Beg))
+  dplyr::mutate(Begin = messydates::as_messydate(Begin))
 
 # Stage two: Adding texts
 #Extract titles and dates from GHR dataset
@@ -48,7 +48,7 @@ date <- stringr::str_replace_all(date,
 date <- stringr::str_remove_all(date,
                                 "Year of adoption\\:\\s")
 
-GHHR$Beg <- manypkgs::standardise_dates(date)
+GHHR$Begin <- manypkgs::standardise_dates(date)
 
 #Web scraping instruments texts from the GHHR pages
 #Extract url that contains link to treaty text
@@ -86,9 +86,9 @@ GHHR$TreatyText <- lapply(GHHR$Text_URL,
 
 GHHR$Source <- "GHHR"
 GHHR <- as_tibble(GHHR) %>%
-  dplyr::select(Title, Beg, Text_URL, TreatyText, Source)
+  dplyr::select(Title, Begin, Text_URL, TreatyText, Source)
 
-GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Beg)
+GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Begin)
 
 #Repeat process for WHO database
 who_url <- rvest::read_html("https://extranet.who.int/mindbank/collection/un_who_resolutions/all?page=all")
@@ -109,12 +109,12 @@ extr_date <- who_url %>%
 
 WHO$Org_date <- extr_date
 
-# Create Beg column
-WHO$Beg <- ifelse(stringr::str_detect(WHO$Org_date, "[:digit:]{4}"),
+# Create Begin column
+WHO$Begin <- ifelse(stringr::str_detect(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Org_date, "[:digit:]{4}"),
                   stringr::str_extract(WHO$Title, "[:digit:]{4}"))
 
-WHO$Beg <- manypkgs::standardise_dates(WHO$Beg)
+WHO$Begin <- manypkgs::standardise_dates(WHO$Begin)
 
 # Web scrape url
 url <- "https://www.mindbank.info/collection/un_who_resolutions/all?page=all"
@@ -154,11 +154,11 @@ WHO$TreatyText <- lapply(WHO$Text_URL,
 WHO$Source <- "WHO"
 WHO <- as_tibble(WHO) %>%
   dplyr::filter(TreatyText != "Not found") %>%
-  dplyr::select(Title, Beg, Text_URL, TreatyText, Source)
+  dplyr::select(Title, Begin, Text_URL, TreatyText, Source)
 
 WHO$Text_URL <- unlist(WHO$Text_URL)
 
-WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Beg)
+WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Begin)
 
 # Join texts to HUGGO dataset
 texts <- rbind(GHHR, WHO)
@@ -168,7 +168,7 @@ texts <- texts %>%
   dplyr::relocate(manyID) %>%
   dplyr::rename(url = Text_URL)
 HUGGO <- dplyr::left_join(HUGGO, texts,
-                          by = c("manyID", "Title", "Beg", "treatyID"))
+                          by = c("manyID", "Title", "Begin", "treatyID"))
 HUGGO <- HUGGO %>%
   dplyr::mutate(TreatyText = ifelse(TreatyText == "Not found" | TreatyText == "NULL",
                                     gsub("Not found|NULL", NA, TreatyText),
@@ -182,26 +182,26 @@ HUGGO$Memb.conditions <- manypkgs::code_accession_terms(HUGGO$TreatyText,
                                                         accession = "condition")
 HUGGO$Memb.procedures <- manypkgs::code_accession_terms(HUGGO$TreatyText,
                                                         accession = "process")
-HUGGO <- dplyr::relocate(HUGGO, manyID, Title, Beg, Organisation,
+HUGGO <- dplyr::relocate(HUGGO, manyID, Title, Begin, Organisation,
                          Topic, Region, LegalStatus, Lineage, Memb.conditions,
                          Memb.procedures, treatyID, TreatyText, url, Source)
 HUGGO <- HUGGO %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
   dplyr::distinct(.keep_all = TRUE) %>%
-  dplyr::mutate(Beg = messydates::as_messydate(Beg)) %>%
-  dplyr::arrange(Beg)
+  dplyr::mutate(Begin = messydates::as_messydate(Begin)) %>%
+  dplyr::arrange(Begin)
 
 # Stage four: Resolving conflicts
 conflicts <- manydata::db_comp(manyhealth::agreements,
-                               variable = c("Title", "Beg"),
+                               variable = c("Title", "Begin"),
                                category = "conflicting")
 
 # Stage five: merge verified data into HUGGO dataset
-HUGGO2 <- readr::read_csv("data-raw/agreements/HUGGO/HUGGO_verified.csv")
+HUGGO2 <- readr::read_csv("data-raw/agreements/HUGGO/HUGGO_reconciled.csv")
 HUGGO_new <- dplyr::full_join(HUGGO, HUGGO2, by = c("manyID", "treatyID")) %>%
   dplyr::distinct() %>%
-  dplyr::relocate(manyID, Title.x, Title.y, Beg.x, Beg.y, Signature,
+  dplyr::relocate(manyID, Title.x, Title.y, Begin.x, Begin.y, Signature,
                   Force, Organisation)
 # Clean merged data
 # manypkgs includes several functions that should help cleaning
@@ -209,13 +209,13 @@ HUGGO_new <- dplyr::full_join(HUGGO, HUGGO2, by = c("manyID", "treatyID")) %>%
 # Please see the vignettes or website for more details.
 HUGGO_new <- HUGGO_new %>%
   dplyr::mutate(Title = manypkgs::standardise_titles(Title.y),
-                Beg = ifelse(!is.na(Beg.y), Beg.y, Beg.x),
+                Begin = ifelse(!is.na(Begin.y), Begin.y, Begin.x),
                 url = ifelse(!is.na(url.y), url.y, url.x),
                 Source = ifelse(!is.na(Source.y), Source.y, Source.x)) %>%
-  dplyr::select(-c(Title.x, Title.y, Beg.x, Beg.y, url.x, url.y,
+  dplyr::select(-c(Title.x, Title.y, Begin.x, Begin.y, url.x, url.y,
                    Source.x, Source.y)) %>%
   dplyr::distinct() %>%
-  dplyr::relocate(manyID, Title, Beg, Signature, Force, End, Organisation)
+  dplyr::relocate(manyID, Title, Begin, Signature, Force, End, Organisation)
 # remove duplicated entries from merging dataset
 which(HUGGO_new$manyID == "WHDSBL_2013O69:WHDSBL_2014O77")
 # duplicate due to repeat in Organisation name
@@ -237,12 +237,12 @@ HUGGO <- HUGGO_new %>%
   dplyr::select(-TreatyText) %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
-  dplyr::mutate(Beg = messydates::as_messydate(Beg),
+  dplyr::mutate(Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End)) %>%
   dplyr::distinct(.keep_all = TRUE) %>%
-  dplyr::arrange(Beg)
+  dplyr::arrange(Begin)
 
 # Next run the following line to make HUGGO available within the package.
 # This function also does two additional things.
