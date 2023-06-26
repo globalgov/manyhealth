@@ -7,19 +7,16 @@
 \format{
 The organizations database is a list that contains the
 following 3 datasets: CHATHAM, IHEID, GHS.
-If using the data in combination with manystates data,
-please note that there may be overlaps in three-letter organizationID and
-three-letter stateID.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
 \item{CHATHAM: }{A dataset with 203 observations and the following
-7 variables: organizationID, Organization, Beg, City, State, Type,
+7 variables: organizationID, Organization, Begin, City, State, Type,
 Health_as_primary_intent.}
 \item{IHEID: }{A dataset with 124 observations and the following
-5 variables: organizationID, Organization, Beg, Areas, City.}
+5 variables: organizationID, Organization, Begin, Areas, City.}
 \item{GHS: }{A dataset with 203 observations and the following
-8 variables: organizationID, Organization, Beg, City, State, URL, Type,
+8 variables: organizationID, Organization, Begin, City, State, URL, Type,
 Health as primary intent?.}
 }
 }
@@ -36,7 +33,7 @@ organizations database documentation
 #> -------------------------------------------------------------------------------------
 #> |     organizationID     |  character  |             203|     0     |       0       |
 #> |      Organization      |  character  |             203|     0     |       0       |
-#> |          Beg           |    mdate    |             203|     0     |       0       |
+#> |         Begin          |    mdate    |             203|     0     |       0       |
 #> |          City          |  character  |             203|     0     |       0       |
 #> |         State          |  character  |             203|     0     |       0       |
 #> |          Type          |   numeric   |             203|     0     |       0       |
@@ -50,7 +47,7 @@ organizations database documentation
 #> ----------------------------------------------------------------------------
 #> |organizationID |  character  |             124|    16     |     12.9      |
 #> | Organization  |  character  |             124|     0     |       0       |
-#> |      Beg      |    mdate    |             124|    44     |     35.48     |
+#> |     Begin     |    mdate    |             124|    44     |     35.48     |
 #> |     Areas     |  character  |             124|     3     |     2.42      |
 #> |     City      |  character  |             124|     3     |     2.42      |
 #> ----------------------------------------------------------------------------
@@ -62,7 +59,7 @@ organizations database documentation
 #> --------------------------------------------------------------------------------------
 #> |     organizationID      |  character  |             203|     0     |       0       |
 #> |      Organization       |  character  |             203|     0     |       0       |
-#> |           Beg           |    mdate    |             203|     0     |       0       |
+#> |          Begin          |    mdate    |             203|     0     |       0       |
 #> |          City           |  character  |             203|     0     |       0       |
 #> |          State          |  character  |             203|     0     |       0       |
 #> |           URL           |  character  |             203|     0     |       0       |

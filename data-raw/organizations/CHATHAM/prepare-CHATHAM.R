@@ -18,11 +18,11 @@ CHATHAM <- as_tibble(CHATHAM) %>%
                         Organization = manypkgs::standardise_titles(Actors),
                         State = HQ_states,
                         City = HQ_city,
-                        Beg = messydates::as_messydate(lubridate::as_date(Year_inception)))
+                        Begin = messydates::as_messydate(lubridate::as_date(Year_inception)))
 
 CHATHAM <- CHATHAM %>%
-  dplyr::relocate(organizationID, Organization, Beg, City, State) %>%
-  dplyr::arrange(Beg)
+  dplyr::relocate(organizationID, Organization, Begin, City, State) %>%
+  dplyr::arrange(Begin)
 # If using the data in combination with manystates data on state actors,
 # please note that there may be overlaps in three-letter organizationID and
 # three-letter stateID.

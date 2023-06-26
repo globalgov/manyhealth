@@ -41,11 +41,11 @@ GHS <- tidyr::pivot_wider(data, id_cols = "id",
 GHS <- as_tibble(GHS) %>%
   manydata::transmutate(Organization = Actor,
                         organizationID = Code,
-                        Beg = messydates::as_messydate(as.character(`Year of Inception`)),
+                        Begin = messydates::as_messydate(as.character(`Year of Inception`)),
                         City = `Headquarters Location`) %>%
-  dplyr::relocate(organizationID, Organization, Beg, City, State) %>%
+  dplyr::relocate(organizationID, Organization, Begin, City, State) %>%
   dplyr::select(-id) %>%
-  dplyr::arrange(Beg)
+  dplyr::arrange(Begin)
 # If using the data in combination with manystates data on state actors,
 # please note that there may be overlaps in three-letter organizationID and
 # three-letter stateID.

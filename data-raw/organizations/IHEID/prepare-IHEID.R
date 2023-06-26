@@ -16,10 +16,10 @@ IHEID <- readxl::read_excel("data-raw/organizations/IHEID/IHEID.xlsx")
 IHEID <- as_tibble(IHEID) %>%
   manydata::transmutate(Organization = Name,
                         organizationID = Abbreviation,
-                        Beg = messydates::as_messydate(as.character(Start)),
+                        Begin = messydates::as_messydate(as.character(Start)),
                         City = `HQ/Offices`) %>%
-  dplyr::relocate(organizationID, Organization, Beg) %>%
-  dplyr::arrange(Beg)
+  dplyr::relocate(organizationID, Organization, Begin) %>%
+  dplyr::arrange(Begin)
 # If using the data in combination with manystates data on state actors,
 # please note that there may be overlaps in three-letter organizationID and
 # three-letter stateID.
