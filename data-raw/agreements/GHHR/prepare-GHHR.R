@@ -98,5 +98,5 @@ GHHR <- GHHR %>%
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(agreements, GHHR)`.
 manypkgs::export_data(GHHR,
-                      database = "agreements",
+                      datacube = "agreements",
                       URL = "https://www.globalhealthrights.org/instruments/instrument-region/")

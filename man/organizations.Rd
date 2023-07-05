@@ -3,9 +3,9 @@
 \docType{data}
 \name{organizations}
 \alias{organizations}
-\title{organizations database documentation}
+\title{organizations datacube documentation}
 \format{
-The organizations database is a list that contains the
+The organizations datacube is a list that contains the
 following 3 datasets: CHATHAM, IHEID, GHS.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
@@ -24,7 +24,7 @@ Health as primary intent?.}
 organizations
 }
 \description{
-organizations database documentation
+organizations datacube documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{#> $CHATHAM

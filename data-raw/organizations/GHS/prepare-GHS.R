@@ -68,5 +68,5 @@ GHS <- as_tibble(GHS) %>%
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib("organizations", "GHS")`.
 manypkgs::export_data(GHS,
-                      database = "organizations",
+                      datacube = "organizations",
                       URL = "https://doi.org/10.1186/s12992-018-0340-2")

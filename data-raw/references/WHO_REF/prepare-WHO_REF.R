@@ -3,7 +3,7 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
 
-# The texts database has been used to hand code WHO_REF. It allowed
+# The texts datacube has been used to hand code WHO_REF. It allowed
 # to identify which treaty was citing other treaties. WHO_REF reflects
 # those relationships through the three column Treaty1, RefType and Treaty2.
 
@@ -46,5 +46,5 @@ WHO_REF <- as_tibble(WHO_REF) %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(references, WHO_REF)`.
-manypkgs::export_data(WHO_REF, database = "references",
+manypkgs::export_data(WHO_REF, datacube = "references",
                      URL = "https://www.mindbank.info/collection/un_who_resolutions/all?page=all")

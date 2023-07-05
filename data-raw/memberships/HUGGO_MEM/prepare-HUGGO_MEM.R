@@ -1,5 +1,7 @@
 # HUGGO_MEM Preparation Script
 
+# This is a dataset of hand-coded data of states' memberships to
+# health agreements listed in HUGGO dataset in agreements datacube.
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
 
@@ -69,5 +71,5 @@ HUGGO_MEM <- HUGGO_MEM %>% dplyr::rename(Begin = Beg)
 # that you're including in the package.
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib("memberships", "HUGGO_MEM")`.
-manypkgs::export_data(HUGGO_MEM, database = "memberships",
+manypkgs::export_data(HUGGO_MEM, datacube = "memberships",
                       URL = "Hand-coded by the GGO team")

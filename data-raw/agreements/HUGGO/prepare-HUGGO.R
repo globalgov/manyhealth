@@ -1,8 +1,9 @@
 # HUGGO Preparation Script
 
 # The HUGGO dataset is a consolidated dataset of the health agreements
-# identified in the WHO and GHHR datasets
-# and contains original treaty texts.
+# identified in the WHO and GHHR datasets but improves on the precision of
+# dates (eg. Signature, Entry into Force)
+# and resolves any conflicts between these datasets.
 # This is a template for importing, cleaning, and exporting data
 # ready for many packages universe.
 
@@ -90,7 +91,7 @@ GHHR <- as_tibble(GHHR) %>%
 
 GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Begin)
 
-#Repeat process for WHO database
+#Repeat process for WHO datacube
 who_url <- rvest::read_html("https://extranet.who.int/mindbank/collection/un_who_resolutions/all?page=all")
 
 extr_title <- who_url %>%
@@ -259,6 +260,6 @@ HUGGO <- HUGGO_new %>%
 # that you're including in the package.
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib("agreements", "HUGGO")`.
-manypkgs::export_data(HUGGO, database = "agreements",
+manypkgs::export_data(HUGGO, datacube = "agreements",
                       URL = c("https://www.mindbank.info/collection/un_who_resolutions/all?page=all",
                               "https://www.globalhealthrights.org/"))

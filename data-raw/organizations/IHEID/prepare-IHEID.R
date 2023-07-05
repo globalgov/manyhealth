@@ -42,5 +42,5 @@ IHEID <- as_tibble(IHEID) %>%
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(organizations, IHEID)`.
 manypkgs::export_data(IHEID,
-                      database = "organizations",
+                      datacube = "organizations",
                       URL = "https://www.graduateinstitute.ch/GHC-directories")

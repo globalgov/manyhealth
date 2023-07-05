@@ -31,7 +31,7 @@ CHATHAM <- CHATHAM %>%
 # Next run the following line to make CHATHAM available
 # within the package.
 manypkgs::export_data(CHATHAM,
-                      database = "organizations",
+                      datacube = "organizations",
                       URL = "https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

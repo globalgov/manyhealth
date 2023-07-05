@@ -80,5 +80,5 @@ WHO <- WHO %>%
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib("agreements", "WHO")`.
 manypkgs::export_data(WHO,
-                      database = "agreements",
+                      datacube = "agreements",
                       URL = "https://www.mindbank.info/collection/un_who_resolutions/all?page=all")

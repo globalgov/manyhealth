@@ -1,6 +1,6 @@
-#' organizations database documentation
+#' organizations datacube documentation
 #'
-#' @format The organizations database is a list that contains the
+#' @format The organizations datacube is a list that contains the
 #' following 3 datasets: CHATHAM, IHEID, GHS.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
