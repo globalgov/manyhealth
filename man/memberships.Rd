@@ -3,9 +3,9 @@
 \docType{data}
 \name{memberships}
 \alias{memberships}
-\title{memberships database documentation}
+\title{memberships datacube documentation}
 \format{
-The memberships database is a list that contains the
+The memberships datacube is a list that contains the
 following 1 datasets: HUGGO_MEM.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
@@ -15,11 +15,17 @@ please use the \code{data_source()} and \code{data_contrast()} functions.
 stateSignature, stateRat, stateForce, stateEnd, treatyID, StateName.}
 }
 }
+\source{
+\itemize{
+\item{HUGGO_MEM: }{
+\link{1} J. Hollway. Health agreements for manydata. (2022).}
+}
+}
 \usage{
 memberships
 }
 \description{
-memberships database documentation
+memberships datacube documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{#> $HUGGO_MEM
@@ -42,4 +48,11 @@ memberships database documentation
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
+\section{URL}{
+
+\itemize{
+\item{HUGGO_MEM: }{ \url Hand-coded by the GGO team}
+}
+}
+
 \keyword{datasets}

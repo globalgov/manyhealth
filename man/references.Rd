@@ -3,9 +3,9 @@
 \docType{data}
 \name{references}
 \alias{references}
-\title{references database documentation}
+\title{references datacube documentation}
 \format{
-The references database is a list that contains the
+The references datacube is a list that contains the
 following 2 datasets: GHHR_REF, WHO_REF.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
@@ -16,48 +16,47 @@ please use the \code{data_source()} and \code{data_contrast()} functions.
 3 variables: Treaty1, Treaty2, RefType.}
 }
 }
+\source{
+\itemize{
+\item{GHHR_REF: }{
+\link{1} B. M. Meier, O. A. Cabrera, A. Ayala, et al. “Bridging international law and rights-basedlitigation: mapping health-related rights through the development of the global health and human rightsdatabase”. In: \emph{Health & Hum. Rts.} 14 (2012), p. 20.}
+\item{WHO_REF: }{
+Bhugra D, Pathare S, Joshi R, Kalra G, Torales J, Ventriglio A (2018). “A review of mental healthpolicies from Commonwealth countries.” \emph{International Journal of Social Psychiatry}, \emph{64}(1), 3-8.}
+}
+}
 \usage{
 references
 }
 \description{
-references database documentation
+references datacube documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{#> $GHHR_REF
-#> -- Data Summary ------------------------
-#>                            Values
-#> Name                       X[[i]]
-#> Number of rows             224   
-#> Number of columns          3     
-#> _______________________          
-#> Column type frequency:           
-#>   character                3     
-#> ________________________         
-#> Group variables            None  
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    Treaty1    |  character  |             224|     0     |       0       |
+#> |    Treaty2    |  character  |             224|     0     |       0       |
+#> |    RefType    |  character  |             224|    88     |     39.29     |
+#> ----------------------------------------------------------------------------
 #> 
-#> -- Variable type: character ----------------------------------------------------
-#>   skim_variable n_missing complete_rate min max empty n_unique whitespace
-#> 1 Treaty1               0         1      12  29     0      146          0
-#> 2 Treaty2               0         1      12  29     0       40          0
-#> 3 RefType              88         0.607   2  11     0        3          0
 #> 
 #> $WHO_REF
-#> -- Data Summary ------------------------
-#>                            Values
-#> Name                       X[[i]]
-#> Number of rows             65    
-#> Number of columns          3     
-#> _______________________          
-#> Column type frequency:           
-#>   character                3     
-#> ________________________         
-#> Group variables            None  
-#> 
-#> -- Variable type: character ----------------------------------------------------
-#>   skim_variable n_missing complete_rate min max empty n_unique whitespace
-#> 1 Treaty1               0         1      12  25     0       42          0
-#> 2 Treaty2               0         1      12  25     0       21          0
-#> 3 RefType              20         0.692   2   5     0        2          0
+#> ----------------------------------------------------------------------------
+#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ----------------------------------------------------------------------------
+#> |    Treaty1    |  character  |              65|     0     |       0       |
+#> |    Treaty2    |  character  |              65|     0     |       0       |
+#> |    RefType    |  character  |              65|    20     |     30.77     |
+#> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
+\section{URL}{
+
+\itemize{
+\item{GHHR_REF: }{ \url https://www.globalhealthrights.org/instruments/instrument-region/}
+\item{WHO_REF: }{ \url https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
+}
+}
+
 \keyword{datasets}
