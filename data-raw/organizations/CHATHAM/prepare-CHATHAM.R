@@ -1,7 +1,7 @@
 # CHATHAM Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the package from the many universe.
+# ready for the many package.
 
 # Stage one: Collecting data
 CHATHAM <- readxl::read_excel("data-raw/organizations/CHATHAM/actors_map.xlsx")
@@ -30,8 +30,7 @@ CHATHAM <- CHATHAM %>%
 # Stage three: Connecting data
 # Next run the following line to make CHATHAM available
 # within the package.
-manypkgs::export_data(CHATHAM,
-                      datacube = "organizations",
+manypkgs::export_data(CHATHAM, datacube = "organizations",
                       URL = "https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence

@@ -1,7 +1,7 @@
 # WHO Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
 # Stage one: scraping information from WHO website
 who_url <- rvest::read_html("https://www.mindbank.info/collection/un_who_resolutions/all?page=all")

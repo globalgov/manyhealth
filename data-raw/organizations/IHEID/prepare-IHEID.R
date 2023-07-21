@@ -1,7 +1,7 @@
 # IHEID Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
 # Stage one: Collecting data
 IHEID <- readxl::read_excel("data-raw/organizations/IHEID/IHEID.xlsx")
@@ -41,6 +41,5 @@ IHEID <- as_tibble(IHEID) %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(organizations, IHEID)`.
-manypkgs::export_data(IHEID,
-                      datacube = "organizations",
+manypkgs::export_data(IHEID, datacube = "organizations",
                       URL = "https://www.graduateinstitute.ch/GHC-directories")

@@ -3,7 +3,7 @@
 # This is a dataset of hand-coded data of states' memberships to
 # health agreements listed in HUGGO dataset in agreements datacube.
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
 # Stage one: Collecting data
 HUGGO_MEM <- readr::read_csv("data-raw/memberships/HUGGO_MEM/HUGGO_MEM.csv")

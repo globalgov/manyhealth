@@ -1,7 +1,7 @@
 # GHS Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 # The GHS dataset is obtained from the list of global health actors
 # included in Table 2 in Hoffman and Cole (2018) \doi{10.1186/s12992-018-0340-2}
 
@@ -67,6 +67,5 @@ GHS <- as_tibble(GHS) %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib("organizations", "GHS")`.
-manypkgs::export_data(GHS,
-                      datacube = "organizations",
+manypkgs::export_data(GHS, datacube = "organizations",
                       URL = "https://doi.org/10.1186/s12992-018-0340-2")

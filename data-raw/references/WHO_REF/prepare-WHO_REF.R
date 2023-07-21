@@ -1,7 +1,7 @@
 # WHO_REF Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
 # The texts datacube has been used to hand code WHO_REF. It allowed
 # to identify which treaty was citing other treaties. WHO_REF reflects

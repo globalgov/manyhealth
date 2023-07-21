@@ -1,7 +1,7 @@
 # GHHR_REF Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
 # The texts datacube has been used to hand code GHHR_REF. It allowed
 # to identify which treaty was citing other treaties. GHHR_REF reflects
@@ -52,6 +52,5 @@ GHHR_REF <- as_tibble(GHHR_REF) %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(references, GHHR_REF)`.
-manypkgs::export_data(GHHR_REF,
-                      datacube = "references",
+manypkgs::export_data(GHHR_REF, datacube = "references",
                       URL = "https://www.globalhealthrights.org/instruments/instrument-region/")

@@ -1,7 +1,7 @@
 # GHHR Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
 # Stage one: scraping information from Global Health and Human Rights website
 urls <- paste0("https://www.globalhealthrights.org/instruments/instrument-region/page/", 1:16, "/")
@@ -97,6 +97,5 @@ GHHR <- GHHR %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(agreements, GHHR)`.
-manypkgs::export_data(GHHR,
-                      datacube = "agreements",
+manypkgs::export_data(GHHR, datacube = "agreements",
                       URL = "https://www.globalhealthrights.org/instruments/instrument-region/")
