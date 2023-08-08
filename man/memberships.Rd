@@ -10,7 +10,7 @@ following 1 datasets: HUGGO_MEM.
 For more information and references to each of the datasets used,
 please use the \code{data_source()} and \code{data_contrast()} functions.
 \describe{
-\item{HUGGO_MEM: }{A dataset with 39989 observations and the following
+\item{HUGGO_MEM: }{A dataset with 39392 observations and the following
 13 variables: manyID, stateID, Title, Begin, Signature, Force, End,
 stateSignature, stateRat, stateForce, stateEnd, treatyID, StateName.}
 }
@@ -19,7 +19,7 @@ stateSignature, stateRat, stateForce, stateEnd, treatyID, StateName.}
 \itemize{
 \item{HUGGO_MEM: }{
 \link{1} J. Hollway. Health agreements for manydata. (2022).}
-}
+#' }
 }
 \usage{
 memberships
@@ -32,19 +32,19 @@ memberships datacube documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |           39989|     0     |       0       |
-#> |    stateID    |  character  |           39989|    21     |     0.05      |
-#> |     Title     |  character  |           39989|     0     |       0       |
-#> |     Begin     |    mdate    |           39989|     0     |       0       |
-#> |   Signature   |    mdate    |           39989|     0     |       0       |
-#> |     Force     |    mdate    |           39989|   32607   |     81.54     |
-#> |      End      |    mdate    |           39989|   39742   |     99.38     |
-#> |stateSignature |    mdate    |           39989|   6754    |     16.89     |
-#> |   stateRat    |    mdate    |           39989|   34121   |     85.33     |
-#> |  stateForce   |    mdate    |           39989|   33887   |     84.74     |
-#> |   stateEnd    |    mdate    |           39989|   39736   |     99.37     |
-#> |   treatyID    |  character  |           39989|     0     |       0       |
-#> |   StateName   |  character  |           39989|     1     |       0       |
+#> |    manyID     |  character  |           39392|     0     |       0       |
+#> |    stateID    |  character  |           39392|     0     |       0       |
+#> |     Title     |  character  |           39392|     0     |       0       |
+#> |     Begin     |    mdate    |           39392|     0     |       0       |
+#> |   Signature   |    mdate    |           39392|     0     |       0       |
+#> |     Force     |    mdate    |           39392|   33054   |     83.91     |
+#> |      End      |    mdate    |           39392|   39145   |     99.37     |
+#> |stateSignature |    mdate    |           39392|   6683    |     16.97     |
+#> |   stateRat    |    mdate    |           39392|   33574   |     85.23     |
+#> |  stateForce   |    mdate    |           39392|   33335   |     84.62     |
+#> |   stateEnd    |    mdate    |           39392|   39144   |     99.37     |
+#> |   treatyID    |  character  |           39392|     1     |       0       |
+#> |   StateName   |  character  |           39392|     0     |       0       |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }

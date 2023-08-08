@@ -15,7 +15,8 @@ HUGGO_MEM <- readr::read_csv("data-raw/memberships/HUGGO_MEM/HUGGO_MEM.csv")
 # We recommend that you avoid using one letter variable names to keep
 # away from issues with ambiguous names down the road.
 HUGGO_MEM <- as_tibble(HUGGO_MEM) %>%
-  dplyr::mutate(StateName = manypkgs::standardise_titles(StateName),
+  dplyr::mutate(StateName = manypkgs::code_states(StateName, activity = FALSE,
+                                                  replace = "names"),
                 stateID = manypkgs::code_states(StateName, activity = FALSE,
                                                 replace = "ID"),
                 Begin = messydates::as_messydate(Begin),
@@ -27,6 +28,15 @@ HUGGO_MEM <- as_tibble(HUGGO_MEM) %>%
                 stateEnd = messydates::as_messydate(stateEnd),
                 stateForce = messydates::as_messydate(stateForce)) %>%
   dplyr::arrange(Begin)
+
+HUGGO_MEM <- HUGGO_MEM %>%
+  dplyr::mutate(StateName = ifelse(StateName == "Democratic Republic of the Congo - Congo",
+                                   "Democratic Republic of the Congo",
+                                   StateName),
+                stateID = ifelse(stateID == "COD - COG",
+                                 "COD",
+                                 stateID)) %>% # correct double StateNames and stateIDs
+  dplyr::filter(!is.na(StateName)) # remove entries for NA StateNames that were European Atomic Energy Community and World Psychiatric Association
 
 # Remove duplicates and ensure NAs are coded correctly
 HUGGO_MEM <- HUGGO_MEM %>%
@@ -45,8 +55,6 @@ HUGGO_MEM <- HUGGO_MEM %>%
   dplyr::relocate(manyID, stateID, Title, Begin, Signature, Force, End,
                  stateSignature, stateRat, stateForce, stateEnd) %>%
   dplyr::distinct(.keep_all = TRUE)
-
-HUGGO_MEM <- HUGGO_MEM %>% dplyr::rename(Begin = Beg)
 
 # manypkgs includes several functions that should help with
 # cleaning and standardising your data
