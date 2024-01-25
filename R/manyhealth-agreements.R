@@ -3,31 +3,60 @@
 #' @format The agreements datacube is a list that contains the
 #' following 3 datasets: WHO, GHHR, HUGGO.
 #' For more information and references to each of the datasets used,
-#' please use the `data_source()` and `data_contrast()` functions.
+#' please use the `manydata::call_sources()` and `manydata::compare_dimensions()` functions.
 #'\describe{
 #' \item{WHO: }{A dataset with 108 observations and the following
-#' 7 variables: manyID, treatyID, Title, Begin, Organisation, Topic, Lineage.}
+#' 8 variables: manyID, treatyID, Title, Begin, Organisation, Topic, Lineage,
+#' whoID.}
 #' \item{GHHR: }{A dataset with 149 observations and the following
-#' 7 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage.}
+#' 8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
+#' ghhrID.}
 #' \item{HUGGO: }{A dataset with 254 observations and the following
-#' 18 variables: manyID, treatyID, Title, Begin, Signature, Force, End,
-#' Organisation, Topic, Region, LegalStatus, Lineage, Memb.conditions,
-#' Memb.procedures, Text, Comments, url, Source.}
+#' 19 variables: manyID, treatyID, Title, Begin, Signature, Force, End,
+#' Organisation, Topic, Region, LegalStatus, Formal, Lineage, Memb.conditions,
+#' Memb.procedures, TreatyText, Comments, url, Source.}
 #' }
 #' @source
-#'\itemize{
+#' \itemize{
 #' \item{WHO: }{
-#' [1] D. Bhugra, S. Pathare, R. Joshi, et al. “A review of mental health policies from Commonwealth countries”. In: _International Journal of Social Psychiatry_ 64.1 (2018), pp. 3-8.}
+#' D. Bhugra, S. Pathare, R. Joshi, et al.
+#' “A review of mental health policies from Commonwealthcountries”.
+#' In: _International Journal of Social Psychiatry_ 64.1 (2018), pp. 3-8.}
 #' \item{GHHR: }{
-#' [1] B. M. Meier, O. A. Cabrera, A. Ayala, et al. “Bridging international law and rights-based litigation: mapping health-related rights through the development of the global health and human rights database”. In: _Health & Hum. Rts._ 14 (2012), p. 20.}
+#' B. M. Meier, O. A. Cabrera, A. Ayala, et al.
+#' “Bridging international law and rights-based litigation:mapping health-related rights through the development of the global health and human rights database”.
+#' In: _Health & Human Rights._ 14 (2012), p. 20.}
 #' \item{HUGGO: }{
-#' [1] J. Hollway. Health agreements for manydata. (2022).}
+#' J. Hollway. Health agreements for manydata. 2021.}
 #' }
 #' @section URL:
-#'\itemize{
-#' \item{WHO: }{ \url https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
-#' \item{GHHR: }{ \url https://www.globalhealthrights.org/instruments/instrument-region/}
-#' \item{HUGGO: }{ \url "Hand-coded by the GGO team")}
+#' \itemize{
+#' \item{WHO: }{
+#' \url{https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
+#' }
+#' \item{GHHR: }{
+#' \url{https://www.globalhealthrights.org/instruments/instrument-region/}
+#' }
+#' \item{HUGGO: }{Hand-coded data by the GGO team}
+#' }
+#' @section Mapping:
+#' \itemize{
+#' \item{WHO: }{
+#' Variable Mapping
+#'
+#' |  *from*  | *to*
+#' |:------------:|:------------:|
+#' | NA | NA |
+#'
+#' }
+#' \item{GHHR: }{
+#' Variable Mapping
+#'
+#' |  *from*  | *to*
+#' |:------------:|:------------:|
+#' | Year of adoption | Begin |
+#'
+#' }
 #' }
 #' @md
 #' @details
