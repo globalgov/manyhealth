@@ -1,5 +1,5 @@
 Package: manyhealth
-Title: Health Agreements for the many Universe
+Title: Health Agreements for manydata
 Version: 0.2.0
 Date: 2023-02-14
 Authors@R:
@@ -28,24 +28,12 @@ Description: The manyhealth package provides an ensemble of data on
   international health instruments, and the main actors for research use.
 License: CC BY 4.0
 Depends: 
-    R (>= 2.10),
-    tibble,
-    pointblank
-Imports: 
-    dplyr,
-    lubridate,
-    roxygen2,
-    usethis,
-    pkgdown,
-    migraph,
-    knitr
-Suggests: 
-    purrr,
-    rlang,
+    R (>= 3.5.0),
+    manydata
+Suggests:
     testthat (>= 3.0.0),
-    ggplot2,
-    rmarkdown,
-    remotes
+    pointblank,
+    lubridate
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
