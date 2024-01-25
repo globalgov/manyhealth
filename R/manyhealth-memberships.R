@@ -3,20 +3,32 @@
 #' @format The memberships datacube is a list that contains the
 #' following 1 datasets: HUGGO_MEM.
 #' For more information and references to each of the datasets used,
-#' please use the `data_source()` and `data_contrast()` functions.
+#' please use the `manydata::call_sources()` and `manydata::compare_dimensions()` functions.
 #'\describe{
 #' \item{HUGGO_MEM: }{A dataset with 39392 observations and the following
-#' 13 variables: manyID, stateID, Title, Begin, Signature, Force, End,
-#' stateSignature, stateRat, stateForce, stateEnd, treatyID, StateName.}
+#' 15 variables: manyID, stateID, Title, Begin, Signature, Force, End,
+#' stateSignature, stateRat, stateForce, stateEnd, treatyID, StateName,
+#' Succession, Formal.}
 #' }
 #' @source
-#'\itemize{
+#' \itemize{
 #' \item{HUGGO_MEM: }{
-#' [1] J. Hollway. Health agreements for manydata. (2022).}
-#' #' }
+#' J. Hollway. Health agreements for manydata. 2021.}
+#' }
 #' @section URL:
-#'\itemize{
-#' \item{HUGGO_MEM: }{ \url Hand-coded by the GGO team}
+#' \itemize{
+#' \item{HUGGO_MEM: }{Hand-coded data by the GGO team}
+#' }
+#' @section Mapping:
+#' \itemize{
+#' \item{HUGGO_MEM: }{
+#' Variable Mapping
+#'
+#' |  *from*  | *to*
+#' |:------------:|:------------:|
+#' | NA | NA |
+#'
+#' }
 #' }
 #' @md
 #' @details

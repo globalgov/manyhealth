@@ -38,6 +38,27 @@ HUGGO_MEM <- HUGGO_MEM %>%
                                  stateID)) %>% # correct double StateNames and stateIDs
   dplyr::filter(!is.na(StateName)) # remove entries for NA StateNames that were European Atomic Energy Community and World Psychiatric Association
 
+# Mark successor states from Soviet Union, Yugoslavia, and Czechoslovakia in Succession variable
+repstateIDs <- manypkgs::code_states(c("Armenia", "Azerbaijan", "Belarus",
+                                       "Estonia", "Georgia", "Kazakhstan",
+                                       "Kyrgyzstan", "Latvia", "Lithuania",
+                                       "Moldova", "Russia", "Tajikistan",
+                                       "Turkmenistan", "Ukraine", "Uzbekistan",
+                                       "Serbia", "Bosnia and Herzegovina",
+                                       "North Macedonia", "Slovenia",
+                                       "Montenegro", "Croatia",
+                                       "Czech Republic", "Slovakia"),
+                                     activity = FALSE,
+                                     replace = "ID")
+HUGGO_MEM <- HUGGO_MEM %>%
+  dplyr::mutate(Succession = ifelse(stateID %in% repstateIDs, 1, 0))
+
+# Add variable identifying legally-binding formal agreements, matching from HUGGO
+HUGGO <- manyhealth::agreements$HUGGO %>%
+  dplyr::select(manyID, treatyID, Title, Begin, Formal)
+HUGGO_MEM <- dplyr::left_join(HUGGO_MEM, HUGGO,
+                              by = c("manyID", "treatyID", "Title", "Begin"))
+
 # Remove duplicates and ensure NAs are coded correctly
 HUGGO_MEM <- HUGGO_MEM %>%
   dplyr::mutate(across(everything(),
@@ -54,7 +75,7 @@ HUGGO_MEM <- HUGGO_MEM %>%
   dplyr::arrange(Begin, StateName) %>%
   dplyr::relocate(manyID, stateID, Title, Begin, Signature, Force, End,
                  stateSignature, stateRat, stateForce, stateEnd) %>%
-  dplyr::distinct(.keep_all = TRUE)
+  dplyr::distinct()
 
 # manypkgs includes several functions that should help with
 # cleaning and standardising your data
