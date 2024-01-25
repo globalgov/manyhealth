@@ -16,7 +16,7 @@ HUGGO <- manydata::consolidate(manyhealth::agreements,
                                "manyID") %>%
   dplyr::mutate(Begin = messydates::as_messydate(Begin))
 
-# Stage two: Adding texts
+# Stage two: Add treaty texts to identify membership conditions and procedures
 #Extract titles and dates from GHR dataset
 urls <- paste0("https://www.globalhealthrights.org/instruments/instrument-region/page/",
                1:16, "/")
@@ -205,7 +205,7 @@ HUGGO_new <- dplyr::full_join(HUGGO, HUGGO2, by = c("manyID", "treatyID")) %>%
   dplyr::distinct() %>%
   dplyr::relocate(manyID, Title.x, Title.y, Begin.x, Begin.y, Signature,
                   Force, Organisation)
-# Clean merged data
+## Clean merged data
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
@@ -218,7 +218,9 @@ HUGGO_new <- HUGGO_new %>%
                    Source.x, Source.y)) %>%
   dplyr::distinct() %>%
   dplyr::relocate(manyID, Title, Begin, Signature, Force, End, Organisation)
-# remove duplicated entries from merging dataset
+
+## Remove duplicated entries from merging dataset
+
 which(HUGGO_new$manyID == "WHDSBL_2013O69:WHDSBL_2014O77")
 # duplicate due to repeat in Organisation name
 HUGGO_new <- HUGGO_new[-c(which(HUGGO_new$Organisation == "World Health Organization; World Health Organization ")), ]
@@ -232,11 +234,18 @@ which(HUGGO_new$manyID == "BJNDPA_1995R")
 # duplicate due to different url links for same text
 HUGGO_new <- HUGGO_new[-(which(HUGGO_new$url == "https://www.globalhealthrights.org/wp-content/uploads/2014/07/Beijin-Declaration-and-Platform-of-Action.pdf")), ]
 
-# Stage six: re-export HUGGO dataset without TreatyText variable
-# Treaty texta are formatted and stored in .txt files in the
+## Add 'Formal' variable identifying legally-binding formal agreements
+## Formal = 1 indicates the agreement is legally-binding.
+HUGGO_new <- HUGGO_new %>%
+  dplyr::mutate(Formal = ifelse(stringr::str_detect(LegalStatus,
+                                                    "Legally Binding"), 1, 0))
+HUGGO_new$Formal <- ifelse(is.na(HUGGO_new$Formal), 0, HUGGO_new$Formal)
+
+# Stage six: re-export HUGGO dataset without Texts
+# Treaty texts are formatted and stored in .txt files in the
 # data_raw/agreements/HUGGO/TreatyText folder
+# TreatyText variable denotes if the corresponding text has been stored in the folder.
 HUGGO <- HUGGO_new %>%
-  dplyr::select(-TreatyText) %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
   dplyr::mutate(Begin = messydates::as_messydate(Begin),
@@ -244,7 +253,9 @@ HUGGO <- HUGGO_new %>%
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End)) %>%
   dplyr::distinct(.keep_all = TRUE) %>%
-  dplyr::arrange(Begin)
+  dplyr::arrange(Begin) %>%
+  dplyr::relocate(manyID, treatyID, Title, Begin, Signature, Force, End,
+                  Organisation, Topic, Region, LegalStatus, Formal)
 
 # Next run the following line to make HUGGO available within the package.
 # This function also does two additional things.
