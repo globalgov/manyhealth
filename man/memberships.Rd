@@ -8,18 +8,19 @@
 The memberships datacube is a list that contains the
 following 1 datasets: HUGGO_MEM.
 For more information and references to each of the datasets used,
-please use the \code{data_source()} and \code{data_contrast()} functions.
+please use the \code{manydata::call_sources()} and \code{manydata::compare_dimensions()} functions.
 \describe{
 \item{HUGGO_MEM: }{A dataset with 39392 observations and the following
-13 variables: manyID, stateID, Title, Begin, Signature, Force, End,
-stateSignature, stateRat, stateForce, stateEnd, treatyID, StateName.}
+15 variables: manyID, stateID, Title, Begin, Signature, Force, End,
+stateSignature, stateRat, stateForce, stateEnd, treatyID, StateName,
+Succession, Formal.}
 }
 }
 \source{
 \itemize{
 \item{HUGGO_MEM: }{
-\link{1} J. Hollway. Health agreements for manydata. (2022).}
-#' }
+J. Hollway. Health agreements for manydata. 2021.}
+}
 }
 \usage{
 memberships
@@ -45,13 +46,29 @@ memberships datacube documentation
 #> |   stateEnd    |    mdate    |           39392|   39144   |     99.37     |
 #> |   treatyID    |  character  |           39392|     1     |       0       |
 #> |   StateName   |  character  |           39392|     0     |       0       |
+#> |  Succession   |  character  |           39392|     0     |       0       |
+#> |    Formal     |  character  |           39392|   16969   |     43.08     |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
 \section{URL}{
 
 \itemize{
-\item{HUGGO_MEM: }{ \url Hand-coded by the GGO team}
+\item{HUGGO_MEM: }{Hand-coded data by the GGO team}
+}
+}
+
+\section{Mapping}{
+
+\itemize{
+\item{HUGGO_MEM: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   NA \tab NA \cr
+}
+
+
+}
 }
 }
 

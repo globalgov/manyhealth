@@ -23,11 +23,15 @@ Health as primary intent?.}
 \source{
 \itemize{
 \item{CHATHAM: }{
-\link{1} S. J. Hoffman, C. B. Cole, and M. Pearcey. \emph{Mapping global health architecture to inform thefuture}. Chatham House London, 2015.}
+S. J. Hoffman, C. B. Cole, and M. Pearcey.
+In: \emph{Mapping global health architecture to inform thefuture}.
+Chatham House London, 2015.}
 \item{IHEID: }{
-\link{1} \emph{Directory of Global Health Actors}. 2021.}
+In: \emph{Directory of Global Health Actors}. 2021.}
 \item{GHS: }{
-\link{1} S. J. Hoffman and C. B. Cole. “Defining the global health system and systematically mapping itsnetwork of actors”. In: \emph{Global Health} 14.38 (2018). DOI: 10.1186/s12992-018-0340-2.}
+S. J. Hoffman and C. B. Cole.
+“Defining the global health system and systematically mapping itsnetwork of actors”.
+In: \emph{Global Health} 14.38 (2018).}
 }
 }
 \usage{
@@ -81,9 +85,15 @@ organizations datacube documentation
 \section{URL}{
 
 \itemize{
-\item{CHATHAM: }{ \url https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf}
-\item{IHEID: }{ \url https://www.graduateinstitute.ch/GHC-directories}
-\item{GHS: }{ \url https://doi.org/10.1186/s12992-018-0340-2}
+\item{CHATHAM: }{
+\url{https://www.chathamhouse.org/sites/default/files/field/field_document/20150120GlobalHealthArchitectureHoffmanColePearcey.pdf}
+}
+\item{IHEID: }{
+\url{https://www.graduateinstitute.ch/GHC-directories}
+}
+\item{GHS: }{
+\url{https://doi.org/10.1186/s12992-018-0340-2}
+}
 }
 }
 

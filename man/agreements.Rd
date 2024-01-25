@@ -8,26 +8,32 @@
 The agreements datacube is a list that contains the
 following 3 datasets: WHO, GHHR, HUGGO.
 For more information and references to each of the datasets used,
-please use the \code{data_source()} and \code{data_contrast()} functions.
+please use the \code{manydata::call_sources()} and \code{manydata::compare_dimensions()} functions.
 \describe{
 \item{WHO: }{A dataset with 108 observations and the following
-7 variables: manyID, treatyID, Title, Begin, Organisation, Topic, Lineage.}
+8 variables: manyID, treatyID, Title, Begin, Organisation, Topic, Lineage,
+whoID.}
 \item{GHHR: }{A dataset with 149 observations and the following
-7 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage.}
+8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
+ghhrID.}
 \item{HUGGO: }{A dataset with 254 observations and the following
-18 variables: manyID, treatyID, Title, Begin, Signature, Force, End,
-Organisation, Topic, Region, LegalStatus, Lineage, Memb.conditions,
-Memb.procedures, Text, Comments, url, Source.}
+19 variables: manyID, treatyID, Title, Begin, Signature, Force, End,
+Organisation, Topic, Region, LegalStatus, Formal, Lineage, Memb.conditions,
+Memb.procedures, TreatyText, Comments, url, Source.}
 }
 }
 \source{
 \itemize{
 \item{WHO: }{
-\link{1} D. Bhugra, S. Pathare, R. Joshi, et al. “A review of mental health policies from Commonwealth countries”. In: \emph{International Journal of Social Psychiatry} 64.1 (2018), pp. 3-8.}
+D. Bhugra, S. Pathare, R. Joshi, et al.
+“A review of mental health policies from Commonwealthcountries”.
+In: \emph{International Journal of Social Psychiatry} 64.1 (2018), pp. 3-8.}
 \item{GHHR: }{
-\link{1} B. M. Meier, O. A. Cabrera, A. Ayala, et al. “Bridging international law and rights-based litigation: mapping health-related rights through the development of the global health and human rights database”. In: \emph{Health & Hum. Rts.} 14 (2012), p. 20.}
+B. M. Meier, O. A. Cabrera, A. Ayala, et al.
+“Bridging international law and rights-based litigation:mapping health-related rights through the development of the global health and human rights database”.
+In: \emph{Health & Human Rights.} 14 (2012), p. 20.}
 \item{HUGGO: }{
-\link{1} J. Hollway. Health agreements for manydata. (2022).}
+J. Hollway. Health agreements for manydata. 2021.}
 }
 }
 \usage{
@@ -48,6 +54,7 @@ agreements datacube documentation
 #> | Organisation  |  character  |             108|     0     |       0       |
 #> |     Topic     |  character  |             108|     0     |       0       |
 #> |    Lineage    |  character  |             108|     0     |       0       |
+#> |     whoID     |   integer   |             108|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -62,6 +69,7 @@ agreements datacube documentation
 #> |    Region     |  character  |             149|     0     |       0       |
 #> |  LegalStatus  |  character  |             149|     0     |       0       |
 #> |    Lineage    |  character  |             149|     0     |       0       |
+#> |    ghhrID     |   integer   |             149|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -80,10 +88,11 @@ agreements datacube documentation
 #> |     Topic     |  character  |             254|    148    |     58.27     |
 #> |    Region     |  character  |             254|    104    |     40.94     |
 #> |  LegalStatus  |  character  |             254|    104    |     40.94     |
+#> |    Formal     |   numeric   |             254|     0     |       0       |
 #> |    Lineage    |  character  |             254|    82     |     32.28     |
 #> |Memb.conditions|  character  |             254|    74     |     29.13     |
 #> |Memb.procedures|  character  |             254|    210    |     82.68     |
-#> |     Text      |  character  |             254|     0     |       0       |
+#> |  TreatyText   |  character  |             254|     0     |       0       |
 #> |   Comments    |  character  |             254|    231    |     90.94     |
 #> |      url      |  character  |             254|     7     |     2.76      |
 #> |    Source     |  character  |             254|     1     |     0.39      |
@@ -93,9 +102,35 @@ agreements datacube documentation
 \section{URL}{
 
 \itemize{
-\item{WHO: }{ \url https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
-\item{GHHR: }{ \url https://www.globalhealthrights.org/instruments/instrument-region/}
-\item{HUGGO: }{ \url "Hand-coded by the GGO team")}
+\item{WHO: }{
+\url{https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
+}
+\item{GHHR: }{
+\url{https://www.globalhealthrights.org/instruments/instrument-region/}
+}
+\item{HUGGO: }{Hand-coded data by the GGO team}
+}
+}
+
+\section{Mapping}{
+
+\itemize{
+\item{WHO: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   NA \tab NA \cr
+}
+
+
+}
+\item{GHHR: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   Year of adoption \tab Begin \cr
+}
+
+
+}
 }
 }
 

@@ -11,16 +11,24 @@
 #' 3 variables: Treaty1, Treaty2, RefType.}
 #' }
 #' @source
-#'\itemize{
+#' \itemize{
 #' \item{GHHR_REF: }{
-#' [1] B. M. Meier, O. A. Cabrera, A. Ayala, et al. “Bridging international law and rights-basedlitigation: mapping health-related rights through the development of the global health and human rightsdatabase”. In: _Health & Hum. Rts._ 14 (2012), p. 20.}
+#' B. M. Meier, O. A. Cabrera, A. Ayala, et al.
+#' “Bridging international law and rights-basedlitigation: mapping health-related rights through the development of the global health and human rightsdatabase”.
+#' In: _Health & Human Rights._ 14 (2012), p. 20.}
 #' \item{WHO_REF: }{
-#' Bhugra D, Pathare S, Joshi R, Kalra G, Torales J, Ventriglio A (2018). “A review of mental healthpolicies from Commonwealth countries.” _International Journal of Social Psychiatry_, *64*(1), 3-8.}
+#' Bhugra D, Pathare S, Joshi R, Kalra G, Torales J, Ventriglio A.
+#' “A review of mental healthpolicies from Commonwealth countries.”
+#' In: _International Journal of Social Psychiatry_, *64*(1) (2018), 3-8.}
 #' }
 #' @section URL:
-#'\itemize{
-#' \item{GHHR_REF: }{ \url https://www.globalhealthrights.org/instruments/instrument-region/}
-#' \item{WHO_REF: }{ \url https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
+#' \itemize{
+#' \item{GHHR_REF: }{
+#' \url{https://www.globalhealthrights.org/instruments/instrument-region/}
+#' }
+#' \item{WHO_REF: }{
+#' \url{https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
+#' }
 #' }
 #' @md
 #' @details

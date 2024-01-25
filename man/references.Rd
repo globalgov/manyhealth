@@ -19,9 +19,13 @@ please use the \code{data_source()} and \code{data_contrast()} functions.
 \source{
 \itemize{
 \item{GHHR_REF: }{
-\link{1} B. M. Meier, O. A. Cabrera, A. Ayala, et al. “Bridging international law and rights-basedlitigation: mapping health-related rights through the development of the global health and human rightsdatabase”. In: \emph{Health & Hum. Rts.} 14 (2012), p. 20.}
+B. M. Meier, O. A. Cabrera, A. Ayala, et al.
+“Bridging international law and rights-basedlitigation: mapping health-related rights through the development of the global health and human rightsdatabase”.
+In: \emph{Health & Human Rights.} 14 (2012), p. 20.}
 \item{WHO_REF: }{
-Bhugra D, Pathare S, Joshi R, Kalra G, Torales J, Ventriglio A (2018). “A review of mental healthpolicies from Commonwealth countries.” \emph{International Journal of Social Psychiatry}, \emph{64}(1), 3-8.}
+Bhugra D, Pathare S, Joshi R, Kalra G, Torales J, Ventriglio A.
+“A review of mental healthpolicies from Commonwealth countries.”
+In: \emph{International Journal of Social Psychiatry}, \emph{64}(1) (2018), 3-8.}
 }
 }
 \usage{
@@ -54,8 +58,12 @@ references datacube documentation
 \section{URL}{
 
 \itemize{
-\item{GHHR_REF: }{ \url https://www.globalhealthrights.org/instruments/instrument-region/}
-\item{WHO_REF: }{ \url https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
+\item{GHHR_REF: }{
+\url{https://www.globalhealthrights.org/instruments/instrument-region/}
+}
+\item{WHO_REF: }{
+\url{https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
+}
 }
 }
 
