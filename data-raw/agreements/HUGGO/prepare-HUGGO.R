@@ -7,201 +7,40 @@
 # and fills in any missing information that could be found.
 # This is a template for importing, cleaning, and exporting data
 # ready for the many package.
+# Treaty texts are formatted and stored in .txt files in the
+# 'data_raw/agreements/HUGGO/TreatyText' folder.
+# The TreatyText variable denotes if the corresponding text has been stored in the folder.
 
 # Stage one: Assembling data from existing datasets to identify conflicts
-HUGGO <- manydata::consolidate(manyhealth::agreements,
+HUGGO_original <- manydata::consolidate(manyhealth::agreements,
                                "any",
                                "any",
                                "coalesce",
                                "manyID") %>%
   dplyr::mutate(Begin = messydates::as_messydate(Begin))
 
-# Stage two: Add treaty texts to identify membership conditions and procedures
-#Extract titles and dates from GHR dataset
-urls <- paste0("https://www.globalhealthrights.org/instruments/instrument-region/page/",
-               1:16, "/")
-
-#Title variable
-extr_title <- purrr::map(
-  urls,
-  . %>%
-    rvest::read_html() %>%
-    rvest::html_nodes("#content h2") %>%
-    rvest::html_text()
-)
-Title <- manypkgs::standardise_titles(unlist(extr_title))
-
-#Create dataframe
-GHHR <- as.data.frame(Title)
-
-extr_date <- purrr::map(
-  urls,
-  . %>%
-    rvest::read_html() %>%
-    rvest::html_text()
-)
-
-s <- stringr::str_extract_all(extr_date,
-                              "Year of adoption\\:\\s[:digit:]{4}|Year of adoption\\:\\sRegion")
-date <- unlist(s)
-date <- stringr::str_replace_all(date,
-                                 "Year of adoption\\:\\sRegion",
-                                 "NA")
-date <- stringr::str_remove_all(date,
-                                "Year of adoption\\:\\s")
-
-GHHR$Begin <- manypkgs::standardise_dates(date)
-
-#Web scraping instruments texts from the GHHR pages
-#Extract url that contains link to treaty text
-extr_text <- purrr::map(
-  urls,
-  . %>%
-    rvest::read_html() %>%
-    rvest::html_nodes("#content h2 a") %>%
-    rvest::html_attr("href")
-)
-
-extr_text <- unlist(extr_text)
-GHHR$Treaty_URL <- extr_text
-
-#Extract the URL of the text itself
-GHHR$Text_URL <- lapply(GHHR$Treaty_URL,
-                        function(s) {purrr::map(s,
-                                               . %>%
-                                                 rvest::read_html() %>%
-                                                 rvest::html_nodes(".downloaddecision a") %>%
-                                                 rvest::html_attr("href"))})
-GHHR$Text_URL[GHHR$Text_URL == "list(character(0))"] <- "NA"
-GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "list")
-GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "\\(")
-GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "\"")
-GHHR$Text_URL <- stringr::str_remove_all(GHHR$Text_URL, "\\)")
-
-
-#Extract treaty texts
-GHHR$TreatyText <- lapply(GHHR$Text_URL,
-                          function(s) tryCatch(pdftools::pdf_text(s),
-                                               error = function(e) {
-                                                 as.character("Not found")
-                                               }))
-
-GHHR$Source <- "GHHR"
-GHHR <- as_tibble(GHHR) %>%
-  dplyr::select(Title, Begin, Text_URL, TreatyText, Source)
-
-GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Begin)
-
-#Repeat process for WHO datacube
-who_url <- rvest::read_html("https://extranet.who.int/mindbank/collection/un_who_resolutions/all?page=all")
-
-extr_title <- who_url %>%
-  rvest::html_nodes("strong a") %>%
-  rvest::html_text()
-
-Title <- manypkgs::standardise_titles(extr_title)
-
-# Create dataframe
-WHO <- as.data.frame(Title)
-
-#Extract Date
-extr_date <- who_url %>%
-  rvest::html_nodes("p.light") %>%
-  rvest::html_text()
-
-WHO$Org_date <- extr_date
-
-# Create Begin column
-WHO$Begin <- ifelse(stringr::str_detect(WHO$Org_date, "[:digit:]{4}"),
-                  stringr::str_extract(WHO$Org_date, "[:digit:]{4}"),
-                  stringr::str_extract(WHO$Title, "[:digit:]{4}"))
-
-WHO$Begin <- manypkgs::standardise_dates(WHO$Begin)
-
-# Web scrape url
-url <- "https://www.mindbank.info/collection/un_who_resolutions/all?page=all"
-page <- rvest::read_html(url)
-
-extr_whotext <- page %>%
-  rvest::html_nodes("strong a") %>%
-  rvest::html_attr("href") %>%
-  paste("https://www.mindbank.info/", ., sep = "")
-
-WHO$Treaty_URL <- extr_whotext
-
-WHO$Text_URL <- lapply(WHO$Treaty_URL,
-                       function(s) {purrr::map(s,
-                                              . %>%
-                                                rvest::read_html() %>%
-                                                rvest::html_nodes(".contents_link a") %>%
-                                                rvest::html_attr("href") %>%
-                                                paste("https://www.mindbank.info/",
-                                                      ., sep = ""))})
-
-for (i in 1:nrow(WHO)) {
-  WHO$Text_URL[i] <- WHO$Text_URL[[i]][1]
-}
-
-for (i in 1:nrow(WHO)) {
-  WHO$Text_URL[i] <- WHO$Text_URL[[i]][1]
-}
-
-# Web scrape WHO treaty texts
-WHO$TreatyText <- lapply(WHO$Text_URL,
-                         function(s) tryCatch(pdftools::pdf_text(s),
-                                              error = function(e) {
-                                                as.character("Not found")
-                                              }))
-
-WHO$Source <- "WHO"
-WHO <- as_tibble(WHO) %>%
-  dplyr::filter(TreatyText != "Not found") %>%
-  dplyr::select(Title, Begin, Text_URL, TreatyText, Source)
-
-WHO$Text_URL <- unlist(WHO$Text_URL)
-
-WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Begin)
-
-# Join texts to HUGGO dataset
-texts <- rbind(GHHR, WHO)
-manyID <- manypkgs::condense_agreements(manyhealth::agreements) # Add manyID
-texts <- dplyr::left_join(texts, manyID, by = "treatyID")
-texts <- texts %>%
-  dplyr::relocate(manyID) %>%
-  dplyr::rename(url = Text_URL)
-HUGGO <- dplyr::left_join(HUGGO, texts,
-                          by = c("manyID", "Title", "Begin", "treatyID"))
-HUGGO <- HUGGO %>%
-  dplyr::mutate(TreatyText = ifelse(TreatyText == "Not found" | TreatyText == "NULL",
-                                    gsub("Not found|NULL", NA, TreatyText),
-                                    TreatyText))
-
-HUGGO <- dplyr::distinct(HUGGO)
-
-# Stage three: Adding membership conditions and membership procedures variables
-HUGGO$Memb.conditions <- manypkgs::code_accession_terms(HUGGO$TreatyText,
-                                                        HUGGO$Title,
-                                                        accession = "condition")
-HUGGO$Memb.procedures <- manypkgs::code_accession_terms(HUGGO$TreatyText,
-                                                        accession = "process")
-HUGGO <- dplyr::relocate(HUGGO, manyID, Title, Begin, Organisation,
-                         Topic, Region, LegalStatus, Lineage, Memb.conditions,
-                         Memb.procedures, treatyID, TreatyText, url, Source)
-HUGGO <- HUGGO %>%
-  dplyr::mutate(across(everything(),
-                       ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
-  dplyr::distinct(.keep_all = TRUE) %>%
-  dplyr::mutate(Begin = messydates::as_messydate(Begin)) %>%
-  dplyr::arrange(Begin)
-
-# Stage four: Resolving conflicts
+# Stage two: Resolving conflicts
 conflicts <- manydata::db_comp(manyhealth::agreements,
                                variable = c("Title", "Begin"),
                                category = "conflicting")
 
-# Stage five: merge verified data into HUGGO dataset
+# Stage three: merge verified data into HUGGO dataset
 HUGGO2 <- readr::read_csv("data-raw/agreements/HUGGO/HUGGO_reconciled.csv")
-HUGGO_new <- dplyr::full_join(HUGGO, HUGGO2, by = c("manyID", "treatyID")) %>%
+HUGGO2 <- HUGGO2 %>%
+  dplyr::mutate(Title = manypkgs::standardise_titles(Title),
+                Begin = messydates::as_messydate(Begin),
+                Signature = messydates::as_messydate(Signature),
+                Force = messydates::as_messydate(Force),
+                End = messydates::as_messydate(End))
+# make sure manyIDs and treatyIDs are matched with HUGGO_original
+IDs <- dplyr::select(HUGGO_original, manyID, treatyID, Title)
+HUGGO2 <- dplyr::left_join(HUGGO2, IDs, by = "Title")
+HUGGO2 <- HUGGO2 %>%
+  manydata::transmutate(manyID = ifelse(!is.na(manyID.y), manyID.y, manyID.x),
+                        treatyID = ifelse(!is.na(treatyID.y), treatyID.y, treatyID.x)) %>%
+  dplyr::distinct()
+
+HUGGO_new <- dplyr::full_join(HUGGO_original, HUGGO2, by = c("manyID", "treatyID")) %>%
   dplyr::distinct() %>%
   dplyr::relocate(manyID, Title.x, Title.y, Begin.x, Begin.y, Signature,
                   Force, Organisation)
@@ -210,30 +49,89 @@ HUGGO_new <- dplyr::full_join(HUGGO, HUGGO2, by = c("manyID", "treatyID")) %>%
 # and standardising your data.
 # Please see the vignettes or website for more details.
 HUGGO_new <- HUGGO_new %>%
-  dplyr::mutate(Title = manypkgs::standardise_titles(Title.y),
-                Begin = ifelse(!is.na(Begin.y), Begin.y, Begin.x),
-                url = ifelse(!is.na(url.y), url.y, url.x),
-                Source = ifelse(!is.na(Source.y), Source.y, Source.x)) %>%
-  dplyr::select(-c(Title.x, Title.y, Begin.x, Begin.y, url.x, url.y,
-                   Source.x, Source.y)) %>%
+  dplyr::mutate(Title = ifelse(!is.na(Title.y), Title.y, Title.x),
+                Begin = ifelse(!is.na(Begin.y), Begin.y, Begin.x)) %>%
+  dplyr::select(-c(Title.x, Title.y, Begin.x, Begin.y)) %>%
   dplyr::distinct() %>%
   dplyr::relocate(manyID, Title, Begin, Signature, Force, End, Organisation)
 
+# make sure manyIDs and treatyIDs are updated
+HUGGO_new$treatyID <- manypkgs::code_agreements(HUGGO_new, HUGGO_new$Title,
+                                                HUGGO_new$Begin)
+manyID <- manypkgs::condense_agreements(manyhealth::agreements)
+HUGGO_new <- dplyr::left_join(HUGGO_new, manyID, by = "treatyID")
+HUGGO_new <- HUGGO_new %>%
+  manydata::transmutate(manyID = ifelse(!is.na(manyID.y), manyID.y, manyID.x)) %>%
+  dplyr::distinct()
+
 ## Remove duplicated entries from merging dataset
-
-which(HUGGO_new$manyID == "WHDSBL_2013O69:WHDSBL_2014O77")
+which(HUGGO_new$manyID == "WHDSBL_2013O69")
 # duplicate due to repeat in Organisation name
-HUGGO_new <- HUGGO_new[-c(which(HUGGO_new$Organisation == "World Health Organization; World Health Organization ")), ]
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "WHDSBL_2013O69" & HUGGO_new$Organisation == "World Health Organization; World Health Organization "), ]
 
-which(HUGGO_new$manyID == "FP10CD_2013R")
+which(HUGGO_new$manyID == "FP09CD_2013R")
 # duplicate due to different Organisation for same resolution
 # Organisation should be World Health Assembly, not World Health Organisation
-HUGGO_new <- HUGGO_new[-(which(HUGGO_new$manyID == "FP10CD_2013R" & HUGGO_new$Organisation == "World Health Organization ")), ]
+HUGGO_new <- HUGGO_new[-(which(HUGGO_new$manyID == "FP09CD_2013R" & HUGGO_new$Organisation == "World Health Organization ")), ]
 
-which(HUGGO_new$manyID == "BJNDPA_1995R")
-# duplicate due to different url links for same text
-HUGGO_new <- HUGGO_new[-(which(HUGGO_new$url == "https://www.globalhealthrights.org/wp-content/uploads/2014/07/Beijin-Declaration-and-Platform-of-Action.pdf")), ]
+which(HUGGO_new$manyID == "PD12HW_2019R")
+# duplicates due to different names
+HUGGO_new <- HUGGO_new[-(which(HUGGO_new$manyID == "PD12HW_2019R" & HUGGO_new$whoID == "105")), ]
+HUGGO_new <- HUGGO_new[-(which(HUGGO_new$manyID == "PD12HW_2019R" & HUGGO_new$Title == "Political Declaration Of The High-level Meeting On Universal Health Coverage Universal Health Coverage Moving Together To Build A Healthier World")), ]
 
+which(HUGGO_new$manyID == "HLTPDA_2013O")
+# duplicates due to wrong whoID
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "HLTPDA_2013O" & HUGGO_new$whoID == "90"),]
+
+which(HUGGO_new$manyID == "HLTPDA_2014O")
+# duplicates due to wrong whoID
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "HLTPDA_2014O" & HUGGO_new$whoID == "78"),]
+
+which(HUGGO_new$manyID == "IMPLRC_1993A")
+# duplicates due to error in year
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "IMPLRC_1993A" & HUGGO_new$whoID == "14"),]
+
+which(HUGGO_new$manyID == "IW09PD_2005S")
+# duplicates due to extra Organization name
+HUGGO_new <- HUGGO_new[-(which(HUGGO_new$manyID == "IW09PD_2005S" & HUGGO_new$Organisation == "United Nations Development Programme Fiji Multi- Country Office ")), ]
+
+which(HUGGO_new$manyID == "IW09PD_2007S")
+# duplicates due to extra Organization name
+HUGGO_new <- HUGGO_new[-(which(HUGGO_new$manyID == "IW09PD_2007S" & HUGGO_new$Organisation == "United Nations Development Programme Fiji Multi- Country Office ")), ]
+
+which(HUGGO_new$manyID == "MA04DG_2008O")
+# duplicates due to wrong whoID
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "MA04DG_2008O" & HUGGO_new$whoID == "46"),]
+
+which(HUGGO_new$manyID == "MA04DG_2010O")
+# duplicates due to wrong whoID
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "MA04DG_2010O" & HUGGO_new$whoID == "39"),]
+
+which(HUGGO_new$manyID == "PCNDIG_2007S")
+# duplicates due to wrong whoID
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "PCNDIG_2007S" & HUGGO_new$whoID == "40"),]
+
+which(HUGGO_new$manyID == "PCNDIG_2008S")
+# duplicates due to wrong whoID
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "PCNDIG_2008S" & HUGGO_new$whoID == "38"),]
+
+which(HUGGO_new$manyID == "AFCHPR_1981A")
+# duplicates due to corrected title
+HUGGO_new[which(HUGGO_new$manyID == "AFCHPR_1981A"), 9] <- "NA - human rights"
+HUGGO_new[which(HUGGO_new$manyID == "AFCHPR_1981A"), 11] <- "Africa"
+HUGGO_new[which(HUGGO_new$manyID == "AFCHPR_1981A"), 12] <- "Intergovernmental - Legally Binding"
+HUGGO_new[which(HUGGO_new$manyID == "AFCHPR_1981A"), 13] <- 46
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "AFCHPR_1981A" & HUGGO_new$Title == "African Charter On Humans And Peoples Rights 1981"),]
+
+which(HUGGO_new$treatyID == "DCLRRC_1959R:IMPLRC_1993A")
+# duplicates due to entries in different datasets
+HUGGO_new[which(HUGGO_new$treatyID == "DCLRRC_1959R:IMPLRC_1993A"), 11] <- "Universal"
+HUGGO_new[which(HUGGO_new$treatyID == "DCLRRC_1959R:IMPLRC_1993A"), 12] <- "Intergovernmental - Non-binding"
+HUGGO_new[which(HUGGO_new$treatyID == "DCLRRC_1959R:IMPLRC_1993A"), 13] <- 21
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "DCLRRC_1959R:RGHTSC_1989A"), ]
+HUGGO_new <- HUGGO_new[-which(HUGGO_new$manyID == "DCLRRC_1959R:IMPLRC_1992A" & HUGGO_new$TreatyText == 0), ]
+
+# Stage four: add variables identifying Formal agreements and improve Topic variable
 ## Add 'Formal' variable identifying legally-binding formal agreements
 ## Formal = 1 indicates the agreement is legally-binding.
 HUGGO_new <- HUGGO_new %>%
@@ -241,17 +139,21 @@ HUGGO_new <- HUGGO_new %>%
                                                     "Legally Binding"), 1, 0))
 HUGGO_new$Formal <- ifelse(is.na(HUGGO_new$Formal), 0, HUGGO_new$Formal)
 
-# Stage six: re-export HUGGO dataset without Texts
-# Treaty texts are formatted and stored in .txt files in the
-# data_raw/agreements/HUGGO/TreatyText folder
-# TreatyText variable denotes if the corresponding text has been stored in the folder.
+## Improve Topic variable identifying issue of agreements.
+## ___ issues are identified and coded here:
+# (use Topic and Lineage variables as reference)
+
+# Stage five: re-export HUGGO dataset
 HUGGO <- HUGGO_new %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
-  dplyr::mutate(Begin = messydates::as_messydate(Begin),
+  dplyr::mutate(Title = manypkgs::standardise_titles(Title),
+                Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
-                End = messydates::as_messydate(End)) %>%
+                End = messydates::as_messydate(End),
+                whoID = as.integer(whoID),
+                ghhrID = as.integer(ghhrID)) %>%
   dplyr::distinct(.keep_all = TRUE) %>%
   dplyr::arrange(Begin) %>%
   dplyr::relocate(manyID, treatyID, Title, Begin, Signature, Force, End,
