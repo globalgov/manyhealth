@@ -16,10 +16,10 @@ whoID.}
 \item{GHHR: }{A dataset with 149 observations and the following
 8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
 ghhrID.}
-\item{HUGGO: }{A dataset with 284 observations and the following
-19 variables: manyID, treatyID, Title, Begin, Signature, Force, End,
+\item{HUGGO: }{A dataset with 254 observations and the following
+20 variables: manyID, treatyID, Title, Begin, Signature, Force, End,
 Organisation, Topic, Region, LegalStatus, Formal, Lineage, whoID, ghhrID,
-TreatyText, url, Source, Comments.}
+TreatyText, url, Source, Comments, Topic2.}
 }
 }
 \source{
@@ -81,21 +81,22 @@ agreements datacube documentation
 #> |   treatyID    |  character  |             254|     0     |       0       |
 #> |     Title     |  character  |             254|     0     |       0       |
 #> |     Begin     |    mdate    |             254|     0     |       0       |
-#> |   Signature   |    mdate    |             254|     0     |       0       |
-#> |     Force     |    mdate    |             254|    185    |     72.83     |
-#> |      End      |    mdate    |             254|    251    |     98.82     |
-#> | Organisation  |  character  |             254|    148    |     58.27     |
-#> |     Topic     |  character  |             254|    148    |     58.27     |
-#> |    Region     |  character  |             254|    104    |     40.94     |
-#> |  LegalStatus  |  character  |             254|    104    |     40.94     |
-#> |    Formal     |   numeric   |             254|     0     |       0       |
-#> |    Lineage    |  character  |             254|    82     |     32.28     |
-#> |Memb.conditions|  character  |             254|    74     |     29.13     |
-#> |Memb.procedures|  character  |             254|    210    |     82.68     |
-#> |  TreatyText   |  character  |             254|     0     |       0       |
+#> |   Signature   |    mdate    |             254|     3     |     1.18      |
+#> |     Force     |    mdate    |             254|    182    |     71.65     |
+#> |      End      |    mdate    |             254|     3     |     1.18      |
+#> | Organisation  |  character  |             254|    149    |     58.66     |
+#> |     Topic     |  character  |             254|    149    |     58.66     |
+#> |    Region     |  character  |             254|    105    |     41.34     |
+#> |  LegalStatus  |  character  |             254|    105    |     41.34     |
+#> |    Formal     |  character  |             254|     0     |       0       |
+#> |    Lineage    |  character  |             254|    84     |     33.07     |
+#> |     whoID     |   integer   |             254|    149    |     58.66     |
+#> |    ghhrID     |   integer   |             254|    105    |     41.34     |
+#> |  TreatyText   |  character  |             254|     3     |     1.18      |
+#> |      url      |  character  |             254|    126    |     49.61     |
+#> |    Source     |  character  |             254|    121    |     47.64     |
 #> |   Comments    |  character  |             254|    231    |     90.94     |
-#> |      url      |  character  |             254|     7     |     2.76      |
-#> |    Source     |  character  |             254|     1     |     0.39      |
+#> |    Topic2     |  character  |             254|     0     |       0       |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }

@@ -11,10 +11,10 @@
 #' \item{GHHR: }{A dataset with 149 observations and the following
 #' 8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
 #' ghhrID.}
-#' \item{HUGGO: }{A dataset with 284 observations and the following
-#' 19 variables: manyID, treatyID, Title, Begin, Signature, Force, End,
+#' \item{HUGGO: }{A dataset with 254 observations and the following
+#' 20 variables: manyID, treatyID, Title, Begin, Signature, Force, End,
 #' Organisation, Topic, Region, LegalStatus, Formal, Lineage, whoID, ghhrID,
-#' TreatyText, url, Source, Comments.}
+#' TreatyText, url, Source, Comments, Topic2.}
 #' }
 #' @source
 #' \itemize{
