@@ -141,7 +141,11 @@ HUGGO_new$Formal <- ifelse(is.na(HUGGO_new$Formal), 0, HUGGO_new$Formal)
 
 ## Improve Topic variable identifying issue of agreements.
 ## ___ issues are identified and coded here:
-# (use Topic and Lineage variables as reference)
+# compare with Topic and Lineage variables
+# Currently, 9 topics are coded from the agreement titles:
+# Labour, Human Rights, Protection, Mental Health, Prevention, Diseases,
+# Healthcare, Pollution, Climate change
+HUGGO$Topic2 <- manypkgs::code_domain(HUGGO$Title, type  = "health")
 
 # Stage five: re-export HUGGO dataset
 HUGGO <- HUGGO_new %>%
