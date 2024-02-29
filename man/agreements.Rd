@@ -16,10 +16,9 @@ whoID.}
 \item{GHHR: }{A dataset with 149 observations and the following
 8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
 ghhrID.}
-\item{HUGGO: }{A dataset with 254 observations and the following
-20 variables: manyID, treatyID, Title, Begin, Signature, Force, End,
-Organisation, Topic, Region, LegalStatus, Formal, Lineage, whoID, ghhrID,
-TreatyText, url, Source, Comments, Topic2.}
+\item{HUGGO: }{A dataset with 252 observations and the following
+13 variables: manyID, treatyID, Title, Begin, Signature, Force, End, Formal,
+TreatyText, url, Source, Comments, Topic.}
 }
 }
 \source{
@@ -77,26 +76,19 @@ agreements datacube documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             254|     0     |       0       |
-#> |   treatyID    |  character  |             254|     0     |       0       |
-#> |     Title     |  character  |             254|     0     |       0       |
-#> |     Begin     |    mdate    |             254|     0     |       0       |
-#> |   Signature   |    mdate    |             254|     3     |     1.18      |
-#> |     Force     |    mdate    |             254|    182    |     71.65     |
-#> |      End      |    mdate    |             254|     3     |     1.18      |
-#> | Organisation  |  character  |             254|    149    |     58.66     |
-#> |     Topic     |  character  |             254|    149    |     58.66     |
-#> |    Region     |  character  |             254|    105    |     41.34     |
-#> |  LegalStatus  |  character  |             254|    105    |     41.34     |
-#> |    Formal     |  character  |             254|     0     |       0       |
-#> |    Lineage    |  character  |             254|    84     |     33.07     |
-#> |     whoID     |   integer   |             254|    149    |     58.66     |
-#> |    ghhrID     |   integer   |             254|    105    |     41.34     |
-#> |  TreatyText   |  character  |             254|     3     |     1.18      |
-#> |      url      |  character  |             254|    126    |     49.61     |
-#> |    Source     |  character  |             254|    121    |     47.64     |
-#> |   Comments    |  character  |             254|    231    |     90.94     |
-#> |    Topic2     |  character  |             254|     0     |       0       |
+#> |    manyID     |  character  |             252|     0     |       0       |
+#> |   treatyID    |  character  |             252|     0     |       0       |
+#> |     Title     |  character  |             252|     0     |       0       |
+#> |     Begin     |    mdate    |             252|     0     |       0       |
+#> |   Signature   |    mdate    |             252|     0     |       0       |
+#> |     Force     |    mdate    |             252|    179    |     71.03     |
+#> |      End      |    mdate    |             252|     0     |       0       |
+#> |    Formal     |  character  |             252|     0     |       0       |
+#> |  TreatyText   |  character  |             252|     0     |       0       |
+#> |      url      |  character  |             252|    123    |     48.81     |
+#> |    Source     |  character  |             252|    118    |     46.83     |
+#> |   Comments    |  character  |             252|    229    |     90.87     |
+#> |     Topic     |  character  |             252|     0     |       0       |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
