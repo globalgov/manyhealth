@@ -1,7 +1,7 @@
 Package: manyhealth
 Title: Health Agreements for manydata
-Version: 0.2.0
-Date: 2023-02-14
+Version: 0.3.0
+Date: 2024-03-01
 Authors@R:
     c(person(given = "James",
              family = "Hollway",
