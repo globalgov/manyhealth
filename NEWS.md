@@ -1,3 +1,22 @@
+# manyhealth 0.3.0
+
+2024-03-01
+
+## Package
+
+* Added `memberships` to pkgdown.yml for website.
+
+## Data
+
+* Closed #25 by renaming `Beg` variable `Begin` across all datasets.
+* Closed #29 by adding a `Formal` variable in `HUGGO` dataset to distinguish between formal agreements and other non-legally binding resolutions, declarations, etc.
+* Closed #24 by recoding End dates for all agreements, so that agreements that are known to be still in force are coded '9999-12-31' rather than NA.
+* Closed #18 by adding `HUGGO_MEM` dataset and memberships database.
+* Closed #26 by updating the state names and stateIDs in the `HUGGO_MEM` dataset, so that stateIDs are unique and names are standardised.
+* Closed #28 by adding a `Succession` variable in `HUGGO_MEM` to indicate the states that have a predecessor or successor since 1945.
+* Added an `Accession` variable in `HUGGO_MEM` that records the date of accession to each agreement for states.
+* Closed #30 by adding date of deposit as a proxy for date of ratification in variable `StateRat`.
+
 # manyhealth 0.2.0
 
 2023-02-14
