@@ -50,6 +50,7 @@ reference:
     desc: "The following datacubes are contained in manyhealth"
     contents:
     - agreements
+    - memberships
     - organizations
     - references
 footer:
