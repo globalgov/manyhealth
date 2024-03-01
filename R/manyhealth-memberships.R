@@ -5,10 +5,10 @@
 #' For more information and references to each of the datasets used,
 #' please use the `manydata::call_sources()` and `manydata::compare_dimensions()` functions.
 #'\describe{
-#' \item{HUGGO_MEM: }{A dataset with 39392 observations and the following
-#' 15 variables: manyID, stateID, Title, Begin, Signature, Force, End,
-#' stateSignature, stateRat, stateForce, stateEnd, treatyID, StateName,
-#' Succession, Formal.}
+#' \item{HUGGO_MEM: }{A dataset with 39000 observations and the following
+#' 16 variables: manyID, stateID, Title, Begin, Signature, Force, End,
+#' stateSignature, stateRat, stateForce, stateEnd, StateName, treatyID,
+#' Rat=Notif, Succession, Accession.}
 #' }
 #' @source
 #' \itemize{

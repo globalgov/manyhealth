@@ -10,10 +10,10 @@ following 1 datasets: HUGGO_MEM.
 For more information and references to each of the datasets used,
 please use the \code{manydata::call_sources()} and \code{manydata::compare_dimensions()} functions.
 \describe{
-\item{HUGGO_MEM: }{A dataset with 39392 observations and the following
-15 variables: manyID, stateID, Title, Begin, Signature, Force, End,
-stateSignature, stateRat, stateForce, stateEnd, treatyID, StateName,
-Succession, Formal.}
+\item{HUGGO_MEM: }{A dataset with 39000 observations and the following
+16 variables: manyID, stateID, Title, Begin, Signature, Force, End,
+stateSignature, stateRat, stateForce, stateEnd, StateName, treatyID,
+Rat=Notif, Succession, Accession.}
 }
 }
 \source{
@@ -33,21 +33,22 @@ memberships datacube documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |           39392|     0     |       0       |
-#> |    stateID    |  character  |           39392|     0     |       0       |
-#> |     Title     |  character  |           39392|     0     |       0       |
-#> |     Begin     |    mdate    |           39392|     0     |       0       |
-#> |   Signature   |    mdate    |           39392|     0     |       0       |
-#> |     Force     |    mdate    |           39392|   33054   |     83.91     |
-#> |      End      |    mdate    |           39392|   39145   |     99.37     |
-#> |stateSignature |    mdate    |           39392|   6683    |     16.97     |
-#> |   stateRat    |    mdate    |           39392|   33574   |     85.23     |
-#> |  stateForce   |    mdate    |           39392|   33335   |     84.62     |
-#> |   stateEnd    |    mdate    |           39392|   39144   |     99.37     |
-#> |   treatyID    |  character  |           39392|     1     |       0       |
-#> |   StateName   |  character  |           39392|     0     |       0       |
-#> |  Succession   |  character  |           39392|     0     |       0       |
-#> |    Formal     |  character  |           39392|   16969   |     43.08     |
+#> |    manyID     |  character  |           39000|     0     |       0       |
+#> |    stateID    |  character  |           39000|     0     |       0       |
+#> |     Title     |  character  |           39000|     0     |       0       |
+#> |     Begin     |    mdate    |           39000|     0     |       0       |
+#> |   Signature   |    mdate    |           39000|     0     |       0       |
+#> |     Force     |    mdate    |           39000|   32469   |     83.25     |
+#> |      End      |    mdate    |           39000|     0     |       0       |
+#> |stateSignature |    mdate    |           39000|   6683    |     17.14     |
+#> |   stateRat    |    mdate    |           39000|   33182   |     85.08     |
+#> |  stateForce   |    mdate    |           39000|   32943   |     84.47     |
+#> |   stateEnd    |    mdate    |           39000|     0     |       0       |
+#> |   StateName   |  character  |           39000|     0     |       0       |
+#> |   treatyID    |  character  |           39000|     0     |       0       |
+#> |   Rat=Notif   |  character  |           39000|   37662   |     96.57     |
+#> |  Succession   |  character  |           39000|     0     |       0       |
+#> |   Accession   |  character  |           39000|   31284   |     80.22     |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
