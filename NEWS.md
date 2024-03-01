@@ -5,6 +5,7 @@
 ## Package
 
 * Added `memberships` to pkgdown.yml for website.
+* Updated vignette with data from memberships datacube and used new graphing functions from `{manynet}`.
 
 ## Data
 
