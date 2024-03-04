@@ -4,7 +4,7 @@
 # ready for the many package.
 
 # Stage one: scraping information from WHO website
-who_url <- rvest::read_html("https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
+who_url <- rvest::read_html("https://extranet.who.int/mindbank/collection/un_who_resolutions/all")
 
 extr_title <- who_url %>%
   rvest::html_nodes("strong a") %>%
