@@ -20,11 +20,11 @@
 #' \item{WHO: }{
 #' D. Bhugra, S. Pathare, R. Joshi, et al.
 #' “A review of mental health policies from Commonwealthcountries”.
-#' In: _International Journal of Social Psychiatry_ 64.1 (2018), pp. 3-8.}
+#' _International Journal of Social Psychiatry_ 64.1 (2018), pp. 3-8.}
 #' \item{GHHR: }{
 #' B. M. Meier, O. A. Cabrera, A. Ayala, et al.
 #' “Bridging international law and rights-based litigation:mapping health-related rights through the development of the global health and human rights database”.
-#' In: _Health & Human Rights._ 14 (2012), p. 20.}
+#' _Health & Human Rights._ 14 (2012), p. 20.}
 #' \item{HUGGO: }{
 #' J. Hollway. Health agreements for manydata. 2021.}
 #' }

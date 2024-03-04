@@ -26,11 +26,11 @@ TreatyText, url, Source, Comments, Topic.}
 \item{WHO: }{
 D. Bhugra, S. Pathare, R. Joshi, et al.
 “A review of mental health policies from Commonwealthcountries”.
-In: \emph{International Journal of Social Psychiatry} 64.1 (2018), pp. 3-8.}
+\emph{International Journal of Social Psychiatry} 64.1 (2018), pp. 3-8.}
 \item{GHHR: }{
 B. M. Meier, O. A. Cabrera, A. Ayala, et al.
 “Bridging international law and rights-based litigation:mapping health-related rights through the development of the global health and human rights database”.
-In: \emph{Health & Human Rights.} 14 (2012), p. 20.}
+\emph{Health & Human Rights.} 14 (2012), p. 20.}
 \item{HUGGO: }{
 J. Hollway. Health agreements for manydata. 2021.}
 }
