@@ -83,58 +83,35 @@ The **references** datacube was hand-coded from agreement texts and identifies w
 library(dplyr)
 library(ggplot2)
 library(manynet)
-
-# Get dataset
-references <- manyhealth::references$GHHR_REF %>% 
+manyhealth::references$GHHR_REF %>% 
   dplyr::distinct() %>%
-  dplyr::mutate(year = stringr::str_extract(Treaty1, "[:digit:]{4}")) %>%
-  dplyr::filter(RefType == "Cites") %>%
-  dplyr::arrange(year) %>%
-  dplyr::filter(Treaty2 == "UNVDHR_1948R")
-
-# Plot with manynet
-references %>%
+  dplyr::filter(RefType == "Cites",
+                Treaty2 == "UNVDHR_1948R") %>%
   as_tidygraph() %>%
-  mutate(rank = ifelse(name == "UNVDHR_1948R", 1, 2)) %>%
-  mutate_ties(period = ifelse(year < 1960, "1950s",
-                              ifelse(year < 1970, "1960s",
-                                     ifelse(year < 1980, "1970s",
-                                            ifelse(year < 1990, "1980s",
-                                                   ifelse(year < 2000, "1990s", "2000s")))))) %>%
-  autographr(layout = "lineage", rank = "rank", edge_color = "period") +
-  scale_edge_color_sdgs() +
-  labs(title = "Agreements Citing the Universal Declaration of Human Rights from the GHHR Dataset",
-       caption = "Source: manyhealth") +
-  theme(plot.title = element_text(family = "sans",
-                                  size = 12,
-                                  hjust = 0.5))
+  mutate(year = as.numeric(stringr::str_extract(name, "[:digit:]{4}"))) %>%
+  autographr(layout = "lineage", rank = "year", node_color = "year") +
+  scale_color_sdgs() +
+  labs(title = "Agreements Citing the Universal Declaration of Human Rights",
+       subtitle = "GHHR Dataset",
+       caption = "Source: manyhealth")
 ```
 
 
 The second graph below illustrate lineages between a sample of treaties from World Health Organization (WHO) dataset. It includes mostly resolutions, decisions and conventions adopted under the auspice of WHO. 
 
 ```{r lin, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
-# Get dataset
-references <- manyhealth::references$WHO_REF %>% 
+manyhealth::references$WHO_REF %>% 
   dplyr::distinct() %>%
-  dplyr::mutate(year = stringr::str_extract(Treaty1, "[:digit:]{4}")) %>%
-  dplyr::filter(RefType == "Cites") %>%
-  dplyr::arrange(year) %>%
-  dplyr::filter(Treaty2 == "FRMWTC_2003A" | Treaty2 == "GLDPAH_2004S" | Treaty2 == "GLPCND_2000S")
-
-# Plot with manynet
-references %>%
+  dplyr::filter(Treaty2 == "FRMWTC_2003A" |
+                  Treaty2 == "GLDPAH_2004S" | Treaty2 == "GLPCND_2000S") %>%
   as_tidygraph() %>%
-  mutate(rank = ifelse(name == "FRMWTC_2003A" | name == "GLDPAH_2004S" | name == "GLPCND_2000S",
-                       1, 2)) %>%
-  mutate_ties(period = ifelse(year < 2010, "2000s", "2010s")) %>%
-  autographr(layout = "lineage", rank = "rank", edge_color = "period") +
-  scale_edge_color_iheid() +
+  mutate(type = ifelse(name == "FRMWTC_2003A" | name == "GLDPAH_2004S" |
+                         name == "GLPCND_2000S", TRUE, FALSE)) %>%
+  autographr(node_color = "type") +
+  scale_color_iheid(guide="none") +
   labs(title = "Treaty Lineage of Selected Agreements from WHO",
        caption = "Source: manyhealth") +
-  theme(plot.title = element_text(family = "sans",
-                                  size = 16,
-                                  hjust = 0.5))
+  theme_iheid()
 ```
 
 For more information on how to interpret manyIDs, please read this [vignette](https://globalgov.github.io/manypkgs/articles/agreements.html) from `{manypkgs}` package. For access to more data and information in our other "many" packages, please see [manydata](https://github.com/globalgov/manydata).
