@@ -1,6 +1,6 @@
 ---
 title: "What Does Global Health Governance Look Like?"
-author: "Jael Tan and Esther Peev"
+author: "Jael Tan, Henrique Sposito, and Esther Peev"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
