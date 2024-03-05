@@ -56,6 +56,14 @@
 #' | Year of adoption | Begin |
 #'
 #' }
+#' \item{HUGGO: }{
+#' Variable Mapping
+#'
+#' |  *from*  | *to*
+#' |:------------:|:------------:|
+#' | NA | NA |
+#'
+#' }
 #' }
 #' @md
 #' @details

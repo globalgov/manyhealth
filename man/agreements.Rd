@@ -124,6 +124,14 @@ Variable Mapping\tabular{cc}{
 
 
 }
+\item{HUGGO: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   NA \tab NA \cr
+}
+
+
+}
 }
 }
 
