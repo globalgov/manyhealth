@@ -15,28 +15,29 @@ HUGGO_MEM <- readr::read_csv("data-raw/memberships/HUGGO_MEM/HUGGO_MEM_additiona
 # We recommend that you avoid using one letter variable names to keep
 # away from issues with ambiguous names down the road.
 HUGGO_MEM <- as_tibble(HUGGO_MEM) %>%
-  dplyr::mutate(StateName = manypkgs::code_states(StateName, activity = FALSE,
-                                                  replace = "names"),
-                stateID = manypkgs::code_states(StateName, activity = FALSE,
+  dplyr::mutate(stateID = manypkgs::code_states(StateName, activity = FALSE,
                                                 replace = "ID"),
                 Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End),
-                stateSignature = messydates::as_messydate(stateSignature),
-                stateRat = messydates::as_messydate(stateRat),
-                stateEnd = messydates::as_messydate(stateEnd),
-                stateForce = messydates::as_messydate(stateForce)) %>%
+                StateSignature = messydates::as_messydate(StateSignature),
+                StateRat = messydates::as_messydate(StateRat),
+                StateEnd = messydates::as_messydate(StateEnd),
+                StateForce = messydates::as_messydate(StateForce)) %>%
   dplyr::arrange(Begin)
 
 HUGGO_MEM <- HUGGO_MEM %>%
   dplyr::mutate(StateName = ifelse(StateName == "Democratic Republic of the Congo - Congo",
                                    "Democratic Republic of the Congo",
                                    StateName),
+                # correct double StateNames and stateIDs
                 stateID = ifelse(stateID == "COD - COG",
                                  "COD",
-                                 stateID)) %>% # correct double StateNames and stateIDs
-  dplyr::filter(!is.na(StateName)) # remove entries for NA StateNames that were European Atomic Energy Community and World Psychiatric Association
+                                 stateID)) %>%
+  # remove entries for NA: StateNames that were European Atomic Energy Community
+  # and World Psychiatric Association
+  dplyr::filter(!is.na(StateName))
 
 # Ensure NAs and data are coded correctly
 HUGGO_MEM <- HUGGO_MEM %>%
@@ -44,23 +45,24 @@ HUGGO_MEM <- HUGGO_MEM %>%
                 Signature = ifelse(Signature == "-", NA, Signature),
                 Force = ifelse(Force == "-", NA, Force),
                 End = ifelse(End == "-", NA, End),
-                stateSignature = ifelse(stateSignature == "-", NA,
-                                        stateSignature),
-                stateRat = ifelse(stateRat == "-", NA, stateRat),
-                stateForce = ifelse(stateForce == "-", NA, stateForce),
-                stateEnd = ifelse(stateEnd == "-", NA, stateEnd)) %>%
+                StateSignature = ifelse(StateSignature == "-", NA,
+                                        StateSignature),
+                StateRat = ifelse(StateRat == "-", NA, StateRat),
+                StateForce = ifelse(StateForce == "-", NA, StateForce),
+                StateEnd = ifelse(StateEnd == "-", NA, StateEnd)) %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
   dplyr::mutate(Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End),
-                StateSignature = messydates::as_messydate(stateSignature),
-                StateRat = messydates::as_messydate(stateRat),
-                StateForce = messydates::as_messydate(stateForce),
-                StateEnd = messydates::as_messydate(stateEnd),
-                StateName = manypkgs::standardise_titles(StateName)) %>%
-  dplyr::arrange(Begin, StateName) %>%
+                StateSignature = messydates::as_messydate(StateSignature),
+                StateRat = messydates::as_messydate(StateRat),
+                StateForce = messydates::as_messydate(StateForce),
+                StateEnd = messydates::as_messydate(StateEnd),
+                StateName = manypkgs::standardise_titles(StateName),
+                Accession = messydates::as_messydate(Accession)) %>%
+  dplyr::arrange(Begin, manyID, StateName) %>%
   dplyr::select(manyID, stateID, Title, Begin, Signature, Force, End,
                 StateSignature, StateRat, StateForce, StateEnd, StateName,
                 treatyID, `Rat=Notif`, Succession, Accession) %>%

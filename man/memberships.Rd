@@ -48,7 +48,7 @@ memberships datacube documentation
 #> |   treatyID    |  character  |           39000|     0     |       0       |
 #> |   Rat=Notif   |  character  |           39000|   37662   |     96.57     |
 #> |  Succession   |  character  |           39000|     0     |       0       |
-#> |   Accession   |  character  |           39000|   31284   |     80.22     |
+#> |   Accession   |    mdate    |           39000|   31284   |     80.22     |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
