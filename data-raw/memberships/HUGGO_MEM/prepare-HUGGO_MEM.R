@@ -38,22 +38,32 @@ HUGGO_MEM <- HUGGO_MEM %>%
                                  stateID)) %>% # correct double StateNames and stateIDs
   dplyr::filter(!is.na(StateName)) # remove entries for NA StateNames that were European Atomic Energy Community and World Psychiatric Association
 
-# Remove duplicates and ensure NAs are coded correctly
+# Ensure NAs and data are coded correctly
 HUGGO_MEM <- HUGGO_MEM %>%
+  dplyr::mutate(Begin = ifelse(Begin == "-", NA, Begin),
+                Signature = ifelse(Signature == "-", NA, Signature),
+                Force = ifelse(Force == "-", NA, Force),
+                End = ifelse(End == "-", NA, End),
+                stateSignature = ifelse(stateSignature == "-", NA,
+                                        stateSignature),
+                stateRat = ifelse(stateRat == "-", NA, stateRat),
+                stateForce = ifelse(stateForce == "-", NA, stateForce),
+                stateEnd = ifelse(stateEnd == "-", NA, stateEnd)) %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
   dplyr::mutate(Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End),
-                stateSignature = messydates::as_messydate(stateSignature),
-                stateRat = messydates::as_messydate(stateRat),
-                stateForce = messydates::as_messydate(stateForce),
-                stateEnd = messydates::as_messydate(stateEnd),
+                StateSignature = messydates::as_messydate(stateSignature),
+                StateRat = messydates::as_messydate(stateRat),
+                StateForce = messydates::as_messydate(stateForce),
+                StateEnd = messydates::as_messydate(stateEnd),
                 StateName = manypkgs::standardise_titles(StateName)) %>%
   dplyr::arrange(Begin, StateName) %>%
-  dplyr::relocate(manyID, stateID, Title, Begin, Signature, Force, End,
-                 stateSignature, stateRat, stateForce, stateEnd) %>%
+  dplyr::select(manyID, stateID, Title, Begin, Signature, Force, End,
+                StateSignature, StateRat, StateForce, StateEnd, StateName,
+                treatyID, `Rat=Notif`, Succession, Accession) %>%
   dplyr::distinct()
 
 # manypkgs includes several functions that should help with

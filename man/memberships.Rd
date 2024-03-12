@@ -40,10 +40,10 @@ memberships datacube documentation
 #> |   Signature   |    mdate    |           39000|     0     |       0       |
 #> |     Force     |    mdate    |           39000|   32469   |     83.25     |
 #> |      End      |    mdate    |           39000|     0     |       0       |
-#> |stateSignature |    mdate    |           39000|   6683    |     17.14     |
-#> |   stateRat    |    mdate    |           39000|   33182   |     85.08     |
-#> |  stateForce   |    mdate    |           39000|   32943   |     84.47     |
-#> |   stateEnd    |    mdate    |           39000|     0     |       0       |
+#> |StateSignature |    mdate    |           39000|   6693    |     17.16     |
+#> |   StateRat    |    mdate    |           39000|   33187   |     85.09     |
+#> |  StateForce   |    mdate    |           39000|   32943   |     84.47     |
+#> |   StateEnd    |    mdate    |           39000|     0     |       0       |
 #> |   StateName   |  character  |           39000|     0     |       0       |
 #> |   treatyID    |  character  |           39000|     0     |       0       |
 #> |   Rat=Notif   |  character  |           39000|   37662   |     96.57     |
