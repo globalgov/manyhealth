@@ -71,9 +71,22 @@ GHHR$Lineage <- manypkgs::code_lineage(GHHR$Title)
 manyID <- manypkgs::condense_agreements(manyhealth::agreements)
 GHHR <- dplyr::left_join(GHHR, manyID, by = "treatyID")
 
+# Recode Begin dates that are 'XXXX'
+GHHR <- GHHR %>%
+  dplyr::mutate(Begin = ifelse(grepl("XXXX", Begin), NA, Begin))
+
+# Add ghhrID
+GHHR$ghhrID <- rownames(GHHR)
+
 # Re-order columns
 GHHR <- GHHR %>%
-  dplyr::select(manyID, Title, Begin, Region, LegalStatus, Lineage, treatyID) %>%
+  dplyr::mutate(across(everything(),
+                       ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
+  dplyr::mutate(Title = manypkgs::standardise_titles(Title),
+                Begin = messydates::as_messydate(Begin)) %>%
+  dplyr::distinct(.keep_all = TRUE) %>%
+  dplyr::select(manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
+                ghhrID) %>%
   dplyr::arrange(Begin)
 
 # manypkgs includes several functions that should help cleaning

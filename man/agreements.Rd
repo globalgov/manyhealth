@@ -64,11 +64,11 @@ agreements datacube documentation
 #> |    manyID     |  character  |             149|     0     |       0       |
 #> |   treatyID    |  character  |             149|     0     |       0       |
 #> |     Title     |  character  |             149|     0     |       0       |
-#> |     Begin     |    mdate    |             149|     0     |       0       |
+#> |     Begin     |    mdate    |             149|     3     |     2.01      |
 #> |    Region     |  character  |             149|     0     |       0       |
 #> |  LegalStatus  |  character  |             149|     0     |       0       |
-#> |    Lineage    |  character  |             149|     0     |       0       |
-#> |    ghhrID     |   integer   |             149|     0     |       0       |
+#> |    Lineage    |  character  |             149|    52     |     34.9      |
+#> |    ghhrID     |  character  |             149|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
