@@ -18,11 +18,15 @@ knitr::opts_chunk$set(
 
 ## manyhealth Data
 
-`{manyhealth}` package is composed of multiple datacubes, each of them representing a different aspect of global health governance. These include data on health agreements, state memberships to these agreements, the lineage of these agreements, and organizations involved in global health governance.
+`{manyhealth}` package contains four datacubes, including data on health agreements, state memberships to these agreements, the lineage of these agreements, and organizations involved in global health governance.
+This vignette briefly introduces each of these datacubes.
 
 The `agreements` datacube contains 3 datasets (WHO, GHHR, and HUGGO) with a total of 509 observations.
-The WHO dataset contains agreements from the World Health Organization, and the GHHR dataset contains data from the Global Health and Human Rights database.
-The HUGGO dataset is a consolidated dataset of the health agreements identified in the WHO and GHHR datasets, but improves on the precision of dates, resolves any conflicts between these datasets, and fills in any missing information that could be found.
+The WHO dataset contains agreements from the World Health Organization.
+The GHHR dataset contains data from the Global Health and Human Rights database.
+The HUGGO dataset 
+is a consolidated dataset of the health agreements identified in the WHO and GHHR datasets, but 
+improves on the precision of dates, resolves any conflicts between these datasets, and fills in any missing information that could be found.
 
 ```{r overviewagr, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(kableExtra)
@@ -32,7 +36,9 @@ manydata::compare_dimensions(manyhealth::agreements) %>%
 ```
   
   
-Extending from data in the agreements datacube, the `memberships` datacube contains 1 dataset (HUGGO_MEM) with hand-coded data of 39000 observations on state memberships to international health instruments.
+Extending from data in the agreements datacube, the `memberships` datacube contains 1 dataset (HUGGO_MEM) with hand-coded data of 39,000 observations on state memberships to international health instruments.
+This is, to our knowledge, the first such dataset available.
+
 The `references` datacube contains 2 datasets (WHO_REF and GHHR_REF) with 289 observations on the lineages between international health instruments.
   
   
@@ -47,7 +53,15 @@ manydata::compare_dimensions(manyhealth::organizations) %>%
   
 ### Agreements
 
-The **agreements** datacube is an ensemble of data on international health instruments. The datasets in this datacube provide an overview of all international instruments that govern the global health sphere. With the agreements data, we can see for example all the health treaties signed in a specific year, or all WHO instruments adopted during a year. The HUGGO dataset contains handcoded data with more precise dates of adoption and, where applicable, entry into force for each instrument, as well as the broad topic of each instrument and identifies whether the instrument is formal/legally-binding, or not.
+The **agreements** datacube is an ensemble of data on international health instruments. 
+The datasets in this datacube provide an overview of all international instruments 
+that govern the global health sphere. 
+With the agreements data, we can see for example all the health treaties signed in a specific year, 
+or all WHO instruments adopted during a year. 
+The HUGGO dataset contains handcoded data with more precise dates of adoption 
+and, where applicable, entry into force for each instrument, 
+as well as the broad topic of each instrument and identifies whether the instrument 
+is formal/legally-binding, or not.
 
 ```{r agreements, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(dplyr)
@@ -69,12 +83,14 @@ manyhealth::agreements$HUGGO[,c(1:5, 8, 13)] %>%
 
 ### Memberships
 
-The **memberships** datacube contains hand-coded data on states' memberships to instruments governing the global health sphere. The `HUGGO_MEM` dataset includes specific adoption/signature, ratification, entry into force, and termination dates for each state during its membership to an agreement.
+The **memberships** datacube contains hand-coded data on states' memberships to instruments governing the global health sphere. 
+The `HUGGO_MEM` dataset includes specific adoption/signature, ratification, entry into force, and termination dates for each state during its membership to an agreement.
 States that have predecessor or successor entities since 1945 are also identified in the Succession variable.
 
 Using the memberships data, we can explore the degree of overlap among states' membership to international health instruments.
 For example, are members of the Pan-American Health Organization (PAHO) likely to be members of the same formal international health agreements?
-The graph below shows that there is a high degree of overlap in the formal international health agreements joined by some of PAHO's largest state members (Argentina, Brazil, Canada, Mexico, Peru, Venezuela, and the United States) in the 2000s.
+The graph below shows that there is a high degree of overlap in the formal international health agreements joined by some of PAHO's largest state members 
+(Argentina, Brazil, Canada, Mexico, Peru, Venezuela, and the United States) in the 2000s.
 
 ```{r memberships, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(dplyr)
@@ -102,7 +118,8 @@ manyhealth::memberships$HUGGO_MEM %>%
 
 ### Organizations
 
-The **organizations** datacube lists different actors playing a role in the global health governance, such as NGOs, IGOs or associations, with their date of establishment and headquarters location.
+The **organizations** datacube lists different actors playing a role in the global health governance, 
+such as NGOs, IGOs or associations, with their date of establishment and headquarters location.
 For example, the table below shows the organizations that are based in London.
 
 ```{r organizations, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
@@ -117,7 +134,10 @@ manyhealth::organizations$CHATHAM %>%
 
 ### References
 
-The **references** datacube was hand-coded from agreement texts and identifies which agreements are cited by other agreements. With this information we can, for example, get to treaty lineages. The code below illustrates how to extract a sample of treaties from the references datacube and how we can use `{manynet}` to plot treaties that cite other treaties. The first graph employs data from the GHHR_REF dataset, tracing the lineages of treaties that cite the Universal Declaration of Human Rights. There is a significant amount of overlap between health and human rights issues in some of these agreements.
+The **references** datacube was hand-coded from agreement texts and identifies which agreements are cited by other agreements. With this information we can, for example, get to treaty lineages. 
+The code below illustrates how to extract a sample of treaties from the references datacube and how we can use `{manynet}` to plot treaties that cite other treaties. 
+The first graph employs data from the GHHR_REF dataset, tracing the lineages of treaties that cite the Universal Declaration of Human Rights. 
+There is a significant amount of overlap between health and human rights issues in some of these agreements.
 
 ```{r lineage, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(dplyr)
@@ -168,4 +188,4 @@ as_tidygraph(data) %>%
 ```
 
 For more information on how to interpret manyIDs, please read this [vignette](https://globalgov.github.io/manypkgs/articles/agreements.html) from `{manypkgs}` package.
-For access to more data and information in our other "many" packages, please see [manydata](https://github.com/globalgov/manydata).
+For access to more data and information on our other "many" packages, please see [manydata](https://github.com/globalgov/manydata).
