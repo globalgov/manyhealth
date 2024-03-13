@@ -3,41 +3,57 @@
 \docType{data}
 \name{agreements}
 \alias{agreements}
-\title{agreements database documentation}
+\title{agreements datacube documentation}
 \format{
-The agreements database is a list that contains the
+The agreements datacube is a list that contains the
 following 3 datasets: WHO, GHHR, HUGGO.
 For more information and references to each of the datasets used,
-please use the \code{data_source()} and \code{data_contrast()} functions.
+please use the \code{manydata::call_sources()} and \code{manydata::compare_dimensions()} functions.
 \describe{
-\item{WHO: }{A dataset with 109 observations and the following
-7 variables: manyID, Title, Beg, Organisation, Topic, Lineage, treatyID.}
-\item{GHHR: }{A dataset with 151 observations and the following
-7 variables: manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID.}
-\item{HUGGO: }{A dataset with 255 observations and the following
-18 variables: manyID, Title, Beg, Signature, Force, End, Organisation, Topic,
-Region, LegalStatus, Lineage, Memb.conditions, Memb.procedures, treatyID,
-Text, Comments, url, Source.}
+\item{WHO: }{A dataset with 108 observations and the following
+8 variables: manyID, treatyID, Title, Begin, Organisation, Topic, Lineage,
+whoID.}
+\item{GHHR: }{A dataset with 149 observations and the following
+8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
+ghhrID.}
+\item{HUGGO: }{A dataset with 252 observations and the following
+13 variables: manyID, treatyID, Title, Begin, Signature, Force, End, Formal,
+TreatyText, url, Source, Comments, Topic.}
+}
+}
+\source{
+\itemize{
+\item{WHO: }{
+D. Bhugra, S. Pathare, R. Joshi, et al.
+“A review of mental health policies from Commonwealthcountries”.
+\emph{International Journal of Social Psychiatry} 64.1 (2018), pp. 3-8.}
+\item{GHHR: }{
+B. M. Meier, O. A. Cabrera, A. Ayala, et al.
+“Bridging international law and rights-based litigation:mapping health-related rights through the development of the global health and human rights database”.
+\emph{Health & Human Rights.} 14 (2012), p. 20.}
+\item{HUGGO: }{
+J. Hollway. Health agreements for manydata. 2021.}
 }
 }
 \usage{
 agreements
 }
 \description{
-agreements database documentation
+agreements datacube documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{#> $WHO
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             109|     0     |       0       |
-#> |     Title     |  character  |             109|     0     |       0       |
-#> |      Beg      |    mdate    |             109|     0     |       0       |
-#> | Organisation  |  character  |             109|     0     |       0       |
-#> |     Topic     |  character  |             109|     0     |       0       |
-#> |    Lineage    |  character  |             109|     0     |       0       |
-#> |   treatyID    |  character  |             109|     0     |       0       |
+#> |    manyID     |  character  |             108|     0     |       0       |
+#> |   treatyID    |  character  |             108|     0     |       0       |
+#> |     Title     |  character  |             108|     0     |       0       |
+#> |     Begin     |    mdate    |             108|     0     |       0       |
+#> | Organisation  |  character  |             108|     0     |       0       |
+#> |     Topic     |  character  |             108|     0     |       0       |
+#> |    Lineage    |  character  |             108|     0     |       0       |
+#> |     whoID     |   integer   |             108|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -45,13 +61,14 @@ agreements database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             151|     0     |       0       |
-#> |     Title     |  character  |             151|     0     |       0       |
-#> |      Beg      |    mdate    |             151|     0     |       0       |
-#> |    Region     |  character  |             151|     0     |       0       |
-#> |  LegalStatus  |  character  |             151|     0     |       0       |
-#> |    Lineage    |  character  |             151|     0     |       0       |
-#> |   treatyID    |  character  |             151|     0     |       0       |
+#> |    manyID     |  character  |             149|     0     |       0       |
+#> |   treatyID    |  character  |             149|     0     |       0       |
+#> |     Title     |  character  |             149|     0     |       0       |
+#> |     Begin     |    mdate    |             149|     3     |     2.01      |
+#> |    Region     |  character  |             149|     0     |       0       |
+#> |  LegalStatus  |  character  |             149|     0     |       0       |
+#> |    Lineage    |  character  |             149|    52     |     34.9      |
+#> |    ghhrID     |  character  |             149|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -59,25 +76,63 @@ agreements database documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             255|     0     |       0       |
-#> |     Title     |  character  |             255|     0     |       0       |
-#> |      Beg      |    mdate    |             255|     0     |       0       |
-#> |   Signature   |    mdate    |             255|     0     |       0       |
-#> |     Force     |    mdate    |             255|    186    |     72.94     |
-#> |      End      |    mdate    |             255|    252    |     98.82     |
-#> | Organisation  |  character  |             255|    148    |     58.04     |
-#> |     Topic     |  character  |             255|    148    |     58.04     |
-#> |    Region     |  character  |             255|    105    |     41.18     |
-#> |  LegalStatus  |  character  |             255|    105    |     41.18     |
-#> |    Lineage    |  character  |             255|    83     |     32.55     |
-#> |Memb.conditions|  character  |             255|    75     |     29.41     |
-#> |Memb.procedures|  character  |             255|    211    |     82.75     |
-#> |   treatyID    |  character  |             255|     0     |       0       |
-#> |     Text      |  character  |             255|     0     |       0       |
-#> |   Comments    |  character  |             255|    231    |     90.59     |
-#> |      url      |  character  |             255|     7     |     2.75      |
-#> |    Source     |  character  |             255|     1     |     0.39      |
+#> |    manyID     |  character  |             252|     0     |       0       |
+#> |   treatyID    |  character  |             252|     0     |       0       |
+#> |     Title     |  character  |             252|     0     |       0       |
+#> |     Begin     |    mdate    |             252|     0     |       0       |
+#> |   Signature   |    mdate    |             252|     0     |       0       |
+#> |     Force     |    mdate    |             252|    179    |     71.03     |
+#> |      End      |    mdate    |             252|     0     |       0       |
+#> |    Formal     |  character  |             252|     0     |       0       |
+#> |  TreatyText   |  character  |             252|     0     |       0       |
+#> |      url      |  character  |             252|    123    |     48.81     |
+#> |    Source     |  character  |             252|    118    |     46.83     |
+#> |   Comments    |  character  |             252|    229    |     90.87     |
+#> |     Topic     |  character  |             252|     0     |       0       |
 #> ----------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
+\section{URL}{
+
+\itemize{
+\item{WHO: }{
+\url{https://www.mindbank.info/collection/un_who_resolutions/all?page=all}
+}
+\item{GHHR: }{
+\url{https://www.globalhealthrights.org/instruments/instrument-region/}
+}
+\item{HUGGO: }{Hand-coded data by the GGO team}
+}
+}
+
+\section{Mapping}{
+
+\itemize{
+\item{WHO: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   NA \tab NA \cr
+}
+
+
+}
+\item{GHHR: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   Year of adoption \tab Begin \cr
+}
+
+
+}
+\item{HUGGO: }{
+Variable Mapping\tabular{cc}{
+   \emph{from} \tab \emph{to} \cr
+   NA \tab NA \cr
+}
+
+
+}
+}
+}
+
 \keyword{datasets}

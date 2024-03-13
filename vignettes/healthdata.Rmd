@@ -1,6 +1,6 @@
 ---
 title: "What Does Global Health Governance Look Like?"
-author: "Esther Peev"
+author: "Jael Tan, Henrique Sposito, and Esther Peev"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -14,95 +14,241 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
 
-## Manyhealth Data
-
-`{manyhealth}` package is composed of multiple databases, each of them representing a different aspect of global health governance.
-
-### Agreements
-
-The **agreements** database is an ensemble of data on international health instruments. The combination of datasets that are contained in this database prints an overview of all international instruments that governs the global health sphere. With the agreements data, we can for example see all the health treaties signed in a specific year, or all WHO instruments adopted during a year.
-
-```{r agreements, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(dplyr)
 library(knitr)
+library(kableExtra)
+library(manydata)
+library(manynet)
+```
+
+## manyhealth Data
+
+`{manyhealth}` package contains four datacubes, including data on health agreements, state memberships to these agreements, the lineage of these agreements, and organizations involved in global health governance.
+This vignette briefly introduces each of these datacubes.
+
+The `agreements` datacube contains 3 datasets (WHO, GHHR, and HUGGO) with a total of 509 observations.
+The WHO dataset contains agreements from the World Health Organization.
+The GHHR dataset contains data from the Global Health and Human Rights database.
+The HUGGO dataset 
+contains a handcoded data of the health agreements identified in the WHO and GHHR datasets,
+improving on the precision of dates, resolving any conflicts between these datasets,
+correcting incorrect information,
+and filling in any missing information that could be found.
+
+
+```{r overviewagr, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+manydata::compare_dimensions(manyhealth::agreements) %>% 
+  kable("html")
+```
+  
+  
+For instance, the WHO dataset,
+which contains data that was scraped automatically from the WHO MiNDBANK database online,
+has the latest date as 4313-12-31.
+For this observation with the year '4313' in the WHO dataset,
+"Human Rights Council Resolution A/HRC/RES/43/13 Mental Health and Human Rights",
+the precise and accurate adoption date has been manually verified
+and included in the HUGGO dataset as 2020-06-19.
+With manual coding, the HUGGO dataset provides more precise and accurate data than what was obtained from webpage scraping.
+  
+  
+Extending from data in the agreements datacube, the `memberships` datacube contains 1 dataset (HUGGO_MEM) with hand-coded data of 39,000 observations on state memberships to international health instruments.
+This is, to our knowledge, the first such dataset available.
+
+The `references` datacube contains 2 datasets (WHO_REF and GHHR_REF) with 289 observations on the lineages between international health instruments.
+  
+  
+The `organizations` datacube contains 3 datasets (CHATHAM, IHEID, GHS) with  a total of 530 observations.
+The datacube contains data on organizations involved in international health governance.
+  
+```{r overvieworg, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+manydata::compare_dimensions(manyhealth::organizations) %>% 
+  kable("html")
+```
+  
+  
+### Agreements
+
+The **agreements** datacube is an ensemble of data on international health instruments. 
+The datasets in this datacube provide an overview of all international instruments 
+that govern the global health sphere. 
+With the agreements data, we can see for example all the health treaties signed in a specific year, 
+or all WHO instruments adopted during a year. 
+The HUGGO dataset contains handcoded data with more precise dates of adoption 
+and, where applicable, entry into force for each instrument, 
+as well as the broad topic of each instrument and identifies whether the instrument 
+is formal/legally-binding, or not.
+
+```{r agreements, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 manyhealth::agreements$WHO[,c(1:5)] %>% 
-  dplyr::filter(Beg == "2010") %>% 
+  dplyr::filter(Begin == "2010") %>% 
   kable("html")
 
 manyhealth::agreements$GHHR[,c(1:5)] %>% 
-  dplyr::filter(Beg == "1948") %>% 
+  dplyr::filter(Begin == "1948") %>% 
   kable("html")
 
-manyhealth::agreements$HUGGO[,c(1:5)] %>% 
-  dplyr::filter(messydates::year(Beg) == "1990") %>% 
+manyhealth::agreements$HUGGO[,c(1:5, 8, 13)] %>% 
+  dplyr::filter(messydates::year(Begin) == "1990") %>% 
   kable("html")
 
 ```
 
 
+### Memberships
+
+The **memberships** datacube contains hand-coded data on states' memberships to instruments governing the global health sphere. 
+The `HUGGO_MEM` dataset includes specific adoption/signature ('StateSignature'),
+ratification ('StateRat'), entry into force ('StateForce'),
+and termination ('StateEnd') dates for each state during its membership to an agreement.
+States that have predecessor or successor entities since 1945 are also identified in the Succession variable.
+
+```{r mem, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+manyhealth::memberships$HUGGO_MEM[,c(1:4, 8:11, 15)] %>% 
+  dplyr::filter(messydates::year(Begin) == "2005" & stateID == "CHE") %>% 
+  kable("html")
+
+```
+
+Using the memberships data, we can explore the degree of overlap among states' membership to international health instruments.
+For example, are members of the Pan-American Health Organization (PAHO) likely to be members of the same formal international health agreements?
+The graph below shows that there is a high degree of overlap in the formal international health agreements joined by some of PAHO's largest state members 
+(Argentina, Brazil, Canada, Mexico, Peru, Venezuela, and the United States) in the 2000s.
+
+```{r memberships, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+pahoIDs <- c("ARG", "BRA", "CAN", "MEX", "PER", "VEN", "USA")
+formal <- manyhealth::agreements$HUGGO %>%
+  dplyr::filter(Begin > "1999" & Begin < "2010") %>%
+  dplyr::filter(Formal == 1) %>%
+  dplyr::select(manyID, treatyID) %>%
+  dplyr::distinct()
+manyhealth::memberships$HUGGO_MEM %>%
+  dplyr::select(manyID, stateID, Title, Begin) %>%
+  dplyr::mutate(year = messydates::year(Begin)) %>%
+  dplyr::filter(stateID %in% pahoIDs) %>%
+  dplyr::distinct() %>%
+  dplyr::select(manyID, stateID, year) %>%
+  dplyr::filter(year > "1999" & year < "2010") %>% 
+  dplyr::filter(manyID %in% formal$manyID) %>%
+  as_tidygraph() %>%
+  mutate(type = ifelse(stringr::str_detect(name, "[:digit:]{4}"), FALSE, TRUE)) %>%
+  mutate_ties(year = weight) %>%
+  autographr(layout = "hierarchy", edge_color = "year")
+```
+
 ### Organizations
 
-The **Organizations** database lists different actors playing a role in the global health governance, such as NGOs, IGOs or associations with their date of establishment and headquarter location. For example, the table below shows the organizations that are based in London.
+The **organizations** datacube lists different actors playing a role in global health governance, 
+such as NGOs, IGOs or associations.
+These actors are identified in the datasets with the organizationID and Organization variables.
+The datasets also contain the date of establishment (listed in the Begin variable)
+and headquarters location (City and/or State variables) of these actors.
+
+```{r org, warning = FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+manyhealth::organizations$GHS %>% 
+  dplyr::filter(messydates::year(Begin) == "2000") %>% 
+  kable("html")
+
+manyhealth::organizations$IHEID %>% 
+  dplyr::filter(messydates::year(Begin) == "1990") %>% 
+  kable("html")
+```
+  
+  
+Using the organizations data, we can visualise the organizations that are based in a specific city or
+work in a specific area.
+The following graph illustrates the network of health organizations based in the city of Geneva,
+and highlights whether their primary mandate is in health governance.
+From the graph, we can see that only 4 organizations are not working primarily in the health domain.
 
 ```{r organizations, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
-library(dplyr)
-library(knitr)
-manyhealth::organizations$CHATHAM %>%
-  dplyr::filter(City == "London") %>% 
-  kable("html")
+aim <- manyhealth::organizations$GHS %>%
+  dplyr::filter(City == "Geneva") %>%
+  dplyr::select(`Health as primary intent?`) %>%
+  dplyr::mutate(`Health as primary intent?` = ifelse(`Health as primary intent?` == "Yes",
+                                                     "Health", "Other")) %>%
+  as.vector() %>%
+  unlist()
+manyhealth::organizations$GHS %>%
+  dplyr::filter(City == "Geneva") %>%
+  dplyr::select(Organization, City) %>%
+  as_tidygraph() %>%
+  mutate(aim = c(aim, NA)) %>%
+  autographr(node_color = "aim")
 
 ```
 
 
 ### References
 
-The **References** database was hand coded from TEXTS and identifies which treaties cite other treaties. With this information we can, for example, get to treaty lineages. The code below illustrates how to extract sample of treaties from the references database and how we can use {migraph} to plot treaties that cite to other treaties. The dataset selected to this end, GHHR_REF, also includes agreements on human rights.
+The **references** datacube was coded from agreement texts and identifies the relationships among agreements.
+Treaties are referenced in the dataset with their manyIDs in variables Treaty1 and Treaty2.
+The relationship between each pair of treaties is coded in the variable RefType.
+
+
+```{r ref, warning = FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
+manyhealth::references$GHHR_REF[1:10,] %>% 
+  dplyr::filter(RefType == "Cites") %>%
+  kable("html")
+
+manyhealth::references$WHO_REF[1:10,] %>% 
+  dplyr::filter(RefType == "Cites") %>% 
+  kable("html")
+```
+
+With this information we can, for example, get to treaty lineages.
+The code below illustrates how to extract a sample of treaties from the references datacube and how we can use `{manynet}` to plot treaties that cite other treaties. 
+The first graph employs data from the GHHR_REF dataset, tracing the lineages of treaties that cite the Universal Declaration of Human Rights. 
+There is a significant amount of overlap between health and human rights issues in some of these agreements.
 
 ```{r lineage, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
 library(dplyr)
 library(ggplot2)
-library(migraph)
-
-# Get dataset
-references <- manyhealth::references$GHHR_REF %>% 
+library(manynet)
+set1 <- manyhealth::references$GHHR_REF %>% 
   dplyr::distinct() %>%
-  dplyr::mutate(year = stringr::str_extract(Treaty2, "[:digit:]{4}")) %>%
-  dplyr::filter(RefType == "Cites") %>%
-  dplyr::arrange(year)
-
-# Plot with migraph
-migraph::gglineage(references[75:100,c(1,2,3)]) +
-  labs(title = "Treaty Lineage of Selected Agreements from GHHR Dataset",
-       caption = "Source: manyhealth") +
-  theme(plot.title = element_text(family = "sans",
-                                  size = 18,
-                                  hjust = 0.5))
+  dplyr::filter(Treaty2 == "UNVDHR_1948R")
+set2 <- manyhealth::references$GHHR_REF %>% 
+  dplyr::distinct() %>%
+  dplyr::filter(Treaty2 %in% set1$Treaty1 & Treaty1 %in% set1$Treaty1)
+set2treaties <- c(set2$Treaty1)
+data <- dplyr::bind_rows(set1, set2)
+as_tidygraph(data) %>%
+  mutate(year = as.numeric(stringr::str_extract(name, "[:digit:]{4}")),
+         color = ifelse(name == "UNVDHR_1948R",
+                        "Universal Declaration of Human Rights",
+                        ifelse(name %in% set2treaties,
+                               "Cites other treaties",
+                               "Cites UNVDHR only"))) %>%
+  autographr(layout = "lineage", rank = "year", node_color = "color") +
+  scale_color_centres() +
+  labs(title = "Lineages of Agreements Citing the Universal Declaration of Human Rights",
+       subtitle = "GHHR Dataset",
+       caption = "Source: manyhealth")
 ```
-
-
-The second graph below illustrate lineages between a sample of treaties from World Health Organization (WHO) dataset. It is mostly resolutions, decisions and conventions adopted under the auspice of WHO. 
-
+  
+The second graph below illustrate lineages of a sample of treaties from World Health Organization (WHO) dataset.
+It includes mostly resolutions, decisions and conventions adopted under the auspices of the WHO. 
+  
 ```{r lin, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
-library(dplyr)
-library(ggplot2)
-library(migraph)
-
-# Get dataset
-references <- manyhealth::references$WHO_REF %>% 
+set1 <- manyhealth::references$WHO_REF %>% 
   dplyr::distinct() %>%
-  dplyr::mutate(year = stringr::str_extract(Treaty2, "[:digit:]{4}")) %>%
-  dplyr::filter(RefType == "Cites") %>%
-  dplyr::arrange(year)
-
-# Plot with migraph
-migraph::gglineage(references[10:35,c(1,2,3)]) +
+  dplyr::filter(Treaty2 == "FRMWTC_2003A" |
+                  Treaty2 == "GLDPAH_2004S" | Treaty2 == "GLPCND_2000S")
+set2 <- manyhealth::references$WHO_REF %>% 
+  dplyr::distinct() %>%
+  dplyr::filter(Treaty2 %in% set1$Treaty1 & Treaty1 %in% set1$Treaty1)
+data <- dplyr::bind_rows(set1, set2)
+as_tidygraph(data) %>%
+  mutate(type = ifelse(name == "FRMWTC_2003A" | name == "GLDPAH_2004S" |
+                         name == "GLPCND_2000S", TRUE, FALSE)) %>%
+  autographr(node_color = "type", node_size = 0.2) +
+  scale_color_iheid(guide="none") +
   labs(title = "Treaty Lineage of Selected Agreements from WHO",
        caption = "Source: manyhealth") +
-  theme(plot.title = element_text(family = "sans",
-                                  size = 18,
-                                  hjust = 0.5))
+  theme_iheid()
 ```
 
-For more information on how to read the manyID, please read the [vignette](https://globalgov.github.io/manypkgs/articles/agreements.html) from `{manypkgs}` package. For more information on some of our other "many" packages, please see [manydata](https://github.com/globalgov/manydata).
+For more information on how to interpret manyIDs, please read this [vignette](https://globalgov.github.io/manypkgs/articles/agreements.html) from `{manypkgs}` package.
+For access to more data and information on our other "many" packages, please see [manydata](https://github.com/globalgov/manydata).

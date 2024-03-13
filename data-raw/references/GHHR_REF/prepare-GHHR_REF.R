@@ -1,11 +1,11 @@
 # GHHR_REF Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
-# The texts database has been used to hand code GHHR_REF. It allowed
-# to identify which treaty was citing other treaties. GHHR_REF reflects
-# those relationships through the three column Treaty1, RefType and Treaty2.
+# GHHR_REF reflects those relationships among agreements listed in the WHO dataset.
+# The treaties are referenced with their manyIDs in variables Treaty1 and Treaty2.
+# The relationship between each pair of treaties is coded in the variable RefType.
 
 # Stage one: Collecting data from the hand coded csv file
 GHHR_REF <- readr::read_csv2("data-raw/references/GHHR_REF/GHHR_REF.csv")
@@ -16,7 +16,7 @@ GHHR_REF <- readr::read_csv2("data-raw/references/GHHR_REF/GHHR_REF.csv")
 # below (in stage three) passes all the tests.
 GHHR_REF <- GHHR_REF[-c(225, 226, 227), ]
 
-# Put dates columns in messydt
+# Put dates columns in mdate
 GHHR_REF$Beg1 <- manypkgs::standardise_dates(GHHR_REF$Beg1)
 GHHR_REF$Beg2 <- manypkgs::standardise_dates(as.character(GHHR_REF$Beg2))
 
@@ -52,6 +52,5 @@ GHHR_REF <- as_tibble(GHHR_REF) %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(references, GHHR_REF)`.
-manypkgs::export_data(GHHR_REF,
-                      database = "references",
+manypkgs::export_data(GHHR_REF, datacube = "references",
                       URL = "https://www.globalhealthrights.org/instruments/instrument-region/")

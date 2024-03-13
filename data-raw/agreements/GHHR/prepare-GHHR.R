@@ -1,7 +1,7 @@
 # GHHR Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
 # Stage one: scraping information from Global Health and Human Rights website
 urls <- paste0("https://www.globalhealthrights.org/instruments/instrument-region/page/", 1:16, "/")
@@ -56,13 +56,13 @@ date <- unlist(s)
 date <- stringr::str_replace_all(date, "Year of adoption\\:\\sRegion", "NA")
 date <- stringr::str_remove_all(date, "Year of adoption\\:\\s")
 
-GHHR$Beg <- messydates::as_messydate(date)
+GHHR$Begin <- messydates::as_messydate(date)
 
 GHHR <- as_tibble(GHHR) %>%
-  dplyr::select(Title, Beg, Region, LegalStatus)
+  dplyr::select(Title, Begin, Region, LegalStatus)
 
 # Add treatyID
-GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Beg)
+GHHR$treatyID <- manypkgs::code_agreements(GHHR, GHHR$Title, GHHR$Begin)
 
 # Add Lineage
 GHHR$Lineage <- manypkgs::code_lineage(GHHR$Title)
@@ -71,10 +71,23 @@ GHHR$Lineage <- manypkgs::code_lineage(GHHR$Title)
 manyID <- manypkgs::condense_agreements(manyhealth::agreements)
 GHHR <- dplyr::left_join(GHHR, manyID, by = "treatyID")
 
+# Recode Begin dates that are 'XXXX'
+GHHR <- GHHR %>%
+  dplyr::mutate(Begin = ifelse(grepl("XXXX", Begin), NA, Begin))
+
+# Add ghhrID
+GHHR$ghhrID <- rownames(GHHR)
+
 # Re-order columns
 GHHR <- GHHR %>%
-  dplyr::select(manyID, Title, Beg, Region, LegalStatus, Lineage, treatyID) %>%
-  dplyr::arrange(Beg)
+  dplyr::mutate(across(everything(),
+                       ~stringr::str_replace_all(., "^NA$", NA_character_))) %>%
+  dplyr::mutate(Title = manypkgs::standardise_titles(Title),
+                Begin = messydates::as_messydate(Begin)) %>%
+  dplyr::distinct(.keep_all = TRUE) %>%
+  dplyr::select(manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
+                ghhrID) %>%
+  dplyr::arrange(Begin)
 
 # manypkgs includes several functions that should help cleaning
 # and standardising your data.
@@ -97,6 +110,5 @@ GHHR <- GHHR %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(agreements, GHHR)`.
-manypkgs::export_data(GHHR,
-                      database = "agreements",
+manypkgs::export_data(GHHR, datacube = "agreements",
                       URL = "https://www.globalhealthrights.org/instruments/instrument-region/")

@@ -13,8 +13,10 @@ test_that("missing observations are reported correctly", {
 # Uniformity tests (agreements have a source ID, a string title, a signature and
 # entry into force date)
 test_that("datasets have the required variables", {
-  expect_col_exists(agreements[["WHO"]], vars(Title))
-  expect_col_exists(agreements[["WHO"]], vars(Beg))
+  pointblank::expect_col_exists(agreements[["WHO"]],
+                                pointblank::vars(Title))
+  pointblank::expect_col_exists(agreements[["WHO"]],
+                                pointblank::vars(Begin))
   expect_true(any(grepl("ID$", colnames(agreements[["WHO"]]))))
 })
 
@@ -26,23 +28,25 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 })
 
 # Dates are standardized for mandatory column
-test_that("Column `Beg` has standardised dates", {
-  expect_equal(class(agreements[["WHO"]]$Beg), "mdate")
-  expect_false(any(grepl("/", agreements[["WHO"]]$Beg)))
+test_that("Column `Begin` has standardised dates", {
+  expect_equal(class(agreements[["WHO"]]$Begin), "mdate")
+  expect_false(any(grepl("/", agreements[["WHO"]]$Begin)))
   expect_false(any(grepl("^[:alpha:]$",
-                         agreements[["WHO"]]$Beg)))
+                         agreements[["WHO"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{2}$",
-                         agreements[["WHO"]]$Beg)))
+                         agreements[["WHO"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{3}$",
-                         agreements[["WHO"]]$Beg)))
+                         agreements[["WHO"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{1}$",
-                         agreements[["WHO"]]$Beg)))
+                         agreements[["WHO"]]$Begin)))
 })
 
-# Dataset should be ordered according to the "Beg" column
+# Dataset should be ordered according to the "Begin" column
 test_that("dataset is arranged by date variable", {
-  expect_true(agreements[["WHO"]]$Beg[1] <
-                agreements[["WHO"]]$Beg[10])
-  expect_true(agreements[["WHO"]]$Beg[50] <
-                agreements[["WHO"]]$Beg[75])
+  expect_true(agreements[["WHO"]]$Begin[1] <
+                agreements[["WHO"]]$Begin[10])
+  expect_true(agreements[["WHO"]]$Begin[50] <
+                agreements[["WHO"]]$Begin[75])
+  expect_true(agreements[["WHO"]]$Begin[80] <
+                agreements[["WHO"]]$Begin[100])
 })

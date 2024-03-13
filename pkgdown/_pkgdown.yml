@@ -47,9 +47,10 @@ navbar:
           href: https://globalgov.github.io/manyenviron/
 reference:
   - title: "Data"
-    desc: "The following databases are contained in manyhealth"
+    desc: "The following datacubes are contained in manyhealth"
     contents:
     - agreements
+    - memberships
     - organizations
     - references
 footer:

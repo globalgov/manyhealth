@@ -1,7 +1,7 @@
 Package: manyhealth
-Title: Health Agreements for the many Universe
-Version: 0.2.0
-Date: 2023-02-14
+Title: Health Agreements for manydata
+Version: 0.3.0
+Date: 2024-03-13
 Authors@R:
     c(person(given = "James",
              family = "Hollway",
@@ -28,26 +28,16 @@ Description: The manyhealth package provides an ensemble of data on
   international health instruments, and the main actors for research use.
 License: CC BY 4.0
 Depends: 
-    R (>= 2.10),
-    tibble,
-    pointblank
-Imports: 
-    dplyr,
-    lubridate,
-    roxygen2,
-    usethis,
-    pkgdown,
-    migraph,
-    knitr
-Suggests: 
-    purrr,
-    rlang,
+    R (>= 3.5.0),
+    manydata
+Suggests:
     testthat (>= 3.0.0),
-    ggplot2,
-    rmarkdown,
-    remotes
+    pointblank,
+    lubridate
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.1
+URL: https://globalgov.github.io/manyhealth/, https://github.com/globalgov/manyhealth
+BugReports: https://github.com/globalgov/manyhealth/issues
 Config/testthat/edition: 3

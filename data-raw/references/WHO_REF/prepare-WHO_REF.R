@@ -1,11 +1,11 @@
 # WHO_REF Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
-# The texts database has been used to hand code WHO_REF. It allowed
-# to identify which treaty was citing other treaties. WHO_REF reflects
-# those relationships through the three column Treaty1, RefType and Treaty2.
+# WHO_REF reflects those relationships among agreements listed in the WHO dataset.
+# The treaties are referenced with their manyIDs in variables Treaty1 and Treaty2.
+# The relationship between each pair of treaties is coded in the variable RefType.
 
 # Stage one: Collecting data from the hand coded csv file
 WHO_REF <- readr::read_csv2("data-raw/references/WHO_REF/WHO_REF.csv")
@@ -46,5 +46,5 @@ WHO_REF <- as_tibble(WHO_REF) %>%
 # that you're including in the package.
 # To add a template of .bib file to package,
 # run `manypkgs::add_bib(references, WHO_REF)`.
-manypkgs::export_data(WHO_REF, database = "references",
+manypkgs::export_data(WHO_REF, datacube = "references",
                      URL = "https://www.mindbank.info/collection/un_who_resolutions/all?page=all")
