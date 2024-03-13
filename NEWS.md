@@ -1,6 +1,6 @@
 # manyhealth 0.3.0
 
-2024-03-01
+2024-03-13
 
 ## Package
 
@@ -17,6 +17,7 @@
 * Closed #28 by adding a `Succession` variable in `HUGGO_MEM` to indicate the states that have a predecessor or successor since 1945.
 * Added an `Accession` variable in `HUGGO_MEM` that records the date of accession to each agreement for states.
 * Closed #30 by adding date of deposit as a proxy for date of ratification in variable `StateRat`.
+* Added raw treaty texts in plain text format to HUGGO/TreatyTexts folder in the agreements database.
 
 # manyhealth 0.2.0
 
