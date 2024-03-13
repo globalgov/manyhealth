@@ -3,9 +3,9 @@
 # This is a template for importing, cleaning, and exporting data
 # ready for the many package.
 
-# The texts datacube has been used to hand code WHO_REF. It allowed
-# to identify which treaty was citing other treaties. WHO_REF reflects
-# those relationships through the three column Treaty1, RefType and Treaty2.
+# WHO_REF reflects those relationships among agreements listed in the WHO dataset.
+# The treaties are referenced with their manyIDs in variables Treaty1 and Treaty2.
+# The relationship between each pair of treaties is coded in the variable RefType.
 
 # Stage one: Collecting data from the hand coded csv file
 WHO_REF <- readr::read_csv2("data-raw/references/WHO_REF/WHO_REF.csv")
