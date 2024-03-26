@@ -34,7 +34,8 @@ Suggests:
     testthat (>= 3.0.0),
     pointblank,
     lubridate,
-    kableExtra
+    kableExtra,
+    migraph
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
