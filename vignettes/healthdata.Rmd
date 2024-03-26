@@ -123,18 +123,20 @@ formal <- manyhealth::agreements$HUGGO %>%
   dplyr::filter(Formal == 1) %>%
   dplyr::select(manyID, treatyID) %>%
   dplyr::distinct()
-manyhealth::memberships$HUGGO_MEM %>%
+net <- manyhealth::memberships$HUGGO_MEM %>%
   dplyr::select(manyID, stateID, Title, Begin) %>%
   dplyr::mutate(year = messydates::year(Begin)) %>%
+  dplyr::filter(year > "1999" & year < "2010") %>%
   dplyr::filter(stateID %in% pahoIDs) %>%
   dplyr::distinct() %>%
-  dplyr::select(manyID, stateID, year) %>%
-  dplyr::filter(year > "1999" & year < "2010") %>% 
+  dplyr::select(manyID, stateID) %>%
   dplyr::filter(manyID %in% formal$manyID) %>%
   as_tidygraph() %>%
-  mutate(type = ifelse(stringr::str_detect(name, "[:digit:]{4}"), FALSE, TRUE)) %>%
-  mutate_ties(year = weight) %>%
-  autographr(layout = "hierarchy", edge_color = "year")
+  mutate(type = ifelse(stringr::str_detect(name, "[:digit:]{4}"), FALSE, TRUE))
+max <- which(node_is_max(migraph::node_degree(net)))
+net %>%
+  mutate_ties(mem = ifelse(from %in% max, "all", "selective")) %>%
+  autographr(layout = "hierarchy", edge_color = "mem")
 ```
 
 ### Organizations
@@ -203,9 +205,6 @@ The first graph employs data from the GHHR_REF dataset, tracing the lineages of 
 There is a significant amount of overlap between health and human rights issues in some of these agreements.
 
 ```{r lineage, warning=FALSE, message=FALSE, fig.align='center', fig.asp=1.2, fig.width=7}
-library(dplyr)
-library(ggplot2)
-library(manynet)
 set1 <- manyhealth::references$GHHR_REF %>% 
   dplyr::distinct() %>%
   dplyr::filter(Treaty2 == "UNVDHR_1948R")
