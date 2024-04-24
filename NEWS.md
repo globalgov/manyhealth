@@ -1,3 +1,17 @@
+# manyhealth 0.3.1
+
+2024-04-24
+
+## Package
+
+* Fixes to imports and suggests to ensure website builds properly.
+* Updated vignette with new plot for memberships data.
+
+## Data
+
+* Re-ordered variables in HUGGO_MEM for clarity, moving the state-specific dates in front
+* Renamed 'StateRat' to 'StateRatification' to be consistent with other many data packages.
+
 # manyhealth 0.3.0
 
 2024-03-13
