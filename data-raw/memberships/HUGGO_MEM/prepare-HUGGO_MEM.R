@@ -22,7 +22,7 @@ HUGGO_MEM <- as_tibble(HUGGO_MEM) %>%
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End),
                 StateSignature = messydates::as_messydate(StateSignature),
-                StateRat = messydates::as_messydate(StateRat),
+                StateRatification = messydates::as_messydate(StateRatification),
                 StateEnd = messydates::as_messydate(StateEnd),
                 StateForce = messydates::as_messydate(StateForce)) %>%
   dplyr::arrange(Begin)
@@ -47,7 +47,8 @@ HUGGO_MEM <- HUGGO_MEM %>%
                 End = ifelse(End == "-", NA, End),
                 StateSignature = ifelse(StateSignature == "-", NA,
                                         StateSignature),
-                StateRat = ifelse(StateRat == "-", NA, StateRat),
+                StateRatification = ifelse(StateRatification == "-", NA,
+                                           StateRatification),
                 StateForce = ifelse(StateForce == "-", NA, StateForce),
                 StateEnd = ifelse(StateEnd == "-", NA, StateEnd)) %>%
   dplyr::mutate(across(everything(),
@@ -57,15 +58,16 @@ HUGGO_MEM <- HUGGO_MEM %>%
                 Force = messydates::as_messydate(Force),
                 End = messydates::as_messydate(End),
                 StateSignature = messydates::as_messydate(StateSignature),
-                StateRat = messydates::as_messydate(StateRat),
+                StateRatification = messydates::as_messydate(StateRatification),
                 StateForce = messydates::as_messydate(StateForce),
                 StateEnd = messydates::as_messydate(StateEnd),
                 StateName = manypkgs::standardise_titles(StateName),
                 Accession = messydates::as_messydate(Accession)) %>%
-  dplyr::arrange(Begin, manyID, StateName) %>%
-  dplyr::select(manyID, stateID, Title, Begin, Signature, Force, End,
-                StateSignature, StateRat, StateForce, StateEnd, StateName,
-                treatyID, `Rat=Notif`, Succession, Accession) %>%
+  dplyr::arrange(Begin, manyID, stateID) %>%
+  dplyr::select(manyID, Title, Begin, stateID, StateName,
+                StateSignature, StateRatification, StateForce, StateEnd,
+                `Rat=Notif`, Accession, Succession,
+                treatyID, Signature, Force, End, Coder) %>%
   dplyr::distinct()
 
 # manypkgs includes several functions that should help with

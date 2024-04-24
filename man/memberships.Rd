@@ -11,9 +11,9 @@ For more information and references to each of the datasets used,
 please use the \code{manydata::call_sources()} and \code{manydata::compare_dimensions()} functions.
 \describe{
 \item{HUGGO_MEM: }{A dataset with 39000 observations and the following
-16 variables: manyID, stateID, Title, Begin, Signature, Force, End,
-stateSignature, stateRat, stateForce, stateEnd, StateName, treatyID,
-Rat=Notif, Succession, Accession.}
+16 variables: manyID, Title, Begin, stateID, StateName, StateSignature,
+StateRatification, StateForce, StateEnd, Rat=Notif, Accession, Succession,
+treatyID, Signature, Force, End, Coder.}
 }
 }
 \source{
@@ -30,26 +30,27 @@ memberships datacube documentation
 }
 \details{
 \if{html}{\out{<div class="sourceCode">}}\preformatted{#> $HUGGO_MEM
-#> ----------------------------------------------------------------------------
-#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-#> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |           39000|     0     |       0       |
-#> |    stateID    |  character  |           39000|     0     |       0       |
-#> |     Title     |  character  |           39000|     0     |       0       |
-#> |     Begin     |    mdate    |           39000|     0     |       0       |
-#> |   Signature   |    mdate    |           39000|     0     |       0       |
-#> |     Force     |    mdate    |           39000|   32469   |     83.25     |
-#> |      End      |    mdate    |           39000|     0     |       0       |
-#> |StateSignature |    mdate    |           39000|   6693    |     17.16     |
-#> |   StateRat    |    mdate    |           39000|   33187   |     85.09     |
-#> |  StateForce   |    mdate    |           39000|   32943   |     84.47     |
-#> |   StateEnd    |    mdate    |           39000|     0     |       0       |
-#> |   StateName   |  character  |           39000|     0     |       0       |
-#> |   treatyID    |  character  |           39000|     0     |       0       |
-#> |   Rat=Notif   |  character  |           39000|   37662   |     96.57     |
-#> |  Succession   |  character  |           39000|     0     |       0       |
-#> |   Accession   |    mdate    |           39000|   31284   |     80.22     |
-#> ----------------------------------------------------------------------------
+#> ------------------------------------------------------------------------------
+#> |   Column Name   |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> ------------------------------------------------------------------------------
+#> |     manyID      |  character  |           39000|     0     |       0       |
+#> |      Title      |  character  |           39000|     0     |       0       |
+#> |      Begin      |    mdate    |           39000|     0     |       0       |
+#> |     stateID     |  character  |           39000|     0     |       0       |
+#> |    StateName    |  character  |           39000|     0     |       0       |
+#> | StateSignature  |    mdate    |           39000|   6693    |     17.16     |
+#> |StateRatification|    mdate    |           39000|   33187   |     85.09     |
+#> |   StateForce    |    mdate    |           39000|   32943   |     84.47     |
+#> |    StateEnd     |    mdate    |           39000|     0     |       0       |
+#> |    Rat=Notif    |  character  |           39000|   37662   |     96.57     |
+#> |    Accession    |  character  |           39000|   31294   |     80.24     |
+#> |   Succession    |  character  |           39000|     0     |       0       |
+#> |    treatyID     |  character  |           39000|     0     |       0       |
+#> |    Signature    |    mdate    |           39000|     0     |       0       |
+#> |      Force      |    mdate    |           39000|   32469   |     83.25     |
+#> |       End       |    mdate    |           39000|     0     |       0       |
+#> |      Coder      |  character  |           39000|     0     |       0       |
+#> ------------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
 \section{URL}{
