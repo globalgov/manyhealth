@@ -38,17 +38,28 @@ HUGGO2 <- HUGGO2 %>%
 
 ## Added 'Formal' variable identifying legally-binding formal agreements
 ## Formal = 1 indicates the agreement is legally-binding.
+## 'Dataset' variable indicates the dataset in which agreement is also found
+## (WHO, GHHR, or Both)
+## 'Source' variable indicates the source of the agreement:
+## WHO, UN, OAS (Organization of American States), AU (African Union),
+## ACHPR (African Commission of Human and Peoples' Rights),
+## COE (Council of Europe), EU (European Union), WMA (World Medical Association),
+## WPA (World Psychiatric association), PAHO (Pan-American Health Organization)
+## 'Health_as_primary_intent' variable indicates if agreement is primarily
+## intended to govern health issues; either Y (Yes) or N (No)
+
+# Filter out agreements that do not have health in scope of agreement.
 
 # make sure manyIDs and treatyIDs are updated
-HUGGO2$treatyID <- manypkgs::code_agreements(HUGGO2, HUGGO2$Title,
-                                                HUGGO2$Begin)
+HUGGO2$treatyID <- manypkgs::code_agreements(HUGGO2, HUGGO2$Title, HUGGO2$Begin)
 manyID <- manypkgs::condense_agreements(manyhealth::agreements)
 HUGGO2 <- dplyr::left_join(HUGGO2, manyID, by = "treatyID")
 HUGGO2 <- HUGGO2 %>%
   manydata::transmutate(manyID = ifelse(!is.na(manyID.y), manyID.y, manyID.x)) %>%
   dplyr::distinct()
 HUGGO2 <- HUGGO2 %>%
-  dplyr::relocate(manyID, treatyID, Title, Begin, Signature, Force, End)
+  dplyr::relocate(manyID, treatyID, Title, Begin, Signature, Force, End) %>%
+  dplyr::select(-c(Health_in_scope, Type))
 
 # Stage four: Improve Topic variable
 ## Improve Topic variable identifying issue of agreements.

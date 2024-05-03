@@ -11,9 +11,9 @@
 #' \item{GHHR: }{A dataset with 149 observations and the following
 #' 8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
 #' ghhrID.}
-#' \item{HUGGO: }{A dataset with 252 observations and the following
-#' 13 variables: manyID, treatyID, Title, Begin, Signature, Force, End, Formal,
-#' TreatyText, url, Source, Comments, Topic.}
+#' \item{HUGGO: }{A dataset with 223 observations and the following
+#' 15 variables: manyID, treatyID, Title, Begin, Signature, Force, End, Formal,
+#' TreatyText, url, Dataset, Source, Health_as_primary_intent, Comments, Topic.}
 #' }
 #' @source
 #' \itemize{

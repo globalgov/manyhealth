@@ -16,9 +16,9 @@ whoID.}
 \item{GHHR: }{A dataset with 149 observations and the following
 8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
 ghhrID.}
-\item{HUGGO: }{A dataset with 252 observations and the following
-13 variables: manyID, treatyID, Title, Begin, Signature, Force, End, Formal,
-TreatyText, url, Source, Comments, Topic.}
+\item{HUGGO: }{A dataset with 223 observations and the following
+15 variables: manyID, treatyID, Title, Begin, Signature, Force, End, Formal,
+TreatyText, url, Dataset, Source, Health_as_primary_intent, Comments, Topic.}
 }
 }
 \source{
@@ -73,23 +73,25 @@ agreements datacube documentation
 #> 
 #> 
 #> $HUGGO
-#> ----------------------------------------------------------------------------
-#> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
-#> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             252|     0     |       0       |
-#> |   treatyID    |  character  |             252|     0     |       0       |
-#> |     Title     |  character  |             252|     0     |       0       |
-#> |     Begin     |    mdate    |             252|     0     |       0       |
-#> |   Signature   |    mdate    |             252|     0     |       0       |
-#> |     Force     |    mdate    |             252|    179    |     71.03     |
-#> |      End      |    mdate    |             252|     0     |       0       |
-#> |    Formal     |  character  |             252|     0     |       0       |
-#> |  TreatyText   |  character  |             252|     0     |       0       |
-#> |      url      |  character  |             252|    123    |     48.81     |
-#> |    Source     |  character  |             252|    118    |     46.83     |
-#> |   Comments    |  character  |             252|    229    |     90.87     |
-#> |     Topic     |  character  |             252|     0     |       0       |
-#> ----------------------------------------------------------------------------
+#> -------------------------------------------------------------------------------------
+#> |      Column Name       |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
+#> -------------------------------------------------------------------------------------
+#> |         manyID         |  character  |             223|     0     |       0       |
+#> |        treatyID        |  character  |             223|     0     |       0       |
+#> |         Title          |  character  |             223|     0     |       0       |
+#> |         Begin          |    mdate    |             223|     0     |       0       |
+#> |       Signature        |    mdate    |             223|     0     |       0       |
+#> |         Force          |    mdate    |             223|    163    |     73.09     |
+#> |          End           |    mdate    |             223|     0     |       0       |
+#> |         Formal         |  character  |             223|     0     |       0       |
+#> |       TreatyText       |  character  |             223|     0     |       0       |
+#> |          url           |  character  |             223|    104    |     46.64     |
+#> |        Dataset         |  character  |             223|     0     |       0       |
+#> |         Source         |  character  |             223|     1     |     0.45      |
+#> |Health_as_primary_intent|  character  |             223|     0     |       0       |
+#> |        Comments        |  character  |             223|    200    |     89.69     |
+#> |         Topic          |  character  |             223|     0     |       0       |
+#> -------------------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
 \section{URL}{
