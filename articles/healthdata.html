@@ -92,7 +92,7 @@
                         <h4 data-toc-skip class="author">Jael Tan,
 Henrique Sposito, and Esther Peev</h4>
             
-            <h4 data-toc-skip class="date">2024-04-24</h4>
+            <h4 data-toc-skip class="date">2024-06-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/globalgov/manyhealth/blob/HEAD/vignettes/healthdata.Rmd" class="external-link"><code>vignettes/healthdata.Rmd</code></a></small>
       <div class="d-none name"><code>healthdata.Rmd</code></div>
@@ -152,7 +152,7 @@ manyID, treatyID, Title, Begin, Organisation, Topic, Lineage, whoID
 1948-01-01
 </td>
 <td style="text-align:left;">
-1948-12-31
+4313-12-31
 </td>
 </tr>
 <tr>
@@ -169,7 +169,7 @@ manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage, ghhrID
 1930-01-01
 </td>
 <td style="text-align:left;">
-1930-12-31
+2011-12-31
 </td>
 </tr>
 <tr>
@@ -248,7 +248,7 @@ Health_as_primary_intent
 1975-02-08
 </td>
 <td style="text-align:left;">
-1975-02-08
+1975-07-05
 </td>
 </tr>
 <tr>
@@ -265,7 +265,7 @@ organizationID, Organization, Begin, Areas, City
 1863-01-01
 </td>
 <td style="text-align:left;">
-1863-12-31
+2016-12-31
 </td>
 </tr>
 <tr>
@@ -283,7 +283,7 @@ primary intent?
 1864-01-01
 </td>
 <td style="text-align:left;">
-1864-12-31
+2011-12-31
 </td>
 </tr>
 </tbody>
@@ -1164,7 +1164,19 @@ the United States) in the 2000s.</p>
 <span><span class="va">max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu">node_is_max</span><span class="op">(</span><span class="fu">migraph</span><span class="fu">::</span><span class="fu"><a href="https://stocnet.github.io/migraph/reference/degree_centrality.html" class="external-link">node_degree</a></span><span class="op">(</span><span class="va">net</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">net</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate_ties</span><span class="op">(</span>mem <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">from</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">max</span>, <span class="st">"all"</span>, <span class="st">"selective"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">autographr</span><span class="op">(</span>layout <span class="op">=</span> <span class="st">"hierarchy"</span>, edge_color <span class="op">=</span> <span class="st">"mem"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">autographr</span><span class="op">(</span>layout <span class="op">=</span> <span class="st">"hierarchy"</span>, edge_color <span class="op">=</span> <span class="st">"mem"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; The Rgraphviz package is required to run this function. Would you like to install Rgraphviz from BioConductor? (Yes/no/cancel) </span></span>
+<span><span class="co">#&gt; The BiocManager package is required to run this function. Would you like to install BiocManager from CRAN? (Yes/no/cancel) </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The downloaded binary packages are in</span></span>
+<span><span class="co">#&gt;  /var/folders/dm/88b38gj92jj53dgxdsm12qf00000gn/T//RtmppfejJL/downloaded_packages</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The downloaded binary packages are in</span></span>
+<span><span class="co">#&gt;  /var/folders/dm/88b38gj92jj53dgxdsm12qf00000gn/T//RtmppfejJL/downloaded_packages</span></span>
+<span><span class="co">#&gt; The RSiena package is required to run this function. Would you like to install RSiena from CRAN? (Yes/no/cancel) </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The downloaded binary packages are in</span></span>
+<span><span class="co">#&gt;  /var/folders/dm/88b38gj92jj53dgxdsm12qf00000gn/T//RtmppfejJL/downloaded_packages</span></span></code></pre></div>
 <p><img src="healthdata_files/figure-html/memberships-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
