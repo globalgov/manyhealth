@@ -48,8 +48,6 @@ HUGGO2 <- HUGGO2 %>%
 ## 'Health_as_primary_intent' variable indicates if agreement is primarily
 ## intended to govern health issues; either Y (Yes) or N (No)
 
-# Filter out agreements that do not have health in scope of agreement.
-
 # make sure manyIDs and treatyIDs are updated
 HUGGO2$treatyID <- manypkgs::code_agreements(HUGGO2, HUGGO2$Title, HUGGO2$Begin)
 manyID <- manypkgs::condense_agreements(manyhealth::agreements)

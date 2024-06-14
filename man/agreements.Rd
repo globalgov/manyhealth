@@ -10,13 +10,12 @@ following 3 datasets: WHO, GHHR, HUGGO.
 For more information and references to each of the datasets used,
 please use the \code{manydata::call_sources()} and \code{manydata::compare_dimensions()} functions.
 \describe{
-\item{WHO: }{A dataset with 108 observations and the following
-8 variables: manyID, treatyID, Title, Begin, Organisation, Topic, Lineage,
-whoID.}
+\item{WHO: }{A dataset with 115 observations and the following
+6 variables: manyID, treatyID, Title, Begin, Organisation, Topic.}
 \item{GHHR: }{A dataset with 149 observations and the following
 8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
 ghhrID.}
-\item{HUGGO: }{A dataset with 223 observations and the following
+\item{HUGGO: }{A dataset with 229 observations and the following
 15 variables: manyID, treatyID, Title, Begin, Signature, Force, End, Formal,
 TreatyText, url, Dataset, Source, Health_as_primary_intent, Comments, Topic.}
 }
@@ -46,14 +45,12 @@ agreements datacube documentation
 #> ----------------------------------------------------------------------------
 #> |  Column Name  |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> ----------------------------------------------------------------------------
-#> |    manyID     |  character  |             108|     0     |       0       |
-#> |   treatyID    |  character  |             108|     0     |       0       |
-#> |     Title     |  character  |             108|     0     |       0       |
-#> |     Begin     |    mdate    |             108|     0     |       0       |
-#> | Organisation  |  character  |             108|     0     |       0       |
-#> |     Topic     |  character  |             108|     0     |       0       |
-#> |    Lineage    |  character  |             108|     0     |       0       |
-#> |     whoID     |   integer   |             108|     0     |       0       |
+#> |    manyID     |  character  |             114|     0     |       0       |
+#> |   treatyID    |  character  |             114|     0     |       0       |
+#> |     Title     |  character  |             114|     0     |       0       |
+#> |     Begin     |    mdate    |             114|     0     |       0       |
+#> | Organisation  |  character  |             114|     0     |       0       |
+#> |     Topic     |  character  |             114|     0     |       0       |
 #> ----------------------------------------------------------------------------
 #> 
 #> 
@@ -76,21 +73,21 @@ agreements datacube documentation
 #> -------------------------------------------------------------------------------------
 #> |      Column Name       |  Data Type  |  Observations  |  Missing  |  Missing (\%)  |
 #> -------------------------------------------------------------------------------------
-#> |         manyID         |  character  |             223|     0     |       0       |
-#> |        treatyID        |  character  |             223|     0     |       0       |
-#> |         Title          |  character  |             223|     0     |       0       |
-#> |         Begin          |    mdate    |             223|     0     |       0       |
-#> |       Signature        |    mdate    |             223|     0     |       0       |
-#> |         Force          |    mdate    |             223|    163    |     73.09     |
-#> |          End           |    mdate    |             223|     0     |       0       |
-#> |         Formal         |  character  |             223|     0     |       0       |
-#> |       TreatyText       |  character  |             223|     0     |       0       |
-#> |          url           |  character  |             223|    104    |     46.64     |
-#> |        Dataset         |  character  |             223|     0     |       0       |
-#> |         Source         |  character  |             223|     1     |     0.45      |
-#> |Health_as_primary_intent|  character  |             223|     0     |       0       |
-#> |        Comments        |  character  |             223|    200    |     89.69     |
-#> |         Topic          |  character  |             223|     0     |       0       |
+#> |         manyID         |  character  |             229|     0     |       0       |
+#> |        treatyID        |  character  |             229|     0     |       0       |
+#> |         Title          |  character  |             229|     0     |       0       |
+#> |         Begin          |    mdate    |             229|     0     |       0       |
+#> |       Signature        |    mdate    |             229|     0     |       0       |
+#> |         Force          |    mdate    |             229|    169    |     73.8      |
+#> |          End           |    mdate    |             229|     0     |       0       |
+#> |         Formal         |  character  |             229|     0     |       0       |
+#> |       TreatyText       |  character  |             229|     0     |       0       |
+#> |          url           |  character  |             229|    104    |     45.41     |
+#> |        Dataset         |  character  |             229|     0     |       0       |
+#> |         Source         |  character  |             229|     1     |     0.44      |
+#> |Health_as_primary_intent|  character  |             229|     0     |       0       |
+#> |        Comments        |  character  |             229|    206    |     89.96     |
+#> |         Topic          |  character  |             229|     0     |       0       |
 #> -------------------------------------------------------------------------------------
 }\if{html}{\out{</div>}}
 }
