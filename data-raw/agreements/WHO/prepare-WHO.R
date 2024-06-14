@@ -4,7 +4,7 @@
 # ready for the many package.
 
 # Stage one: scraping information from WHO website
-who_url <- rvest::read_html("https://extranet.who.int/mindbank/collection/un_who_resolutions/all")
+who_url <- rvest::read_html("https://extranet.who.int/mindbank/collection/un_who_resolutions/all?page=all")
 
 extr_title <- who_url %>%
   rvest::html_nodes("strong a") %>%
@@ -47,7 +47,7 @@ WHO <- as_tibble(WHO) %>%
 WHO$treatyID <- manypkgs::code_agreements(WHO, WHO$Title, WHO$Begin)
 
 # Add Lineage column
-WHO$Lineage <- manypkgs::code_lineage(WHO$Title)
+# WHO$Lineage <- manypkgs::code_lineage(WHO$Title)
 
 # Add manyID
 manyID <- manypkgs::condense_agreements(manyhealth::agreements)
@@ -55,7 +55,7 @@ WHO <- dplyr::left_join(WHO, manyID, by = "treatyID")
 
 # Re-order columns
 WHO <- WHO %>%
-  dplyr::select(manyID, Title, Begin, Organisation, Topic, Lineage, treatyID) %>%
+  dplyr::select(manyID, treatyID, Title, Begin, Organisation, Topic) %>%
   dplyr::arrange(Begin)
 
 # manypkgs includes several functions that should help cleaning

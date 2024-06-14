@@ -5,9 +5,8 @@
 #' For more information and references to each of the datasets used,
 #' please use the `manydata::call_sources()` and `manydata::compare_dimensions()` functions.
 #'\describe{
-#' \item{WHO: }{A dataset with 108 observations and the following
-#' 8 variables: manyID, treatyID, Title, Begin, Organisation, Topic, Lineage,
-#' whoID.}
+#' \item{WHO: }{A dataset with 115 observations and the following
+#' 6 variables: manyID, treatyID, Title, Begin, Organisation, Topic.}
 #' \item{GHHR: }{A dataset with 149 observations and the following
 #' 8 variables: manyID, treatyID, Title, Begin, Region, LegalStatus, Lineage,
 #' ghhrID.}
