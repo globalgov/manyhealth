@@ -1,13 +1,10 @@
 # WHO_GHED Preparation Script
 
-# <Please add more information about WHO_GHED here
-# if it is an original dataset.>
-
 # This is a template for importing, cleaning, and exporting data
 # ready for the many package.
 
 # Stage one: Collecting data
-WHO_GHED <- readxl::read_excel("data-raw/finance/WHO_GHED/WHO_GHED_2018-2022.xlsx")
+WHO_GHED <- readr::read_csv2("data-raw/finance/WHO_GHED/WHO_GHED_2000-2022.csv")
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
@@ -16,18 +13,23 @@ WHO_GHED <- readxl::read_excel("data-raw/finance/WHO_GHED/WHO_GHED_2018-2022.xls
 # We recommend that you avoid using one letter variable names to keep
 # away from issues with ambiguous names down the road.
 WHO_GHED <- as_tibble(WHO_GHED) %>%
-  manydata::transmutate(ID = {id_variable_name_here},
-                        Begin = messydates::as_messydate({date_variable_name_here})) %>%
-  dplyr::arrange(Begin)
+  dplyr::select(country, code, region, year, che, che_gdp, dom_che,
+                hk_g_gdp, hk_ext_gdp, ext, ext_che) %>%
+  dplyr::mutate(stateID = manypkgs::code_states(country, activity = F,
+                                                replace = "ID"),
+                stateID = ifelse(is.na(stateID), code, stateID),
+                StateName = manypkgs::code_states(country, activity = F,
+                                                  replace = "names")) %>%
+  dplyr::select(-c(code, country)) %>%
+  dplyr::relocate(stateID, StateName,year) %>%
+  dplyr::arrange(year, stateID)
 
 # Remove duplicates and ensure NAs are coded correctly
 WHO_GHED <- WHO_GHED %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(.,
                                                  "^NA$", NA_character_))) %>%
-  dplyr::mutate(Begin = messydates::as_messydate(Begin),
-                Signature = messydates::as_messydate(Signature),
-                Force = messydates::as_messydate(Force)) %>%
+  dplyr::mutate(year = messydates::as_messydate(year)) %>%
   dplyr::distinct(.keep_all = TRUE)
 
 # manypkgs includes several functions that should help with
@@ -54,4 +56,4 @@ WHO_GHED <- WHO_GHED %>%
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib("finance", "WHO_GHED")`.
 manypkgs::export_data(WHO_GHED, datacube = "finance",
-                      URL = "https://apps.who.int/nha/database/Home/Index/en")
+                      URL = "https://apps.who.int/nha/database")
